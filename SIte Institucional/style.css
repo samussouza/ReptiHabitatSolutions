@@ -12,3 +12,9 @@ body{
 .nav-bar{
 
 }
+
+.lista_inicio{
+    justify-content: space-evenly;
+    list-style: none;
+    display: flex;
+}

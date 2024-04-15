@@ -1,0 +1,129 @@
+body {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    /* Impede a exibição da barra de rolagem */
+    font-family: Arial;
+}
+
+.container {
+    display: flex;
+    background-color: #F0F9FF;
+
+}
+
+.divInfo {
+    background-color: rgb(255, 255, 255);
+    width: 20%;
+    height: 100vh;
+    background-color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.identidade {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.logo-text {
+    font-size: 24px;
+    margin-left: 15px;
+}
+
+.vantagens {
+    width: 100%;
+    margin-left: 50px;
+    margin-top: 70px;
+}
+
+.vantagem {
+    display: flex;
+    align-items: center;
+  
+}
+
+.vantagem img {
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+}
+
+.vantagem span {
+    font-size: 18px;
+}
+
+.login {
+    background-color: #F0F9FF;
+
+    /* padding: 30px; */
+    /* flex-grow: 1; Ajuste para ocupar o espaço restante */
+    padding-top: 70px;
+}
+
+
+.inputs {
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    border-radius: 5%;
+    width: 540px;
+    margin-left: 276px;
+    height: 500px;
+    font-size: 18px;
+}
+
+.h1 {
+    text-align: center;
+
+}
+
+.inputsFilhos input {
+    background-color: #548d3d81;
+    width: 480px;
+    height: 38px;
+    border: #548d3d solid 3px;
+    
+}
+
+::placeholder {
+    color: #ffffff;
+    padding-left: 10px;
+    font-size: medium;
+}
+.inputsFilhos {
+    margin-left: 25px;
+}
+.button {
+    /* text-align: center; */
+    margin-left: 150px;
+
+}
+
+.button button {
+    padding: 10px 20px;
+    background-color: #548d3d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    /* font-weight: bold; */
+    width: 250px;
+    height: 50px;
+    font-size: 18px;
+}
+
+.userNovo {
+
+    padding-top: 5px;
+    margin-left: 163px;
+}

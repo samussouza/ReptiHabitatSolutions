@@ -1,0 +1,23 @@
+.cards {
+    display: center;
+    place-items: center;
+    width: 470px;
+    background: #e9fce29c;
+}
+
+
+.card-1 {
+    text-align: center;
+    width: 30rem;
+    margin: 4.8rem auto;
+}
+
+.Input {
+    background-color: rgba(85, 107, 47, 0.466);
+    color: white;
+  }
+  
+  .Input::placeholder {
+    background-color: rgba(85, 107, 47, 0.466);
+    color: floralwhite;
+  }

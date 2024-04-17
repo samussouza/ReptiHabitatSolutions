@@ -2,65 +2,51 @@ CREATE DATABASE ReptiHabitatSolutions;
 USE ReptiHabitatSolutions;
 
 -- Criação da tabela de cadastro da empresa e usuário
-create table empresa (
+create table empresaCadastro (
     idEmpresa INT auto_increment,
     nomeEmpresa VARCHAR(50) not null,
-    emailEmpresa VARCHAR(45) not null,
-    senha VARCHAR(20) not null,
-    CEP CHAR(8) not null,
-    numeroLocal char(4),
+    emailEmpresa VARCHAR(45) not null unique,
+    senhaEmpresa VARCHAR(20) not null unique,
     PRIMARY KEY (idEmpresa)
 );
 
-
--- Criação da tabela de login do usuário
-create table login (
-    idLogin INT auto_increment,
-    emailEmpresa VARCHAR(45) not null,
-    senha VARCHAR(20) not null,
-    dataHora datetime,
-    fkEmpresa int not null,
-    PRIMARY KEY (idLogin, fkEmpresa),
-    foreign key (fkEmpresa) references empresa(idEmpresa)
-);
-
 CREATE TABLE endereco (
-  id_endereco INT AUTO_INCREMENT,
+  idEndereco INT AUTO_INCREMENT,
   logradouro VARCHAR(60) NOT NULL,
-  numero VARCHAR (10)  NOT NULL,
-  complemento VARCHAR(45) NOT NULL,
+  numero INT NOT NULL,
+  complemento VARCHAR(45),
   bairro VARCHAR(45) NOT NULL,
   cidade VARCHAR(45) NOT NULL,
-  UF CHAR(2) NOT NULL,
-  cliente_id INT NOT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT fk_endereco_cliente
-    FORE
-    IGN KEY (id_cliente)
-    REFERENCES cliente (id)
+  contatoCelular char(11) NOT NULL,
+  fkEmpresa INT, 
+  PRIMARY KEY (idEndereco, fkEmpresa),
+  constraint foreinEmpresa foreign key endereco(fkEmpresa) references empresaCadastro(idEmpresa)
 );
 
 -- Criação da tabela haitat animal que será registrado
-create table ambienteEmpresa (
+create table habitatAnimal (
     idAmbiente int auto_increment,
-    descricao VARCHAR(45) DEFAULT 'Adicionar Descrição',
-    fkEmpresa int not null,
-    PRIMARY KEY (idAmbiente),
-    foreign key (fkEmpresa) references cadastroEmpresa(idEmpresa)
+    especieRepteis varchar(45) not null, 
+    qntRepteis INT not null,
+	areaHabitat INT,
+    descricao varchar(45) DEFAULT 'Adicionar Descrição',
+    fkIdEndereco INT,
+    fk_fkEmpresa INT,
+    PRIMARY KEY (idAmbiente, fkIdEndereco, fk_fkEmpresa),
+	constraint foreinfkEmpresa foreign key habitatAnimal(fk_fkEmpresa) references empresaCadastro(idEmpresa),
+	constraint foreinfkEndereco foreign key habitatAnimal(fkIdEndereco) references endereco(idEndereco)
 );
 
 -- Criação da tabela dos sensores
 create table sensor (
-    idSensor int primary key auto_increment,
+    idSensor int auto_increment,
     tipo char (4) not null,
-    quantidade int not null,
     alertaVerde int,
     alertaAmarelo int,
     alertaVermelho int,
-    fkAmbiente int not null,
-    fkEmpresa int not null,
-    foreign key (fkAmbiente) references ambienteEmpresa(idAmbiente),
-    foreign key (fkEmpresa) references ambienteEmpresa(fkEmpresa),
+    fkHabitat int,
+    PRIMARY KEY (idSensor,fkHabitat),
+    foreign key (fkHabitat) references habitatAnimal(idAmbiente),
     CONSTRAINT chk_tipo check (tipo in('UMID','TEMP'))
 );
 
@@ -71,25 +57,12 @@ create table leituraSensor (
     valorTemperaturaLm float,
     valorUmidadeDht float,
     dataHora datetime,
-    fkSensor int not null,
-    primary key (idLeitura),
-    foreign key (fkSensor) references sensor(idSensor)
+    fkSensor int,
+    fkHabitatSensor int,
+    primary key (idLeitura, fkSensor, fkHabitatSensor),
+    foreign key (fkSensor) references sensor(idSensor),
+	foreign key (fkHabitatSensor) references habitatAnimal(idAmbiente)
 );
-
-CREATE TABLE medicao (
-  id_medicao INT AUTO_INCREMENT,
-  temperatura DECIMAL(4,2) NOT NULL,
-  lumunosidade DECIMAL(7,2) NOT NULL,
-  fk_cliente INT NOT NULL,
-  PRIMARY KEY (id_medicao, cliente_id),
-  CONSTRAINT ck_cliente_medicao
-    FOREIGN KEY (fk_cliente)
-    REFERENCES cliente (id)
-);
- -- Ter um segunda tabela para se o cliente tiver mais de um endereco
- -- arrumar fk usuario (esta na tabela cliente)
-
-
 
 -- Inserção de dados na tabela "empresa"
 insert into empresa values

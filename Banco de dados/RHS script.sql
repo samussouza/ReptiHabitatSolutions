@@ -1,12 +1,20 @@
 CREATE DATABASE ReptiHabitatSolutions;
-
 USE ReptiHabitatSolutions;
 
-CREATE TABLE usuario (
+CREATE TABLE cadastroUsuario (
   id_user INT NOT NULL AUTO_INCREMENT,
   nome VARCHAR(60) NOT NULL,
   cpf VARCHAR(20) NOT NULL,
   dtNssc VARCHAR(20) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  senha VARCHAR(50) NOT NULL,
+  permissao CHAR(1) NOT NULL,
+  PRIMARY KEY (id_user)
+  );
+
+CREATE TABLE loginUsuario (
+  id_user INT NOT NULL AUTO_INCREMENT,
+  nome VARCHAR(60) NOT NULL,
   email VARCHAR(100) NOT NULL,
   senha VARCHAR(50) NOT NULL,
   permissao CHAR(1) NOT NULL,

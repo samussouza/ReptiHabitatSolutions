@@ -52,18 +52,17 @@ create table sensor (
 
 -- Criação da tabela de dados dos sensores
 create table leituraSensor (
-    idLeitura int auto_increment,
-    valorTemperaturaDht float,
-    valorTemperaturaLm float,
-    valorUmidadeDht float,
-    dataHora datetime,
+    idLeitura int primary key auto_increment,
+    valorTemperaturaDht decimal(4.2),
+    valorUmidadeDht decimal(4,2)
+    /*dataHora datetime,
     fkSensor int,
     fkHabitatSensor int,
     primary key (idLeitura, fkSensor, fkHabitatSensor),
     foreign key (fkSensor) references sensor(idSensor),
-	foreign key (fkHabitatSensor) references habitatAnimal(idAmbiente)
+	foreign key (fkHabitatSensor) references habitatAnimal(idAmbiente)*/
 );
-
+drop table leiturasensor;
 -- Inserção de dados na tabela "empresa"
 insert into empresa values
 (null, 'C6 Bank', 'isabela@c6bank.com', 'Isabela1234', '31872495000172', 'Financeiro', 01406100, 3186),
@@ -98,12 +97,12 @@ insert into sensor (tipo, quantidade) values
 
 -- Inserção de dados na tabela "leituraSensor"
 insert into leituraSensor values
-(null, 26, 25.8, 65, '2024-03-21 18:32:00'),
-(null, 28, 27.6, 68, '2024-03-21 21:25:38'),
-(null, 27, 26.9, 67, '2024-03-22 18:32:12'),
-(null, 29, 28.7, 66, '2024-03-22 19:13:14'),
-(null, 30, 29.5, 65, '2024-03-22 20:47:18');
-
+( 26, 25.8, 65, '2024-03-21 18:32:00'),
+( 28, 27.6, 68, '2024-03-21 21:25:38'),
+( 27, 26.9, 67, '2024-03-22 18:32:12'),
+( 29, 28.7, 66, '2024-03-22 19:13:14'),
+( 30, 29.5, 65, '2024-03-22 20:47:18');
+truncate table leituraSensor;
 
 select * from empresa;
 select * from login;

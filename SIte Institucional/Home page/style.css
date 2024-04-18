@@ -30,12 +30,13 @@ nav ul a:hover {
 .li_img{
     box-sizing: border-box;
     border-radius: 100%;
-    height: 90px;
+    width: 20px;
+    height: 20px;
     
 }
 li{
     display: inline-block;
-    margin: 20px;
+    
 }
 
 
@@ -63,51 +64,71 @@ li{
     position: absolute;
     width: 600px;
     height: 600px;
-    right: 250px;
 }
 
 .section_porque_escolher{  
     color: #000000;
-    height: 685.8px;
+    height: 90vh;
+    display:flex;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: #719067;
+    
+}
+.section_planos{
+    color: #000000;
+    height: 90vh;
+    display:flex;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: #9db0e9;
+}
+.section_perguntas_frequentes{ 
+    
+    color: #000000;
+    height: 90vh;
     display:flex;
     align-items: end;
     padding-top: 20% ;
-    background-color: transparent;
-    
-}
-section div{
-    width: 40%;
-    margin: 500px;
+    background-color: aqua;
 }
 
-
-/*editando os textos com textos*/
+/*editando os textos com textos 685.8px*/
 .div_texto_inicial{
     text-align: justify;
     justify-content: center;
     
 }
 .div_texto_inicial2{
+    width: 100px;
     text-align: justify;
     justify-content: flex-end;
     position: relative;
-    left: 250px;
+    
     z-index: 1;
 }
 .div_texto_porque_escolher{
+    width: 90vh;
     text-align: center;
-    justify-content: flex-start;
+    justify-content: center;
     position: relative;
     z-index: 1;
     
 }
-.h1_Titulo{
-    font-size: 40px;
-}
-.p_texto{
-    font-size: 20px;
-}
+.div_img img{
+    scale: 65%;
+    }
 
+    .div_imgs{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: row;
+        
+        
+    }
+    
 /*pra fazer a sobreposicao do texto na imagem*/
 .img_triangulo{
     box-sizing: border-box;
@@ -116,24 +137,6 @@ section div{
     height: 70vh;
 }
 
-.span_imgs img{
-    width: 100px;
-    height: 100px;
-}
-.span_imgs p{
-    display: flex;
-    width: 50%;
-
-}
-.span_imgs{
-    display: flex;
-    justify-content: space-evenly;
-    text-align: center;
-    gap: 100px;
-    padding: 5%;
-
-    
-}
 
 /* editando o footer*/
 .footer{
@@ -141,3 +144,10 @@ section div{
     height: 200px;
     background-color: #9EE482;
 }
+
+
+
+/*
+
+
+}*/

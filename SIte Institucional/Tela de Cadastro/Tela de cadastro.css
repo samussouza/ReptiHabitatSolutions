@@ -6,10 +6,11 @@
 
 body{
   background-color: whitesmoke;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 14px;
-  font-weight: 400;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 14px;
+    font-weight: 400;
 }
+
 
 .cards {
     width: 535px;
@@ -26,19 +27,21 @@ body{
 .Input {
     height: 35px;
     width: 390px;
-    border-radius: 3px;
+    border-radius: 0px;
     border-style: solid;
-    border-color: #548D3D ;
-    padding: 5px;
-    outline: 0;
+    
+    border: #548d3d solid 3px;
+        padding: 5px;
     background-color: #A9C59D;
-    color: aliceblue;
+    color: black;
+    font-size: medium;
+    
   }
 
   .Input::placeholder{
-    color: rgb(222, 222, 222);
-    font-size: 15px;
-    padding-left: 7px;
+    color: #ffffff;
+    font-size: medium;
+    padding-left: 10px;
   }
   
 button {

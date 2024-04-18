@@ -14,7 +14,7 @@ body {
 
 .container {
     display: flex;
-    background-color: #F0F9FF;
+    background-color: whitesmoke;
 
 }
 
@@ -69,7 +69,7 @@ body {
 }
 
 .login {
-    background-color: #F0F9FF;
+    background-color: whitesmoke;
 
     /* padding: 30px; */
     /* flex-grow: 1; Ajuste para ocupar o espaço restante */
@@ -85,15 +85,23 @@ body {
     margin-left: 276px;
     height: 500px;
     font-size: 18px;
+    
 }
 
-.h1 {
+.h1{
+     padding-top: 25px;
     font-size: 20px;
+    margin-top: 10px; 
+    margin-bottom: 5px; 
+    font-weight: 480;
     font-family: "Poppins", sans-serif;
-
     text-align: center;
 
 }
+.inputsFilhos h1 {
+text-align: justify 25px;
+}
+
 
 .inputsFilhos input {
     background-color: #548d3d81;
@@ -110,6 +118,7 @@ body {
 }
 .inputsFilhos {
     margin-left: 25px;
+    margin-top: 25px;
 }
 .button {
     /* text-align: center; */

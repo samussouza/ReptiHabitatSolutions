@@ -6,9 +6,17 @@
 
 body{
   background-color: whitesmoke;
+<<<<<<< HEAD
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 14px;
     font-weight: 400;
+=======
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 14px;
+  font-weight: 400;
+  overflow: hidden;
+    /* Impede a exibição da barra de rolagem */
+>>>>>>> 6f8a12b76ee3c2f03df26b745e4d2fef86a29f59
 }
 
 

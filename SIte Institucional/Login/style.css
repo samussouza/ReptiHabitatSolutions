@@ -1,26 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,500&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu&display=swap');
 
-*{
-<<<<<<< HEAD
-  font-family: "Poppins", sans-serif;
-}
-
 
 body {
     background-color: whitesmoke;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: "Poppins", sans-serif;
     font-size: 14px;
     font-weight: 400;
-=======
     font-family: "Poppins", sans-serif;
-}
-
-body {
     padding: 0;
     margin: 0;
-    overflow: hidden;
     /* Impede a exibição da barra de rolagem */
->>>>>>> 6f8a12b76ee3c2f03df26b745e4d2fef86a29f59
+    overflow: hidden;
 }
 
 .container {
@@ -31,7 +21,7 @@ body {
 
 .divInfo {
     background-color: rgb(255, 255, 255);
-    width: 26%;
+    width: 23%;
     height: 100vh;
     background-color: #fff;
     padding: 10px;
@@ -66,7 +56,7 @@ body {
 .vantagem {
     display: flex;
     align-items: center;
-  
+
 }
 
 .vantagem img {
@@ -96,21 +86,22 @@ body {
     margin-left: 276px;
     height: 500px;
     font-size: 18px;
-    
+
 }
 
-.h1{
-     padding-top: 25px;
+.h1 {
+    padding-top: 25px;
     font-size: 20px;
-    margin-top: 10px; 
-    margin-bottom: 5px; 
+    margin-top: 10px;
+    margin-bottom: 5px;
     font-weight: 480;
     font-family: "Poppins", sans-serif;
     text-align: center;
 
 }
+
 .inputsFilhos h1 {
-text-align: justify 25px;
+    text-align: justify 25px;
 }
 
 
@@ -119,7 +110,7 @@ text-align: justify 25px;
     width: 480px;
     height: 38px;
     border: #548d3d solid 3px;
-    
+
 }
 
 ::placeholder {
@@ -127,10 +118,12 @@ text-align: justify 25px;
     padding-left: 10px;
     font-size: medium;
 }
+
 .inputsFilhos {
     margin-left: 25px;
     margin-top: 25px;
 }
+
 .button {
     /* text-align: center; */
     margin-left: 150px;
@@ -155,7 +148,7 @@ text-align: justify 25px;
 button:hover {
     background-color: #5ca340;
     transition: all 0.5s;
-  }
+}
 
 .userNovo {
 
@@ -163,15 +156,15 @@ button:hover {
     margin-left: 163px;
 }
 
-a{
+a {
     color: #548D3D;
     font-weight: 300;
     text-decoration: none;
-  }
-  
-  
-  a:hover{
+}
+
+
+a:hover {
     color: #548D3D;
     font-weight: 500;
     transition: all 0.3s;
-  }
+}

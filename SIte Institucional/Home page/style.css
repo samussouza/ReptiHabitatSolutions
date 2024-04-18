@@ -1,8 +1,8 @@
-body{
+body {
     margin: 0;
 }
 
-.header{
+.header {
     background-color: #2C591A;
     padding-top: 1px;
     display: flexbox;
@@ -10,127 +10,129 @@ body{
     justify-items: center;
     height: 7%;
 }
+
 /* css da barra de navegação*/
-nav ul a{
+nav ul a {
     color: #f5f5f5;
     text-decoration: none;
 }
 
-.ul_links{
+.ul_links {
     justify-content: space-evenly;
     list-style: none;
     display: flex;
-    
+
 }
+
 nav ul a:hover {
-    color: #9EE482 ;
+    color: #9EE482;
     font-weight: bold;
     transition: all .3s ease-out;
 }
-.li_img{
+
+.li_img {
     box-sizing: border-box;
     border-radius: 100%;
     width: 20px;
     height: 20px;
-    
+
 }
-li{
+
+li {
     display: inline-block;
-    
+
 }
 
 
 
 /*editando as sections*/
-.section_inicial{
+.section_inicial {
     color: #000000;
     height: 90vh;
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: center;
-    
-    
+
+
 }
-.section_inicial2{
+
+.section_inicial2 {
     color: #000000;
     height: 90vh;
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: flex-end;
     background-color: #4cbe23;
 }
-.img_escama{    
+
+.img_escama {
     box-sizing: border-box;
     position: absolute;
     width: 600px;
     height: 600px;
 }
 
-.section_porque_escolher{  
+.section_porque_escolher {
     color: #000000;
     height: 90vh;
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: flex-end;
     background-color: #719067;
-    
+
 }
-.section_planos{
+
+.section_planos {
     color: #000000;
     height: 90vh;
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: flex-end;
     background-color: #9db0e9;
 }
-.section_perguntas_frequentes{ 
-    
-    color: #000000;
-    height: 90vh;
-    display:flex;
-    align-items: end;
-    padding-top: 20% ;
-    background-color: aqua;
-}
+
 
 /*editando os textos com textos 685.8px*/
-.div_texto_inicial{
+.div_texto_inicial {
     text-align: justify;
     justify-content: center;
-    
+
 }
-.div_texto_inicial2{
+
+.div_texto_inicial2 {
     width: 100px;
     text-align: justify;
     justify-content: flex-end;
     position: relative;
-    
+
     z-index: 1;
 }
-.div_texto_porque_escolher{
+
+.div_texto_porque_escolher {
     width: 90vh;
     text-align: center;
     justify-content: center;
     position: relative;
     z-index: 1;
-    
-}
-.div_img img{
-    scale: 65%;
-    }
 
-    .div_imgs{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        justify-content: space-around;
-        flex-direction: row;
-        
-        
-    }
-    
+}
+
+.div_img img {
+    scale: 65%;
+}
+
+.div_imgs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+
+
+}
+
 /*pra fazer a sobreposicao do texto na imagem*/
-.img_triangulo{
+.img_triangulo {
     box-sizing: border-box;
     position: absolute;
     width: 194vh;
@@ -139,15 +141,87 @@ li{
 
 
 /* editando o footer*/
-.footer{
+.footer {
     width: 100%;
     height: 200px;
     background-color: #9EE482;
 }
 
+/* 
+.section_perguntas_frequentes{ 
+    
+    color: #000000;
+    height: 90vh;
+    display:flex;
+    align-items: end;
+    padding-top: 20% ;
+    background-color: aqua;
+} */
+/*para abarcar todo texto e formatar o fundo da section*/
+.section_perguntas {
+    min-height: 650px;
+    background-image: url('IMG/Fundo.png');
+    /* Substitua pelo caminho da sua imagem */
+    background-size: cover;
+    /* Ajusta o tamanho da imagem para cobrir todo o espaço da seção */
+    background-position: center;
+    /* Centraliza a imagem na seção */
+    /* Adicione outros estilos conforme necessário */
+    font-family: Verdana, sans-serif;
+}
 
+/*titulo da seção*/
+.titlePerguntas {
+    color: #2C591A;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 35px;
+}
 
-/*
+/*div o posicionar os cards da perguntas*/
+.cardsPerguntas {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 
+}
 
-}*/
+/*div onde está contida a div text e name das perguntas*/
+.cardPerguntas {
+    width: 20%;
+    height: 380px;
+    position: relative;
+    left: 0px;
+    border: 2px solid #548D3D;
+    padding-top: 50px;
+}
+
+.cardPerguntas:not(:first-child) {
+    margin-left: -50px;
+}
+
+.cardPerguntas:hover {
+    transform: translateY(-20px);
+}
+
+.cardPerguntas:hover~.card {
+    left: 50px;
+}
+
+/*contem os textos das perguntas*/
+.text_pergunta {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+
+}
+
+/*comtem o nome da pergunta*/
+.name_pergunta {
+    text-align: center;
+    color: #214712;
+    font-weight: bold;
+}

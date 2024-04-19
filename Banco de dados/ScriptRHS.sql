@@ -2,7 +2,7 @@ CREATE DATABASE ReptiHabitatSolutions;
 USE ReptiHabitatSolutions;
 
 -- Criação da tabela de cadastro da empresa e usuário
-create table empresaCadastro (
+create table empresa(
     idEmpresa INT auto_increment,
     nomeEmpresa VARCHAR(50) not null,
     emailEmpresa VARCHAR(45) not null unique,
@@ -20,7 +20,7 @@ CREATE TABLE endereco (
   contatoCelular char(11) NOT NULL,
   fkEmpresa INT, 
   PRIMARY KEY (idEndereco, fkEmpresa),
-  constraint foreinEmpresa foreign key endereco(fkEmpresa) references empresaCadastro(idEmpresa)
+  constraint foreinEmpresa foreign key endereco(fkEmpresa) references empresa(idEmpresa)
 );
 
 -- Criação da tabela haitat animal que será registrado
@@ -33,7 +33,7 @@ create table habitatAnimal (
     fkIdEndereco INT,
     fk_fkEmpresa INT,
     PRIMARY KEY (idAmbiente, fkIdEndereco, fk_fkEmpresa),
-	constraint foreinfkEmpresa foreign key habitatAnimal(fk_fkEmpresa) references empresaCadastro(idEmpresa),
+	constraint foreinfkEmpresa foreign key habitatAnimal(fk_fkEmpresa) references empresa(idEmpresa),
 	constraint foreinfkEndereco foreign key habitatAnimal(fkIdEndereco) references endereco(idEndereco)
 );
 
@@ -52,17 +52,17 @@ create table sensor (
 
 -- Criação da tabela de dados dos sensores
 create table leituraSensor (
-    idLeitura int primary key auto_increment,
+    idLeitura int auto_increment,
     valorTemperaturaDht decimal(4.2),
-    valorUmidadeDht decimal(4,2)
-    /*dataHora datetime,
+    valorUmidadeDht decimal(4,2),
+    dataHora datetime,
     fkSensor int,
     fkHabitatSensor int,
     primary key (idLeitura, fkSensor, fkHabitatSensor),
     foreign key (fkSensor) references sensor(idSensor),
-	foreign key (fkHabitatSensor) references habitatAnimal(idAmbiente)*/
+	foreign key (fkHabitatSensor) references habitatAnimal(idAmbiente)
 );
-drop table leiturasensor;
+
 -- Inserção de dados na tabela "empresa"
 insert into empresa values
 (null, 'C6 Bank', 'isabela@c6bank.com', 'Isabela1234', '31872495000172', 'Financeiro', 01406100, 3186),

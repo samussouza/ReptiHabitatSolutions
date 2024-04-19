@@ -68,8 +68,9 @@ li {
 .img_escama {
     box-sizing: border-box;
     position: absolute;
-    width: 600px;
-    height: 600px;
+    width: 650px;
+    height: 650px;
+    right: 150px;
 }
 
 .section_porque_escolher {
@@ -77,8 +78,9 @@ li {
     height: 90vh;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     background-color: #719067;
+    
 
 }
 
@@ -100,43 +102,42 @@ li {
 }
 
 .div_texto_inicial2 {
-    width: 100px;
+    width: 450px;
     text-align: justify;
-    justify-content: flex-end;
     position: relative;
-
     z-index: 1;
-}
+    right: 16%;
 
-.div_texto_porque_escolher {
-    width: 90vh;
-    text-align: center;
+}
+.div_Titulo_porque h1{
+    display: flex;
     justify-content: center;
-    position: relative;
-    z-index: 1;
+}
+.div_Titulo_porque p{
+    display: flex;
+    justify-content: center;
 
 }
-
 .div_img img {
-    scale: 65%;
+    scale: 70%;
+    
+}
+.div_img span{
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
 }
 
 .div_imgs {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    justify-content: space-around;
     flex-direction: row;
-
-
+    margin: 10px;
 }
 
-/*pra fazer a sobreposicao do texto na imagem*/
-.img_triangulo {
-    box-sizing: border-box;
-    position: absolute;
-    width: 194vh;
-    height: 70vh;
+.div_texto_planos{
+
 }
 
 
@@ -158,22 +159,24 @@ li {
     background-color: aqua;
 } */
 /*para abarcar todo texto e formatar o fundo da section*/
-.section_perguntas {
+.section_perguntas_frequentes {
     min-height: 650px;
-    background-image: url('IMG/Fundo.png');
+    /*background-image: url('IMG/Fundo.png');*/
     /* Substitua pelo caminho da sua imagem */
-    background-size: cover;
+   /* background-size: cover;*/
     /* Ajusta o tamanho da imagem para cobrir todo o espaço da seção */
-    background-position: center;
+   /* background-position: center;*/
     /* Centraliza a imagem na seção */
     /* Adicione outros estilos conforme necessário */
     font-family: Verdana, sans-serif;
+    
 }
 
 /*titulo da seção*/
-.titlePerguntas {
+.titlePerguntas{
     color: #2C591A;
-    text-align: center;
+    display: flex;
+    justify-content: center;
     padding: 10px 20px;
     font-size: 35px;
 }
@@ -197,6 +200,7 @@ li {
     left: 0px;
     border: 2px solid #548D3D;
     padding-top: 50px;
+    z-index: 1;
 }
 
 .cardPerguntas:not(:first-child) {
@@ -225,3 +229,11 @@ li {
     color: #214712;
     font-weight: bold;
 }
+/*pra fazer a sobreposicao do texto na imagem*/
+
+.img_triangulo {
+    box-sizing: border-box;
+    position: absolute;
+    width: 194vh;
+    height: 71vh;
+}   

@@ -1,0 +1,82 @@
+body{margin: 0;
+padding: 0;/*jeito de crescer de dentro para fora*/
+font-family: Verdana;
+background-color: black;
+}
+.container{
+    width: 80%;
+    margin: auto;
+    display: flex;
+}
+.header{
+    border-bottom: 3px solid #32b9cd;
+    
+}
+
+.titulo{
+    color: #32b9cd;
+    font-weight: 500;
+}
+.navbar{
+    width: 400px;
+    display: flex;
+    color: #e3b062;
+    justify-content: space-around;
+    list-style: none;
+    align-items: center;
+    
+}
+.header .container{/*entrando em uma class dentro de outra class*/
+    justify-content: space-between;
+
+}
+.banner{
+    display: flex;
+    background-image: url("imagens/bg-jelly-fish-para_outras_pags.png");
+    width: 100%;
+    height: 800px;
+}
+.banner_title{
+    margin: 0;
+    color: beige;
+    font-size: 35px;
+}
+.banner .container{
+    width: 10%;
+    justify-content: flex-end;
+    padding-right: 22%;
+    
+}
+.card img{
+    width: 100px;
+    height: 100px;
+
+}
+.card h2{
+    color: #EB3333;
+}
+.card p{display: flex;
+    width: 50%;
+
+}
+.cards{
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    gap: 100px;
+    padding: 5%;
+    background-color: whitesmoke;
+    
+}
+.footer{
+    width: 100%;
+    height: 100px;
+    background-color: #32b9cd;
+    color: aliceblue;
+    text-align: center;
+    padding-top: 2%;
+}
+.footer p{
+    margin: 0;
+
+}

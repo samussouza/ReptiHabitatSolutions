@@ -1,12 +1,48 @@
 * {
     margin: 0;
-    padding: 0;
+    /* box-sizing: border-box; */
 }
 
-
-header {
-    position: absolute;
+.container {
+    width: 80%;
+    margin: auto;
     display: flex;
+    padding: 20px;
+}   
+
+.header .container {
     justify-content: space-between;
+    display: flex;  
+}
+
+.navbar {
+    width: 600px;
+    display: flex;
+    color: #548D3D;
+    justify-content: space-between;
+    list-style: none; 
+    align-items: center;  
+}
+
+/* TEXTO E TITULO "SOBRE NÓS" */
+.container2 .aboutUs{
+    padding: 150px;
+    max-width: 600px; 
+    margin-top: 20px;
+}
+
+.aboutUs p{
+    margin-top: 10px;
+}
+
+/* TEXTO E TITULO "NOSSA HISTÓRIA" */
+.container3 .window2{
+    padding: 150px;
+}
+
+.window2 h1{
+    display: flex;
     align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
 }

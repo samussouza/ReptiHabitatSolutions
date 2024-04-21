@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro</title>
+</head>
+
+<body>
+    <div class="container">
+        <label for="qtd_repteis_input">Quantos répteis você possui?</label>
+        <input type="number" id="qtd_repteis_input"><br>
+        <label for="">Você possui um sistema de iluminação?</label>
+        <select id="sistema_iluminação_select">
+            <option value="vazio"></option>
+            <option value="yes">Sim</option>
+            <option value="no">Não</option>
+        </select><br>
+        <div id="lampadas" style="display: none;">
+            Quais lâmpadas você utiliza no habitat?
+            <br>
+            <input type="checkbox" id="lampada_uvi">
+            <label for="lampada_uvi">UVI</label>
+            <br>
+            <input type="checkbox" id="lampada_uva">
+            <label for="lampada_uva">UVA</label>
+            <br>
+            <input type="checkbox" id="lampada_uv">
+            <label for="lampada_uv">UV</label>
+            <br>
+            <input type="checkbox" id="lampada_comum">
+            <label for="lampada_comum">LÂMPADAS COMUNS</label>
+            <br><br>
+        </div>
+
+        <button onclick="calcularPreju()">Calcular Prejuízo</button>
+        <div id="show"></div>
+    </div>
+</body>
+
+</html>
+<script>
+    function calcularPreju() {
+        let qtd_Repteis = Number(qtd_repteis_input.value)
+        let selecao = sistema_iluminação_select.value
+        let uviCheck = lampada_uvi.checked
+        let uvaCheck = lampada_uva.checked
+        let uvCheck = lampada_uv.checked
+        let comumCheck = lampada_comum.checked
+
+        if(qtd_Repteis == " " ){
+            alert(`Nenhum campo pode estar vazio, insira um valor.`)
+        }
+        if (selecao == 'sim') {
+            lampadas.style.display = 'block';
+        }
+        // TELA1.style.display = 'none';
+        // TELA2.style.display = 'block';
+
+        
+        show.innerHTML = `Você perde R$ sem os nossos sensores. <br>
+        R$ por lâmpadas que degradam com o tempo <br>
+        Além de poder perder R$ caso seus répteis desenvolvam algum problema devido ao nível de luz desregulado.
+        `
+        // Mantive o código assim temporáriamente até finalizar a lógica, por favor, não altere!!!
+    }
+</script>

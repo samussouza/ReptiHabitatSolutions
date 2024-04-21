@@ -41,32 +41,37 @@
 
 </html>
 <script>
-    let qtd_Repteis = Number(qtd_repteis_input.value)
 
     function mostrarLampadas() {
         let selecao = sistema_iluminacao_select.value
-        if (selecao === 'yes' && qtd_Repteis == " ") {
+        if (selecao === 'yes') {
             lampadas.style.display = 'block';
-        } else if(selecao === 'no'){
+        } else {
             lampadas.style.display = 'none';
-            alert(`Sem um sistema de iluminação, não é possível prosseguir`)
         }
     }
 
     function calcularPreju() {
+        let qtd_Repteis = Number(qtd_repteis_input.value)
+        let selecao = sistema_iluminacao_select.value
         let uviCheck = lampada_uvi.checked
         let uvaCheck = lampada_uva.checked
         let uvCheck = lampada_uv.checked
-        let comumCheck = lampada_comum
+        let comumCheck = lampada_comum.checked
 
-        if (qtd_Repteis == " " || uvaCheck == false) {
+        if (qtd_Repteis == " ") {
             alert(`Nenhum campo pode estar vazio, insira um valor.`)
-        } else {
+        } else if (selecao === "vazio" ) {
+            alert(`Informe se possui ou não um sistema de iluminação para poder prosseguir`)
+        } else if (selecao === "yes" && uviCheck === false && uvaCheck === false && uvCheck === false && comumCheck === false) {
+            alert("Por favor, selecione pelo menos uma checkbox.");
+        } else{
             show.innerHTML = `Você perde R$ sem os nossos sensores. <br>
-            R$ por lâmpadas que degradam com o tempo <br>
-            Além de poder perder R$ caso seus répteis desenvolvam algum problema devido ao nível de luz desregulado.`
-        }
+                R$ por lâmpadas que degradam com o tempo <br>
+                Além de poder perder R$ caso seus répteis desenvolvam algum problema devido ao nível de luz desregulado.`
 
-        // Mantive o código assim temporáriamente até finalizar a lógica, por favor, não altere!!!
+        }
     }
+    // Mantive o código assim temporáriamente até finalizar a lógica, por favor, não altere!!!
+
 </script>

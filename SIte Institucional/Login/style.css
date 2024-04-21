@@ -138,11 +138,10 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    /* font-weight: bold; */
     width: 250px;
     height: 50px;
     font-size: 18px;
-}
+} 
 
 
 button:hover {
@@ -167,4 +166,12 @@ a:hover {
     color: #548D3D;
     font-weight: 500;
     transition: all 0.3s;
+}
+.erroEmail {
+    font-size: 12px;
+    color: brown;
+}
+.erroSenha {
+    font-size: 12px;
+    color: brown;
 }

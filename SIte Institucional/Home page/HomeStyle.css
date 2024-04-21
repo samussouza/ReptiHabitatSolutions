@@ -405,3 +405,77 @@ nav a.active{
     width: 194vh;
     height: 78.3vh;
 }  
+.footer {
+  background-color: #003329; 
+  color: white;
+  padding: 20px 0;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+ 
+}
+
+.cardList {
+  width: 200px;
+  margin: 0 20px;
+}
+
+.cardList h3 {
+  font-size: 20px;
+}
+
+.cardList ul {
+  list-style: none;
+  line-height: 1.5;
+  padding: 0;
+}
+
+.cardList ul li {
+  margin-bottom: 5px;
+  
+}
+
+.cardList a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.cardList a:hover{
+  color: goldenrod;
+}
+
+.cardFooter {
+  text-align: left;
+  margin-top: 30px;
+  margin: 0 80px;
+}
+.atendimento{
+  margin: 0 128px;
+}
+
+.cardFooter h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+.spanFooter{
+  margin-left: 800px;
+  font-size: 18px;
+}
+.spanFooter a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.spanFooter a:hover{
+  color: goldenrod;
+}
+
+
+.nameEmpresa{
+  font-size: 24px;
+  font-weight: bold;
+}

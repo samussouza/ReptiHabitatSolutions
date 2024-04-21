@@ -15,20 +15,19 @@
         <br>
   <span for="" style="margin-right: 350px;">Email</span> <br>
         <input class="Input" type="text" placeholder="Email@email.com" id="E_email">
-        <br>
+        <div id="mensagemErroEmail" class="invalido"></div>
         <br>
         <label for="" style="margin-right: 280px;">Nome Completo</label> <br>
         <input class="Input" type="text" placeholder="Nome Completo" id="N_nome">
+        <div id="mensagemErroNome" class="invalido"></div>
         <br>
-        <br>
-        <label for="" style="margin-right: 350px;">Senha</label> <br>
-        <input class="Input" type="
-        " placeholder="Senha" id="S_senha">
-        <br>
+        <label  for="" style="margin-right: 350px;">Senha</label> <br>
+        <input class="Input" type="password" placeholder="Senha" id="S_senha">
+        <div id="mensagemErroSenha" class="invalido"></div>
         <br>
         <label for="" style="margin-right: 278px;">Confirmar Senha</label> <br>
         <input class="Input" type="password" placeholder="Confirmar senha" id="CS_confirmarsenha">
-        <br>
+        <div id="mensagemErroSenha" class="invalido"></div>
         <br>
         <br>
         <button onclick="Cadastro()">
@@ -37,32 +36,40 @@
             Criar conta
         
         </button>
-
+        
         <p> Já tem conta?
             <a href=""> Login</a>
 
         </p>
     </div>
     </center>
-    
+   
 </body>
 </html>
 <script>
 
 function Cadastro() {
-  const user = N_nome.value;
-  const email = E_email.value;
-  const senha = S_senha.value;
-  const confirmarsenha = CS_confirmarsenha.value;
+    const user = N_nome.value.trim();
+    const email = E_email.value.trim();
+    const senha = S_senha.value;
+    const confirmarsenha = CS_confirmarsenha.value;
 
-  if (email.indexOf("@gmail.com") == -1 || email.length < 8) {
-    alert("Email inválido");
-  } else if (senha !== confirmarsenha) {
-    alert("Senha incorreta");
-  } else {
-    alert("Cadastro concluído");
-  }
+    if (user == "") {
+      mensagemErroNome.innerHTML = "<center>Nome inválido</center>";
+    } else if (email.indexOf("@") == -1 || email.length < 8 || email.indexOf(".") ==-1 || email == "") {
+      mensagemErroEmail.innerHTML = "<center>Email inválido</center>";
+    } else if (senha !== confirmarsenha) {
+      mensagemErroSenha.innerHTML = "<center>As senhas não coincidem</center>";
+    } else if (senha.length < 8 || !/[A-Z]/.test(senha) || !/[0-9]/.test(senha)) {
+      mensagemErroSenha.innerHTML = "<center>A senha deve conter pelo menos 8 caracteres, uma letra maiúscula e um número</center>";
+    } else {
+        alert("Cadastro concluído");
+    }
 }
+</script>
+
+
+
 
 
 

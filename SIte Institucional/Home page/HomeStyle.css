@@ -18,11 +18,29 @@ header{
     width:100%; 
     padding:30px 100px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     z-index: 100;  
 }
-
+.logo {
+  font-size: 2em;
+  pointer-events: none;
+  color: #359381;
+ margin-right: 270px;
+}
+nav a{
+  text-decoration: none;
+  color: #359381;
+  border-radius: 20px;
+  padding: 6px 15px;
+  margin: 0 10px;
+  font-weight: 600;
+}
+nav a:hover,
+nav a.active{
+  background-color: #359381;
+  color: #fff;
+}
 
 
 .parallax{
@@ -385,5 +403,5 @@ header{
     position: absolute;
     margin-top: 55px;
     width: 194vh;
-    height: 71vh;
-}   
+    height: 78.3vh;
+}  

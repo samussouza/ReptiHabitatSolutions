@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./CSS/Loginstyle.css">
 </head>
 
 <body>
@@ -14,7 +14,7 @@
         <div class="divInfo">
 
             <div class="identidade">
-                <img src="e2ece546f164f4c640408133476552f8.png" alt="" class="logo">
+                <img src="./IMG/Home fundo/imagem_2024-04-07_232853944 (1).png" alt="" class="logo">
                 <span>ReptiHabitatSolutions</span>
             </div>
 
@@ -22,17 +22,17 @@
                 <span style="font-size: 25px; margin-left: 32px; color: #548D3D;">Como funciona?</span>
                 <br><br><br>
                 <div class="vantagem">
-                    <img src="e2ece546f164f4c640408133476552f8.png" alt="">
+                    <img src="./IMG/Login/e2ece546f164f4c640408133476552f8.png" alt="">
                     <span>Gerencie seus dados</span>
                 </div>
                 <br><br>
                 <div class="vantagem">
-                    <img src="926fae1c0b8eb0dc875a71c7326d4f99.png" alt="">
+                    <img src="./IMG/Login/926fae1c0b8eb0dc875a71c7326d4f99.png" alt="">
                     <span>Visualize a dashboard</span>
                 </div>
                 <br><br>
                 <div class="vantagem">
-                    <img src="608d96047e3fe1cb21de3c6970106c1f.png" alt="">
+                    <img src="./IMG/Login/608d96047e3fe1cb21de3c6970106c1f.png" alt="">
                     <span>Receba alertas</span>
                 </div>
             </div>
@@ -89,14 +89,14 @@
         erroEmail.innerHTML = "";
         erroSenha.innerHTML = "";
 
-        if (email == "") {
+        if (email == "" ) {
             erroEmail.innerHTML = "Campo vazio";
         }
         if (senha == "") {
             erroSenha.innerHTML = "Campo vazio";
         }
         else {
-            if (email.indexOf("@") !== -1 && email.indexOf(".") !== -1) {
+            if (email.indexOf("@") !== -1 && email.indexOf(".com") !== -1 && email.length >10) {
 
             } else {
                 erroEmail.innerHTML = "Email inválido"
@@ -114,14 +114,26 @@
                 senha.indexOf('6') !== 1 ||
                 senha.indexOf('7') !== 1 ||
                 senha.indexOf('8') !== 1 ||
-                senha.indexOf('9') !== 1)) {
+                senha.indexOf('9') !== 1)) { 
 
             } else {
-                erroSenha.innerHTML = "Senha deve conter pelo menos 1 caractere numérico e um caractere especial ('@' ou '#')"
+                erroSenha.innerHTML = "Senha deve conter:<br> 8 ou mais caracteres;<br>1 caractere numérico;<br>1 caractere especial."        }
             }
         }
-
-    }
-
-
+                /* if (senha.length >= 8) {
+        let caracter_especial = [`!`, `@`, "#", "$", "%", "&", "*"];
+        for (let numero = 0; numero <= 9; numero++) {
+        for (let i = 0; i < senha.length; i++) {
+            if (
+            caracter_especial[i] = senha.indexOf[i] &&
+            senha.indexOf(numero) !== -1
+          ) {
+          }        
+          
+          
+        }
+      }} else {
+        erroSenha.innerHTML =
+          "Senha deve conter:<br> 8 ou mais caracteres;<br>1 caractere numérico;<br>1 caractere especial.";
+      }}*/
 </script>

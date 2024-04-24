@@ -71,7 +71,7 @@
         /* Remove preenchimento */
     }
 
-    /* css para os itens da barra de navegação */
+    /* css para os itens da barra de navegação, só as letras, altera a posiçao e tamanho da fonte,  */ 
     .navbar li {
         margin-right: 20px;
         /* Espaçamento entre os itens */
@@ -85,7 +85,7 @@
     .navbar a {
         text-decoration: none;
         /* Remove a decoração do link */
-        color: #032b0d;
+        color: #2b0321;
         /* Cor do texto */
         transition: color 0.3s;
         /* Transição suave da cor do texto */
@@ -113,30 +113,39 @@
 
 
     .button1 {
-        background-color: rgb(36, 99, 27);
+        background-color: rgb(65, 116, 58);
         /* Cor de fundo do botão 1 */
         padding: 5px 5px;
         /* Espaçamento interno do botão 1 */
-        color: white;
         border-radius: 5px;
+        cursor: pointer;
 
     }
 
     .button1 a:hover {
-        color: #81bb9b;
+        color:  #ffffff;
         /* Cor do texto ao passar o mouse */
+    }
+    .button1 a{
+        text-decoration: none;
+        /* Remove a decoração do link */
+        color: #d7ecd1;
+        /* Cor do texto */
+        
     }
 
     .button2 {
         padding: 5px 5px;
         /* Espaçamento interno do botão 2 */
-        color: #035020;
+        color: #0d7535;
         border-radius: 5px;
+        cursor: pointer;
+        
 
     }
 
     .button2 a:hover {
-        color: #81bb9b;
+        color: #34ce79;
         /* Cor do texto ao passar o mouse */
     }
 
@@ -343,11 +352,11 @@
 
                 <!-- Links para outras páginas -->
                 <li><a href="index.html">Página home</a></li>
-                <li><a href="#"> Conheça Nossa Equipe</a></li>
+                <li><a href="#"> Conheça nossa equipe</a></li>
                 <li><a href="#">Perguntas frequentes</a></li>
                 <li>|</li> <!-- Separador -->
-                <li><button class="button1">Login</button></li>
-                <li><button class="button2">Cadastro</button></li>
+                <li><button class="button1"><a href="#">Login</a></button></li>
+                <li><button class="button2"><a href="#">Cadastro</a></li>
             </ul> <!-- Fim da navbar -->
 
         </div> <!-- Fim do container do header -->
@@ -355,7 +364,7 @@
 
     <div class="team-section"> <!-- Div para a sectioon da equipe -->
         <div class="team-text"> <!-- Div para o texto da section da equipe -->
-            <h1>Conheça Nossa Equipe</h1>
+            <h1>Conheça nossa equipe</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi optio quam deleniti rerum magnam aliquam
                 impedit omnis ratione ipsam dolor.<br>
                 Sapiente quis perspiciatis dolor alias dolorum illum voluptas recusandae non.</p>

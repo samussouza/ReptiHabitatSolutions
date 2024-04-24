@@ -332,7 +332,8 @@ nav a:hover{
 /**/
 .section_perguntas_frequentes {
     position: relative;
-    min-height: 400px;
+    /* min-height: 400px; */
+    height: 646px;
     font-family: Verdana, sans-serif;
     z-index: 1;
     background-color: white;
@@ -408,8 +409,10 @@ nav a:hover{
     height: 78.3vh;
 }  
 
+/*Aqui começa o footer*/
+
 .footer {
-  background-color: #003329; 
+  background-color: #156d36; 
   color: white;
   padding: 20px 0;
 }

@@ -1,83 +1,88 @@
 <!DOCTYPE html>
 <html lang="pt_br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Tela de cadastro.css">
-    <title>RHS</title>
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="Tela de cadastro.css">
+  <title>RHS</title>
+
+
 </head>
+
 <body>
 
-    <center>
-        <div class="cards">
-        <h3 style="font-size: 20px; margin-top: 10px; margin-bottom: 5px; font-weight: 480;" >CRIE SUA CONTA</h3>
-        <br>
-  <span for="" style="margin-right: 350px;">Email</span> <br>
-        <input class="Input" type="text" placeholder="Email@email.com" id="E_email">
-        <div id="mensagemErroEmail" class="invalido"></div>
-        <br>
-        <label for="" style="margin-right: 280px;">Nome Completo</label> <br>
-        <input class="Input" type="text" placeholder="Nome Completo" id="N_nome">
-        <div id="mensagemErroNome" class="invalido"></div>
-        <br>
-        <label  for="" style="margin-right: 350px;">Senha</label> <br>
-        <input class="Input" type="password" placeholder="Senha" id="S_senha">
-        <div id="mensagemErroSenha" class="invalido"></div>
-        <br>
-        <label for="" style="margin-right: 278px;">Confirmar Senha</label> <br>
-        <input class="Input" type="password" placeholder="Confirmar senha" id="CS_confirmarsenha">
-        <div id="mensagemErroSenha" class="invalido"></div>
-        <br>
-        <br>
-        <button onclick="Cadastro()">
-    
-            
-            Criar conta
-        
-        </button>
-        
-        <p> Já tem conta?
-            <a href=""> Login</a>
+  <div id="card_concluido" class="card_concluido" style="display: none;">
+    <span id="concluído"></span>
+  </div>
+  <center>
+    <div class="cards">
+      <h3 style="font-size: 20px; margin-top: 10px; margin-bottom: 5px; font-weight: 480;">CRIE SUA CONTA</h3>
+      <br>
+      <span for="" style="margin-right: 350px;">Email</span> <br>
+      <input class="Input" type="text" placeholder="Email@email.com" id="E_email">
+      <div id="mensagemErroEmail" class="invalido"></div>
+      <br>
+      <label for="" style="margin-right: 280px;">Nome Completo</label> <br>
+      <input class="Input" type="text" placeholder="Nome Completo" id="N_nome">
+      <div id="mensagemErroNome" class="invalido"></div>
+      <br>
+      <label for="" style="margin-right: 350px;">Senha</label> <br>
+      <input class="Input" type="password" placeholder="Senha" id="S_senha">
+      <div id="mensagemErroSenha" class="invalido"></div>
+      <br>
+      <label for="" style="margin-right: 278px;">Confirmar Senha</label> <br>
+      <input class="Input" type="password" placeholder="Confirmar senha" id="CS_confirmarsenha">
+      <div id="mensagemErroSenha" class="invalido"></div>
+      <br>
+      <br>
+      <button onclick="Cadastro()">
 
-        </p>
+
+        Criar conta
+
+      </button>
+
+      <p> Já tem conta?
+        <a href=""> Login</a>
+
+      </p>
     </div>
-    </center>
-   
+    <button>
+
+
+
+  </center>
+
 </body>
+
 </html>
 <script>
 
-function Cadastro() {
+  function Cadastro() {
     const user = N_nome.value.trim();
     const email = E_email.value.trim();
     const senha = S_senha.value;
     const confirmarsenha = CS_confirmarsenha.value;
+  
 
     if (user == "") {
       mensagemErroNome.innerHTML = "<center>Nome inválido</center>";
-    } else if (email.indexOf("@") == -1 || email.length < 8 || email.indexOf(".") ==-1 || email == "") {
+    } else if (email.indexOf("@") == -1 || email.length < 8 || email.indexOf(".") == -1 || email == "") {
       mensagemErroEmail.innerHTML = "<center>Email inválido</center>";
     } else if (senha !== confirmarsenha) {
       mensagemErroSenha.innerHTML = "<center>As senhas não coincidem</center>";
     } else if (senha.length < 8 || !/[A-Z]/.test(senha) || !/[0-9]/.test(senha)) {
       mensagemErroSenha.innerHTML = "<center>A senha deve conter pelo menos 8 caracteres, uma letra maiúscula e um número</center>";
     } else {
-        alert("Cadastro concluído");
+      card_concluido.style.display = 'block'
+      concluído.innerHTML = ` Cadastro concluído  com sucesso redirecionando para tela de Login`
+      setInterval(sumirMensagem, 4000);
+      finalizarMensagem();
+      return false;
     }
-}
+  }
+  function sumirMensagem() {
+    card_concluido.style.display = 'none';
+  }
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-</script>
-

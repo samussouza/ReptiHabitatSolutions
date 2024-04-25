@@ -1,48 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
 * {
-    margin: 0;
-    /* box-sizing: border-box; */
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins';
 }
 
-.container {
-    width: 80%;
-    margin: auto;
-    display: flex;
-    padding: 20px;
-}   
-
-.header .container {
-    justify-content: space-between;
-    display: flex;  
+body {
+  background-color: white;
+  min-height: 100vh;
 }
 
-.navbar {
-    width: 600px;
-    display: flex;
-    color: #548D3D;
-    justify-content: space-between;
-    list-style: none; 
-    align-items: center;  
+/* LOGO E OPÇÕES DO NAVBAR*/
+header {
+  position: absolute;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 37px;
+  margin-top: 7px;
 }
+
+header img {
+  top: 20px;
+  border-radius: 100%;
+  width: 60px;
+  height: 60px;
+  margin-right: 270px;
+  margin-left: 40px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #359381;
+  padding: 6px 15px;
+  margin: 0 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+nav a:hover {
+  border-bottom: 2px solid #359381;
+  width: 100%;
+  left: 0;
+}
+
 
 /* TEXTO E TITULO "SOBRE NÓS" */
-.container2 .aboutUs{
-    padding: 150px;
-    max-width: 600px; 
-    margin-top: 20px;
+.aboutUs {
+  padding: 200px;
+  width: 900px;
 }
 
-.aboutUs p{
-    margin-top: 10px;
-}
 
 /* TEXTO E TITULO "NOSSA HISTÓRIA" */
-.container3 .window2{
-    padding: 150px;
+
+.window2 {
+  padding: 150px;
+  text-align:justify;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
 }
 
-.window2 h1{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
+.window2 h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.window2 p{
+  width: 700px;
 }

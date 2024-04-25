@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="./CSS/Loginstyle.css">
+    <link rel="shortcut icon" href="../public/IMG/Home fundo/icone.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -89,14 +90,14 @@
         erroEmail.innerHTML = "";
         erroSenha.innerHTML = "";
 
-        if (email == "" ) {
+        if (email == "") {
             erroEmail.innerHTML = "Campo vazio";
         }
         if (senha == "") {
             erroSenha.innerHTML = "Campo vazio";
         }
         else {
-            if (email.indexOf("@") !== -1 && email.indexOf(".com") !== -1 && email.length >10) {
+            if (email.indexOf("@") !== -1 && email.indexOf(".com") !== -1 && email.length > 10) {
 
             } else {
                 erroEmail.innerHTML = "Email inválido"
@@ -114,26 +115,27 @@
                 senha.indexOf('6') !== 1 ||
                 senha.indexOf('7') !== 1 ||
                 senha.indexOf('8') !== 1 ||
-                senha.indexOf('9') !== 1)) { 
+                senha.indexOf('9') !== 1)) {
 
             } else {
-                erroSenha.innerHTML = "Senha deve conter:<br> 8 ou mais caracteres;<br>1 caractere numérico;<br>1 caractere especial."        }
+                erroSenha.innerHTML = "Senha deve conter:<br> 8 ou mais caracteres;<br>1 caractere numérico;<br>1 caractere especial."
             }
         }
-                /* if (senha.length >= 8) {
-        let caracter_especial = [`!`, `@`, "#", "$", "%", "&", "*"];
-        for (let numero = 0; numero <= 9; numero++) {
-        for (let i = 0; i < senha.length; i++) {
-            if (
-            caracter_especial[i] = senha.indexOf[i] &&
-            senha.indexOf(numero) !== -1
-          ) {
-          }        
-          
-          
-        }
-      }} else {
-        erroSenha.innerHTML =
-          "Senha deve conter:<br> 8 ou mais caracteres;<br>1 caractere numérico;<br>1 caractere especial.";
-      }}*/
+    }
+    /* if (senha.length >= 8) {
+let caracter_especial = [`!`, `@`, "#", "$", "%", "&", "*"];
+for (let numero = 0; numero <= 9; numero++) {
+for (let i = 0; i < senha.length; i++) {
+if (
+caracter_especial[i] = senha.indexOf[i] &&
+senha.indexOf(numero) !== -1
+) {
+}        
+ 
+ 
+}
+}} else {
+erroSenha.innerHTML =
+"Senha deve conter:<br> 8 ou mais caracteres;<br>1 caractere numérico;<br>1 caractere especial.";
+}}*/
 </script>

@@ -1,66 +1,78 @@
 CREATE DATABASE ReptiHabitatSolutions;
 USE ReptiHabitatSolutions;
-
--- Criação da tabela de cadastro da empresa e usuário
-create table empresa(
-    idEmpresa INT auto_increment,
-    nomeEmpresa VARCHAR(50) not null,
-    emailEmpresa VARCHAR(45) not null unique,
-    senhaEmpresa VARCHAR(20) not null unique,
+ 
+-- Criação da tabela de cadastro da empresa 
+CREATE TABLE empresa (
+    idEmpresa INT AUTO_INCREMENT,
+    nomeEmpresa VARCHAR(50) NOT NULL,
     PRIMARY KEY (idEmpresa)
 );
+-- Criação da tabala usuario para armazenar o cadastro das empresas
+CREATE TABLE usuario (
+    idUsuario INT AUTO_INCREMENT,
+    nome VARCHAR(50),
+    cpf CHAR(11),
+    email VARCHAR(100) UNIQUE,
+    senha VARCHAR(50),
+    fkEmpresa INT,
+    PRIMARY KEY (idUsuario, fkEmpresa),
+   FOREIGN KEY (fkEmpresa)
+        REFERENCES empresa (idEmpresa)
+);
 
+-- Criação da tabela endereço para registrar mais de um endereço para as empresas
 CREATE TABLE endereco (
-  idEndereco INT AUTO_INCREMENT,
-  logradouro VARCHAR(60) NOT NULL,
-  numero INT NOT NULL,
-  complemento VARCHAR(45),
-  bairro VARCHAR(45) NOT NULL,
-  cidade VARCHAR(45) NOT NULL,
-  contatoCelular char(11) NOT NULL,
-  fkEmpresa INT, 
-  PRIMARY KEY (idEndereco, fkEmpresa),
-  constraint foreinEmpresa foreign key endereco(fkEmpresa) references empresa(idEmpresa)
+    idEndereco INT AUTO_INCREMENT,
+    logradouro VARCHAR(60) NOT NULL,
+    numero INT NOT NULL,
+    complemento VARCHAR(45),
+    bairro VARCHAR(45) NOT NULL,
+    cidade VARCHAR(45) NOT NULL,
+    contatoCelular CHAR(11) NOT NULL,
+    fkEmpresa INT,
+    PRIMARY KEY (idEndereco , fkEmpresa),
+    CONSTRAINT foreinEmpresa FOREIGN KEY (fkEmpresa)
+        REFERENCES empresa (idEmpresa)
 );
 
 -- Criação da tabela haitat animal que será registrado
-create table habitatAnimal (
-    idAmbiente int auto_increment,
-    especieRepteis varchar(45) not null, 
-    qntRepteis INT not null,
-	areaHabitat INT,
-    descricao varchar(45) DEFAULT 'Adicionar Descrição',
+CREATE TABLE habitatAnimal (
+    idAmbiente INT AUTO_INCREMENT,
+    especieRepteis VARCHAR(45) NOT NULL,
+    qntRepteis INT NOT NULL,
+    areaHabitat INT,
+    descricao VARCHAR(45) DEFAULT 'Adicionar Descrição',
     fkIdEndereco INT,
     fk_fkEmpresa INT,
-    PRIMARY KEY (idAmbiente, fkIdEndereco, fk_fkEmpresa),
-	constraint foreinfkEmpresa foreign key habitatAnimal(fk_fkEmpresa) references empresa(idEmpresa),
-	constraint foreinfkEndereco foreign key habitatAnimal(fkIdEndereco) references endereco(idEndereco)
+    PRIMARY KEY (idAmbiente , fkIdEndereco),
+    CONSTRAINT foreinfkEndereco FOREIGN KEY (fkIdEndereco)
+        REFERENCES endereco (idEndereco)
 );
 
--- Criação da tabela dos sensores
-create table sensor (
-    idSensor int auto_increment,
-    tipo char (4) not null,
-    alertaVerde int,
-    alertaAmarelo int,
-    alertaVermelho int,
-    fkHabitat int,
-    PRIMARY KEY (idSensor,fkHabitat),
-    foreign key (fkHabitat) references habitatAnimal(idAmbiente),
-    CONSTRAINT chk_tipo check (tipo in('UMID','TEMP'))
+-- Criação da tabela dos sensores 
+CREATE TABLE sensor (
+    idSensor INT AUTO_INCREMENT,
+    tipo CHAR(4) NOT NULL,
+    fkHabitat INT,
+    PRIMARY KEY (idSensor , fkHabitat),
+    FOREIGN KEY (fkHabitat)
+        REFERENCES habitatAnimal (idAmbiente),
+    CONSTRAINT chk_tipo CHECK (tipo IN ('LUMIN' , 'TEMP'))
 );
 
 -- Criação da tabela de dados dos sensores
-create table leituraSensor (
-    idLeitura int auto_increment,
-    valorTemperaturaDht decimal(4.2),
-    valorUmidadeDht decimal(4,2),
-    dataHora datetime,
-    fkSensor int,
-    fkHabitatSensor int,
-    primary key (idLeitura, fkSensor, fkHabitatSensor),
-    foreign key (fkSensor) references sensor(idSensor),
-	foreign key (fkHabitatSensor) references habitatAnimal(idAmbiente)
+CREATE TABLE leituraSensor (
+    idLeitura INT AUTO_INCREMENT,
+    lm35Temperatura DECIMAL(4.2),
+    luminosidade DECIMAL(5 , 2 ),
+    dataHora DATETIME,
+    fkSensor INT,
+    fkHabitatSensor INT,
+    PRIMARY KEY (idLeitura , fkSensor , fkHabitatSensor),
+    FOREIGN KEY (fkSensor)
+        REFERENCES sensor (idSensor),
+    FOREIGN KEY (fkHabitatSensor)
+        REFERENCES habitatAnimal (idAmbiente)
 );
 
 -- Inserção de dados na tabela "empresa"

@@ -4,14 +4,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
   <link rel="stylesheet" href="../public/CSS/Tela de cadastro.css">
   <link rel="shortcut icon" href="../public/IMG/Home fundo/icone.ico" type="image/x-icon">
   <title>RHS</title>
 
+=======
+  <link rel="stylesheet" href="Tela de cadastro.css">
+  <title>RHS</title>
+
+
+>>>>>>> b9e2570e0843b6f2e6662cdf1ee6ecf641ff8f3b
 </head>
 
 <body>
 
+<<<<<<< HEAD
+=======
+  <div id="card_concluido" class="card_concluido" style="display: none;">
+    <span id="concluído"></span>
+  </div>
+>>>>>>> b9e2570e0843b6f2e6662cdf1ee6ecf641ff8f3b
   <center>
     <div class="cards">
       <h3 style="font-size: 20px; margin-top: 10px; margin-bottom: 5px; font-weight: 480;">CRIE SUA CONTA</h3>
@@ -34,14 +47,30 @@
       <br>
       <br>
       <button onclick="Cadastro()">
+<<<<<<< HEAD
       Criar conta
       </button>
 
+=======
+
+
+        Criar conta
+
+      </button>
+
+>>>>>>> b9e2570e0843b6f2e6662cdf1ee6ecf641ff8f3b
       <p> Já tem conta?
         <a href=""> Login</a>
 
       </p>
     </div>
+<<<<<<< HEAD
+=======
+    <button>
+
+
+
+>>>>>>> b9e2570e0843b6f2e6662cdf1ee6ecf641ff8f3b
   </center>
 
 </body>
@@ -54,6 +83,7 @@
     const email = E_email.value.trim();
     const senha = S_senha.value;
     const confirmarsenha = CS_confirmarsenha.value;
+  
 
     if (user == "") {
       mensagemErroNome.innerHTML = "<center>Nome inválido</center>";
@@ -64,9 +94,23 @@
     } else if (senha.length < 8 || !/[A-Z]/.test(senha) || !/[0-9]/.test(senha)) {
       mensagemErroSenha.innerHTML = "<center>A senha deve conter pelo menos 8 caracteres, uma letra maiúscula e um número</center>";
     } else {
+<<<<<<< HEAD
       alert("Cadastro concluído");
     }
   }
 </script>
 
 </script>
+=======
+      card_concluido.style.display = 'block'
+      concluído.innerHTML = ` Cadastro concluído  com sucesso redirecionando para tela de Login`
+      setInterval(sumirMensagem, 4000);
+      finalizarMensagem();
+      return false;
+    }
+  }
+  function sumirMensagem() {
+    card_concluido.style.display = 'none';
+  }
+</script>
+>>>>>>> b9e2570e0843b6f2e6662cdf1ee6ecf641ff8f3b

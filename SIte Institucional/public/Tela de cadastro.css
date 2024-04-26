@@ -18,33 +18,52 @@ body{
 
 }
 
-.cards {
-    width: 535px;
-    height: 515px;
-    padding: 12px;
-    padding-top: 25px;
-    padding-bottom: 50px;
-    border-radius: 50px;
-    background: rgb(255, 255, 255);
-   
+
+
+.section_flex{
+  display: flex;  
+  justify-content: center;
+  position: relative;
+ 
+  
 }
+.cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 535px;
+  height: 515px;
+  border-radius: 50px;
+  background: rgb(255, 255, 255);
+
+}
+
 .card_concluido {
+  border-color: #2f4f22;
   background-color: #548D3D;
   color: #FFFFFF;
-  display: flex;
   width: 230px;
   height: 70px;
   border-radius: 4px;
   padding: 10px;
-  top: 230px;
-  position: relative;
-  left: 70%;
+  left: 100px;
+  
+  
+}
+.voltar {
+  width:50px;
+  height: 50px;
+  display: inline;
+  margin-left: 20px;
+  position: absolute;
+  z-index: 2;
 }
 
 .Input {
     height: 35px;
     width: 390px;
-    border-radius: 0px;
+    border-radius: 5px;
     border-style: solid;
     margin-top: auto;
     border: #548d3d solid 3px;
@@ -52,6 +71,7 @@ body{
     background-color: #A9C59D;
     color: black;
     font-size: medium;
+    outline:  0;
     
   }
 
@@ -87,14 +107,14 @@ button:hover {
 }
 
 
-a{
+.cards a{
   color: #548D3D;
   font-weight: 300;
   text-decoration: none;
 }
 
 
-a:hover{
+.cards a:hover{
   color: #548D3D;
   font-weight: 500;
   transition: all 0.3s;

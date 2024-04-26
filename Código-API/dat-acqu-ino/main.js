@@ -16,7 +16,7 @@ const HABILITAR_OPERACAO_INSERIR = true;
 
 // Função para comunicação serial
 const serial = async (
-    valoresDht11Temperatura,
+    valoresLm35Temperatura,
     valoresLuminosidade
 ) => {
     let poolBancoDados = ''
@@ -29,7 +29,7 @@ const serial = async (
             // Credenciais do banco de dados
             host: 'localhost',            //Na máquina virtual devo pegar o IP da nova máquina.
             user: 'ReptiHabitatSolutions', // ReptiHabitatSolutions
-            password: '#ReptiHabitatSolutions', // #ReptiHabitatSolutions
+            password: '', // 
             database: 'arduino',
             port: 3306
         }
@@ -59,11 +59,11 @@ const serial = async (
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => { 
         //console.log(data); 
         const valores = data.split(';');                         
-        const dht11Temperatura = parseFloat(valores[0]);     // 0 é a porta de leitura
-        const luminosidade = parseFloat(valores[1]);         // paseFloat - decimal
+        const lm35Temperatura = parseFloat(valores[0]);     // 0 é a porta de leitura
+        const luminosidade = parseInt(valores[1]);         // paseFloat - decimal
 
         // Armazena os valores dos sensores nos arrays correspondentes
-        valoresDht11Temperatura.push(dht11Temperatura);
+        valoresLm35Temperatura.push(lm35Temperatura);
         valoresLuminosidade.push(luminosidade); 
 
         // Insere os dados no banco de dados (se habilitado)
@@ -73,10 +73,10 @@ const serial = async (
             // Este insert irá inserir os dados na tabela "leitura"
             await poolBancoDados.execute(
                                                                                //ALTERAR PARA NOME DA MINHA TABELA
-                'INSERT INTO leitura (dht11_temperatura, luminosidade) VALUES (?, ?)', 
-                [dht11Temperatura, luminosidade] // TROCAR O "?" PELOS VALORES EM AZUL AQUI <<
+                'INSERT INTO leitura (lm35Temperatura, luminosidade) VALUES (?, ?)', 
+                [lm35Temperatura, luminosidade] // TROCAR O "?" PELOS VALORES EM AZUL AQUI <<
             );
-            console.log("valores inseridos no banco: ", dht11Temperatura + ", " + luminosidade)
+            console.log("valores inseridos no banco: ", lm35Temperatura + ", " + luminosidade)
         }
         
     });
@@ -91,7 +91,7 @@ const serial = async (
 // não altere!
 // Função para criar e configurar o servidor web
 const servidor = (
-    valoresDht11Temperatura,
+    valoresLm35Temperatura,
     valoresLuminosidade
 ) => {
     const app = express();
@@ -110,8 +110,8 @@ const servidor = (
     });
 
     // Define os endpoints da API para cada tipo de sensor
-    app.get('/sensores/dht11/temperatura', (_, response) => {
-        return response.json(valoresDht11Temperatura);
+    app.get('/sensores/lm35/temperatura', (_, response) => {
+        return response.json(valoresLm35Temperatura);
     });
     app.get('/sensores/luminosidade', (_, response) => {
         return response.json(valoresLuminosidade);
@@ -121,18 +121,18 @@ const servidor = (
 // Função principal assíncrona para iniciar a comunicação serial e o servidor web
 (async () => {
     // Arrays para armazenar os valores dos sensores
-    const valoresDht11Temperatura = [];
+    const valoresLm35Temperatura = [];
     const valoresLuminosidade = [];
 
     // Inicia a comunicação serial
     await serial(
-        valoresDht11Temperatura,
+        valoresLm35Temperatura,
         valoresLuminosidade,
     );
 
     // Inicia o servidor web
     servidor(
-        valoresDht11Temperatura,
+        valoresLm35Temperatura,
         valoresLuminosidade,
     );
 })();

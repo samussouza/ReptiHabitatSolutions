@@ -13,7 +13,8 @@ Serial.begin(9600); // inicializa a comunicação serial
 void loop() {
 temperatura = (float(analogRead(LM35))*5/(1023))/0.01;
 sensorValue = analogRead(sensorPin);
-Serial.println(temperatura);
+Serial.print(temperatura);
+Serial.print(";");
 Serial.println(sensorValue);
 delay(2000);
 }

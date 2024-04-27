@@ -1,343 +1,164 @@
-  /* css para body  */
-  body {
-    color: #2C591A;
-    background-color: #e0f3e1;
-    /* Cor de fundo do body */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+
+* {
     margin: 0;
-    /* Remove margens padrão */
-    font-family: Arial, sans-serif;
-    /* Define a família de fontes padrão */
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+}
+
+
+
+/* css para body  */
+  body {
+    background-color: white;
+    min-height: 100vh;
+    margin: 0;
 }
 
 /* css para header */
-.header {
-    background-color: #fff;
-    /* Cor de fundo do header */
-    padding: 25px 0;
-    /* Espaçamento interno do header */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    /* Sombra do header */
-}
-
-/* css para o container */
-.container {
-    width: 80%;
-    /* Largura do container */
-    margin: auto;
-    /* Centraliza o container na página */
+header {
+    position: absolute;
+    padding: 23px;   /* Espaçamento interno do header */
     display: flex;
-    /* Define um layout flexível */
-    justify-content: space-between;
-    /* Alinha os itens do container */
+    justify-content: center;
     align-items: center;
-    /* Alinha os itens verticalmente */
+    margin-left: 37px;
+    margin-top: 7px;
 }
 
-/* css para o título */
-.titulo {
-    color: #2C591A;
-    /* Cor do texto */
-    font-weight: bold;
-    /* Define a espessura da fonte como negrito */
-    font-size: 24px;
-    /* Tamanho da fonte */
-    margin: 0;
-    /* Remove margens */
-}
-
-/* css para a barra de navegação */
-.navbar {
-    display: flex;
-    /* Define um layout flexível */
-    list-style: none;
-    /* Remove os marcadores de lista */
-    margin: 0;
-    /* Remove margens */
-    padding: 0;
-    /* Remove preenchimento */
-}
-
-/* css para os itens da barra de navegação, só as letras, altera a posiçao e tamanho da fonte,  */ 
-.navbar li {
-    margin-right: 20px;
-    /* Espaçamento entre os itens */
-    font-size: 16px;
-    /* Tamanho da fonte */
-    color: #032b0d;
-    /* Cor do texto */
+header img{
+    top: 20px;
+    border-radius: 100%;
+    width: 60px;
+    height: 60px;
+    margin-right: 270px;
+    margin-left: 40px;
 }
 
 /* css para os links da barra de navegação */
 .navbar a {
-    text-decoration: none;
-    /* Remove a decoração do link */
-    color: #2b0321;
-    /* Cor do texto */
-    transition: color 0.3s;
-    /* Transição suave da cor do texto */
+    text-decoration: none;   /* Remove a decoração do link */
+    color: #359381;
+    padding: 6px 15px;
+    margin: 0 10px;
+    font-weight: 600;
+    cursor: pointer;
 }
 
-/* css para os links da navbar quando em hover */
 .navbar a:hover {
-    color: #1ba157;
-    /* Cor do texto ao passar o mouse */
+    border-bottom: 2px solid #359381;
+    width: 100%;
+    left: 0;
+}
+
+.h1 {
+    color:  #1c3612;
+    font-weight: bold;
+    font-size: 26px;
+    margin: 0;
 }
 
 /* css para section da equipe */
 .team-section {
+    display: inline-block;   /* inline-block para centralizar horizontalmente */
     text-align: center;
-    /* Alinha o texto ao centro */
-    padding: 20px;
-    /* Espaçamento interno */
+    width: 100%;
+    margin: 100px auto;  /* Centraliza o texto e adiciona margem superior e inferior */
+    padding: 250px;   /* aproxima ou afasta os cards do texto*/
 }
 
 /* css para o texto da section da equipe */
 .team-text {
-    margin-bottom: 20px;
-    /* Espaçamento inferior */
+    text-align: center;
+    padding: 180px;           /* Espaçamento interno */
 }
 
-
-.button1 {
-    background-color: rgb(65, 116, 58);
-    /* Cor de fundo do botão 1 */
-    padding: 5px 5px;
-    /* Espaçamento interno do botão 1 */
-    border-radius: 5px;
-    cursor: pointer;
-
+.top-cards{
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 40px;
 }
 
-.button1 a:hover {
-    color:  #ffffff;
-    /* Cor do texto ao passar o mouse */
-}
-.button1 a{
-    text-decoration: none;
-    /* Remove a decoração do link */
-    color: #d7ecd1;
-    /* Cor do texto */
-    
-}
-
-.button2 {
-    padding: 5px 5px;
-    /* Espaçamento interno do botão 2 */
-    color: #0d7535;
-    border-radius: 5px;
-    cursor: pointer;
-    
-
-}
-
-.button2 a:hover {
-    color: #34ce79;
-    /* Cor do texto ao passar o mouse */
+.bottom-cards{
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 40px;
 }
 
 /* css para o card da equipe */
 .card {
-    
-    display: inline-block;
-    /* Exibe os card em linha */
-    width: 15%;
-    height: 20%;
-    /* Altura do card */
-    padding: 10px;
-    /* Espaçamento interno */
-    margin: 10px;
-    /* Espaçamento externo */
-    border: 1px solid #1ba157;
-    /* Borda sólida */
-    border-radius: 5px;
-    /* Raio da borda */
+    width: 340px;
+    height: 340px;
+    position: relative;
+    left: 0px;
+    border: 2px solid #548D3D;
+    border-radius: 10px;
+    margin: 0px;
+    padding-top: 40px;
     background-color: #fff;
-    /* Cor de fundo */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    /* Sombra do card */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);   /* Sombra do card */
 }
 
-/* css para o título do card */
+/* css para o título do card, os nomes */
 .card h2 {
-    margin: 10px 0;
-    /* Espaçamento do título */
+    margin: 10px 0;     /* Espaçamento do texto */
     font-size: 18px;
-    /* Tamanho da fonte do título */
     color: #011404;
-    /* Cor do texto */
+
 }
 
-/* css para o texto do card */
+/* css para o cargo do individuo */
 .card p {
     margin: 5px 0;
-    /* Espaçamento do texto */
     color: #111111;
-    /* Cor do texto */
     font-size: 14px;
-    /* Tamanho da fonte do texto */
 }
 
 /* css para a imagem do membro da equipe */
 .member-img {
-    width: 80px;
-    /* Largura da imagem */
-    height: 80px;
-    /* Altura da imagem */
+    width: 95px;
+    height: 95px;
     border-radius: 50%;
-    /* Borda arredondada */
-    object-fit: cover;
-    /* Ajuste da imagem */
-    transition: transform 0.3s;
-    /* Adiciona uma transição suave */
+    object-fit: cover;     /* Ajuste da imagem */
+    transition: transform 0.3s;    /* Adiciona uma transição suave */
 }
 
-/* Quando o mouse passar por cima da imagem, ela aumentará de tamanho */
+/* Quando o mouse passar por cima da foto, ela aumentará de tamanho */
 .member-img:hover {
-    transform: scale(1.2);
-    /* Aumenta a escala da imagem */
+    transform: scale(1.2);    /* Aumenta a escala da imagem */
 }
 
 /* css para os ícones das redes sociais */
 .social-icons {
-    margin-top: 10px;
-    /* Espaçamento superior */
+    margin-top: 10px;     /* Espaçamento superior */
 }
 
 .social-icons a:hover {
-    color: #81bb9b;
-    /* Cor do texto ao passar o mouse */
+    color: #97d3b2;      /* Cor do texto ao passar o mouse */
 }
 
 /* css para os links das redes sociais*/
 .social-icons a {
     color: #1ba157;
-    /* Cor dos ícones */
-    margin-right: 10px;
-    /* Espaçamento direito */
+    margin-right: 10px;        /* Espaçamento direito */
     font-size: 20px;
-    /* Tamanho da fonte */
-    text-decoration: none;
-    /* Remove a decoração do link */
+    text-decoration: none;      /* Remove a decoração do link */
 }
 
-/* css para a seção de contato */
-.contact-section {
-    background-color: rgb(36, 99, 27);
-    /* Cor de fundo */
-    display: flex;
-    /* Define um layout flexível */
-    color: #fff;
-    /* Cor do texto */
-    text-align: center;
-    /* Alinha o texto ao centro */
-    justify-content: center;
-    /* Justifica o conteúdo */
-    padding: 50px;
-    /* Espaçamento interno */
-    position: relative;
-    /* Posição relativa */
-}
-
-/* css para o texto da seção de contato */
-.contact-section p {
-    margin: 5px 0;
-    /* Espaçamento do texto */
-    font-size: 16px;
-    /* Tamanho da fonte */
-}
-
-/* css para o container de contato */
-.contato {
-    position: absolute;
-    /* Posição absoluta */
-    top: 10px;
-    /* Distância do topo */
-    right: 10px;
-    /* Distância da direita */
-}
-
-/* css para os ícones de contato */
-.contact-icons {
-    position: absolute;
-    /* Posição absoluta */
-    top: 25px;
-    /* Distância do topo */
-    right: 25px;
-    /* Distância da direita */
-    align-content: flex-end;
-    /* Alinha os ícones no final */
-}
-
-/* css para os links de ícones de contato */
-.contact-icons a {
-    color: #fff;
-    /* Cor dos ícones */
-    margin-right: 20px;
-    /* Espaçamento direito */
-    font-size: 24px;
-    /* Tamanho da fonte */
-    text-decoration: none;
-    /* Remove a decoração do link */
-    justify-content: flex-end;
-    /* Justifica o conteúdo para a direita */
-}
-
-/* css para o container de opções */
-.options-container {
-    display: flex;
-    /* Define um layout flexível */
-    justify-content: space-between;
-    /* Espaço entre as opções */
-    margin-bottom: 20px;
-    /* Espaçamento inferior */
-    align-items: flex-start;
-    /* Alinha os itens verticalmente */
-}
-
-/* css para a primeira opção */
-.options1 {
-    flex: 1;
-    /* Cresce e encolhe de acordo com o espaço disponível */
-    text-align: left;
-    /* Alinha o texto à esquerda */
-}
-
-/* css para a segunda opção */
-.options2 {
-    flex: 1;
-    /* Cresce e encolhe de acordo com o espaço disponível */
-    text-align: center;
-    /* Alinha o texto ao centro */
-}
-
-/* css para a terceira opção */
-.options3 {
-    flex: 1;
-    /* Cresce e encolhe de acordo com o espaço disponível */
-    justify-content: flex-end;
-    /* Justifica o conteúdo para a direita */
-    text-align: right;
-    /* Alinha o texto à direita */
-    padding: 50px;
-    /* Espaçamento interno */
-}
-
-/* styles para as opções */
-.options p {
-    margin: 0;
-    /* Remove margens */
-    padding: 5px 0;
-    /* Espaçamento interno */
-}
 
 .footer {
     background-color: #003329; 
     color: white;
-    padding: 20px 0;
+    padding: 10px 0;
+  
+    margin-top: 20px;
+    
   }
   
   .container {
-    display: flex;
+    display: flex;  
     /* flex-wrap: wrap; */
     justify-content: space-evenly;
    

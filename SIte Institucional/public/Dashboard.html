@@ -9,32 +9,65 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
-    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+      <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+      <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+      <style>
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
   </head>
 
   <!-- <body onload=" atualizarFeed()"> -->
 
   <body>
-    <div class="janela">
-      <div class="header-left">
-        <h1>RHS</h1>
-
-        <div class="hello">
-          <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+        <!--  inicio do menu da dashboard  -->
+        <div class="menu">
+          <h1>
+              <span style="color:#0f7826;">RHS</span>olutions
+          </h1>
+  
+          <img id="img-foto" src="IMG/Dashboard/adicionar-usuario (1).png" alt="">
+  
+          <div class="hello">
+            <h3>Olá, <span id="b_usuario">usuário</span>!</h3> <br>
+          </div>
+  
+          <span id="menu-separacao">Menu</span>
+          <div class="separacao"></div>
+  
+          <div class="btn-navbar">
+          <span>
+              <a href="">
+                  <img src="IMG/Dashboard/painel-de-controle-verde.png" alt="">
+                  Dashboards
+              </a>
+          </span> <br>
+  
+          <span>
+              <a href="">  
+                  <img src="IMG/Dashboard/sino.png" alt="">
+                  Notificações
+              </a>
+          </span> <br>
+  
+          <span>
+              <a href=""> 
+                  <img src="IMG/Dashboard/configuracoes.png" alt=""> 
+                  Configurações
+              </a>
+          </span><br>
+          </div>
+  
+          <div class="btn-logout">
+            <a href="HomPage.html">SAIR</a>
+          </div>
         </div>
-
-        <div class="btn-nav-white">
-          <h3>Habitats</h3>
-          <h3>Gráficos</h3>
-          <h3>Mural de Avisos</h3>
-        </div>
-
-        <div class="btn-logout">
-          <h3>Sair</h3>
-        </div>
-      </div>
+        <!-- fim do menu da dashboard -->
 
       <div class="dash">
         <div class="div_KPIs">
@@ -52,67 +85,93 @@
           </div>
         </div>
         <div class="div_graficos">
-            <div class="grafico" >
-                <canvas id="grafico1"></canvas>
+            <div class="div_grafico" >
+                <canvas id="lm35Temperatura"></canvas>
             </div>
-            <div class="grafico">
-                <canvas id="grafico2"></canvas>
+            <div class="div_grafico">
+                <canvas id="luminosidade"></canvas>
             </div>
         </div>
-        <div class="btns-dash" id="btnAquario">
-          <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
-        </div>
-      </div>
-      
   </body>
   <script>
-    const ctx1 = document.getElementById('grafico1');
+    const contextoLm35Temperatura = document.getElementById('lm35Temperatura').getContext('2d');
   
-    new Chart(ctx1, {
-      type: 'line',
-      data: {
-        labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-        datasets: [{
-          label: 'Temperatura',
-          data: [30, 29, 28, 25, 22, 23	],
-          borderWidth: 1,
-          backgroundColor: ['#6fd2c0']
-            
-        },
-        {label: 'Umidade',
-          data: [80, 82, 80, 85, 80, 83],
-          borderWidth: 1}
-    ]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
-    
-    const ctx2 = document.getElementById('grafico2');
-  
-    new Chart(ctx2, {
-      type: 'bar',
-      data: {
-        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
-        datasets: [{
-          label: 'Temperatura',
-          data: [22, 24, 27, 23, 20, 18],
-          borderWidth: 1,
-          backgroundColor: ['#6fd2c0']
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
+        var lm35Temperatura = new Chart(
+            contextoLm35Temperatura,{
+                type: 'line',
+                data: {
+                    labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                    datasets: [{
+                        label: 'Temperatura',
+                        data: [30, 29, 28, 25, 22, 23],
+                        borderColor: ['#548D3D'],
+                        backgroundColor: ['#548D3D81']
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Temperatura'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                        
+                    }
+                }
+            }
+        );
+        
+        const contextoLuminosidade = document.getElementById('luminosidade').getContext('2d');
+        var luminosidade = new Chart(
+            contextoLuminosidade,
+            {
+                type: 'bar',
+                data: {
+                    labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+                    datasets: [{
+                        label: 'Luminosidade',
+                        data: [22, 24, 27, 23, 20, 18],
+                        borderwidht: 1,
+                        borderColor: ['#548D3D', '#548D3D','#548D3D','#548D3D','#548D3D','#548D3D'],
+                        backgroundColor: ['#548D3D81', '#548D3D81', '#548D3D81', '#548D3D81', '#548D3D81', '#548D3D81']
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Luminosidade'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0,
+                    }
+                }
+            }
+        );
   </script>
 </html>

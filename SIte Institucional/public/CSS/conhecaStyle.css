@@ -48,7 +48,7 @@ header img{
 }
 
 .navbar a:hover {
-    border-bottom: 2px solid #359381;
+    border-bottom: 2px solid #548D3D;
     width: 100%;
     left: 0;
 }
@@ -149,7 +149,7 @@ header img{
 
 
 .footer {
-    background-color: #003329; 
+    background-color: #548D3D; 
     color: white;
     padding: 10px 0;
   
@@ -165,7 +165,7 @@ header img{
   }
   
   .cardList {
-    width: 200px;
+    width: 205px;
     margin: 0 20px;
   }
   

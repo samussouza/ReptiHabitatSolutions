@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    font-family: 'Poppins';
+    
+}
+
+/* css para body  */
+body {
+    background-color: white;
+    min-height: 100vh;
+}
+
+
+/* css para header */
+header{
+    position: absolute;
+    width:100%; 
+    padding:30px 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+header img{
+    top: 20px;
+    border-radius: 100%;
+    width: 60px;
+    height: 60px;
+    margin-right: 270px;
+    pointer-events: none;
+}
+  
+nav a{
+    text-decoration: none;
+    color: #359381;
+    padding: 6px 15px;
+    margin: 0 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+nav a:hover{
+    border-bottom: 2px solid #359381;
+    width: 100%;
+    left: 0;
+}
+
+/* fim css para header */
+
+.h1 {
+    color:  #2c5f18;
+    font-weight: bold;
+    font-size: 26px;
+    margin: 0;
+}
+
+.team-text{
+    display: inline-block;   /* inline-block para centralizar horizontalmente */
+    text-align: start;
+    width: 950px;
+    height: 10px;
+    padding-top: 190px;
+    padding-left: 200px;
+
+}
+
+/* css para section da equipe */
+.team-section {
+    display: inline-block;   /* inline-block para centralizar horizontalmente */
+    text-align: center;
+    width: 100%;
+    margin: 100px auto;  /* Centraliza o texto e adiciona margem superior e inferior */
+    
+}
+
+.top-cards{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.bottom-cards{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+
+}
+
+.card {
+    width: 300px;
+    height: 280px;
+    border: 2px solid #5b8e4780;
+    border-radius: 12px;
+    margin: 10px;
+    padding: 43px;
+    background-color: #5b8e4780;
+
+}
+
+.card:hover {
+    background-color: #53a73380;
+    transition: all 0.3s;
+
+}

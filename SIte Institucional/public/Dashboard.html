@@ -5,75 +5,173 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ReptiHabitatSolutions | Dashboards</title>
-
     <link rel="stylesheet" href="CSS/dashboard.css" />
-
     <link
       href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet"    />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+      <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+      <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+      <style>
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
   </head>
 
+  <!-- <body onload=" atualizarFeed()"> -->
+
   <body>
-    <div class="janela">
-      <!--  inicio do menu da dashboard  -->
-      <div class="menu">
-        <h1>
-            <span style="color:#0f7826;">RHS</span>olutions
-        </h1>
-
-        <img id="img-foto" src="IMG/Dashboard/adicionar-usuario (1).png" alt="">
-
-        <div class="hello">
-          <h3>Olá, <span id="b_usuario">usuário</span>!</h3> <br>
+        <!--  inicio do menu da dashboard  -->
+        <div class="menu">
+          <h1>
+              <span style="color:#0f7826;">RHS</span>olutions
+          </h1>
+  
+          <img id="img-foto" src="IMG/Dashboard/adicionar-usuario (1).png" alt="">
+  
+          <div class="hello">
+            <h3>Olá, <span id="b_usuario">usuário</span>!</h3> <br>
+          </div>
+  
+          <span id="menu-separacao">Menu</span>
+          <div class="separacao"></div>
+  
+          <div class="btn-navbar">
+          <span>
+              <a href="">
+                  <img src="IMG/Dashboard/painel-de-controle-verde.png" alt="">
+                  Dashboards
+              </a>
+          </span> <br>
+  
+          <span>
+              <a href="">  
+                  <img src="IMG/Dashboard/sino.png" alt="">
+                  Notificações
+              </a>
+          </span> <br>
+  
+          <span>
+              <a href=""> 
+                  <img src="IMG/Dashboard/configuracoes.png" alt=""> 
+                  Configurações
+              </a>
+          </span><br>
+          </div>
+  
+          <div class="btn-logout">
+            <a href="HomPage.html">SAIR</a>
+          </div>
         </div>
-
-        <span id="menu-separacao">Menu</span>
-        <div class="separacao"></div>
-
-        <div class="btn-navbar">
-        <span>
-            <a href="">
-                <img src="IMG/Dashboard/painel-de-controle-verde.png" alt="">
-                Dashboards
-            </a>
-        </span> <br>
-
-        <span>
-            <a href="">  
-                <img src="IMG/Dashboard/sino.png" alt="">
-                Notificações
-            </a>
-        </span> <br>
-
-        <span>
-            <a href=""> 
-                <img src="IMG/Dashboard/configuracoes.png" alt=""> 
-                Configurações
-            </a>
-        </span><br>
-        </div>
-
-        <div class="btn-logout">
-          <a href="HomPage.html">SAIR</a>
-        </div>
-      </div>
-      <!-- fim do menu da dashboard -->
+        <!-- fim do menu da dashboard -->
 
       <div class="dash">
-        <div id="alerta"></div>
         <div class="div_KPIs">
-          <div class="div_KPI"></div>
-          <div class="div_KPI"></div>
-          <div class="div_KPI"></div>
-          <div class="div_KPI"></div>
-        </div>
+          <div class="div_KPI">
 
-        <div class="btns-dash" id="btnAquario">
-          <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
+          </div>
+          <div class="div_KPI">
+
+          </div>
+          <div class="div_KPI">
+
+          </div>
+          <div class="div_KPI">
+
+          </div>
         </div>
-        <div id="graficos"></div>
-      </div>
-    </div>
+        <div class="div_graficos">
+            <div class="div_grafico" >
+                <canvas id="lm35Temperatura"></canvas>
+            </div>
+            <div class="div_grafico">
+                <canvas id="luminosidade"></canvas>
+            </div>
+        </div>
   </body>
+  <script>
+    const contextoLm35Temperatura = document.getElementById('lm35Temperatura').getContext('2d');
+  
+        var lm35Temperatura = new Chart(
+            contextoLm35Temperatura,{
+                type: 'line',
+                data: {
+                    labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                    datasets: [{
+                        label: 'Temperatura',
+                        data: [30, 29, 28, 25, 22, 23],
+                        borderColor: ['#548D3D'],
+                        backgroundColor: ['#548D3D81']
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Temperatura'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                        
+                    }
+                }
+            }
+        );
+        
+        const contextoLuminosidade = document.getElementById('luminosidade').getContext('2d');
+        var luminosidade = new Chart(
+            contextoLuminosidade,
+            {
+                type: 'bar',
+                data: {
+                    labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+                    datasets: [{
+                        label: 'Luminosidade',
+                        data: [22, 24, 27, 23, 20, 18],
+                        borderwidht: 1,
+                        borderColor: ['#548D3D', '#548D3D','#548D3D','#548D3D','#548D3D','#548D3D'],
+                        backgroundColor: ['#548D3D81', '#548D3D81', '#548D3D81', '#548D3D81', '#548D3D81', '#548D3D81']
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Luminosidade'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0,
+                    }
+                }
+            }
+        );
+  </script>
 </html>

@@ -104,3 +104,37 @@ nav a:hover{
     transition: all 0.3s;
 
 }
+
+/* css para a imagem do membro da equipe */
+.member-img {
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    object-fit: cover;     /* Ajuste da imagem */
+}
+
+.card h2 {
+    margin: 10px ;     /* Espaçamento do texto */
+    font-size: 20px;
+    color: #011404;
+}
+
+
+/* css para o cargo do individuo */
+.card p {
+    margin: 5px 0;
+    color: #111111;
+    font-size: 15px;
+  }
+
+  .social-icons {
+    margin-top: 50px;     /* Espaçamento superior */
+  }
+
+  /* css para os links das redes sociais*/
+.social-icons a {
+    color: #2e754e;
+    margin-right: 10px;        /* Espaçamento direito */
+    font-size: 20px;
+    text-decoration: none;      /* Remove a decoração do link */
+  }

@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 *{
+  font-family: 'Poppins';
   margin: 0;
   overflow: hidden;
 }
@@ -111,57 +113,77 @@ margin-top: 9px;
 
 
 .dash {
-  display: grid;
-  align-items: center;
   width: 80%;
-  position: absolute;
   left: 20%;
   height: 100vh;
+  position: absolute;
+}
+.div_graficos{
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  gap: 40px;
+  width: 500px;
 }
 
+.div_grafico{ 
+display: flex;
+align-items: center;
+flex-direction: column;
+font-size: 20px;
+width: 500px;
+height: 300px;
+background-color: #e7e5e5;
+border-radius: 10px;
+
+}
+.section_KPIs{
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  position: absolute;
+  right: 100px;
+  top: 1px;
+  
+}
 .div_KPIs{
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  gap: 30px;
+  margin: 0;
   
 }
 .div_KPI{
   margin-top: 50px;
-  width: 250px;
-  height: 200px;
+  width: 300px;
+  height: 125px;
   border-radius: 10px;
-  background-color: #9EE48254;
+  background-color: #e7e5e5;
   
 }
-.div_KPI:hover{
-  scale: 105%;
-  border-radius: 10px;
-  transition: all 0.2s;
-}
-
-.div_graficos{
-  position: relative;
-    display: flex;
-    justify-content: space-evenly;
+  /* .div_KPI:hover{
+    scale: 105%;
+    border-radius: 10px;
+    transition: all 0.2s;
   }
 
-.div_grafico{ 
-  width: 600px;
-  height: 350px;
-  background-color: #9EE48254;
+  .div_grafico:hover{
+    scale: 110%;
+    border-radius: 10px;
+    transition: all 0.2s;
+  } */
+
+.div_filtro{
+  overflow-y: auto;
+  width: 500px;
+  height: 300px;
   border-radius: 10px;
-
+  background-color: #e7e5e5;
+  position: absolute;
+  right: 100px;
+  top: 390px;
 }
-.div_grafico:hover{
-  scale: 105%;
-  border-radius: 10px;
-  transition: all 0.2s;
+.container {
+  width:100%;
+  position: relative;
+  height: 50px;
 }
-#lm35Temperatura{
-  margin-top: 30px;
-
-}
-#luminosidade{
- margin-top: 30px;
-}
-

@@ -13,7 +13,7 @@
         <input type="number" id="qtd_repteis_input"><br>
         <label for="">Você possui um sistema de iluminação?</label>
         <select onchange='mostrarLampadas()' id="sistema_iluminacao_select">
-            <option value="vazio"></option>
+            <option value="vazio">---</option>
             <option value="yes">Sim</option>
             <option value="no">Não</option>
         </select><br>
@@ -21,13 +21,10 @@
             Quais lâmpadas você utiliza no habitat?
             <br>
             <input type="checkbox" id="lampada_uvi">
-            <label for="lampada_uvi">UVI</label>
+            <label for="lampada_uva">UVI</label>
             <br>
             <input type="checkbox" id="lampada_uva">
-            <label for="lampada_uva">UVA</label>
-            <br>
-            <input type="checkbox" id="lampada_uv">
-            <label for="lampada_uv">UV</label>
+            <label for="lampada_uvb">UVA</label>
             <br>
             <input type="checkbox" id="lampada_comum">
             <label for="lampada_comum">LÂMPADAS COMUNS</label>
@@ -41,7 +38,6 @@
 
 </html>
 <script>
-
     function mostrarLampadas() {
         let selecao = sistema_iluminacao_select.value
         if (selecao === 'yes') {
@@ -52,23 +48,45 @@
     }
 
     function calcularPreju() {
+        show.innerHTML = ""
         let qtd_Repteis = Number(qtd_repteis_input.value)
         let selecao = sistema_iluminacao_select.value
-        let uviCheck = lampada_uvi.checked
-        let uvaCheck = lampada_uva.checked
-        let uvCheck = lampada_uv.checked
+        let uvaCheck = lampada_uvi.checked
+        let uvbCheck = lampada_uva.checked
         let comumCheck = lampada_comum.checked
+        let valorLampadas = 0
+        let qtdLampadas = 0
 
         if (qtd_Repteis == " ") {
             alert(`Nenhum campo pode estar vazio, insira um valor.`)
         } else if (selecao === "vazio" ) {
             alert(`Informe se possui ou não um sistema de iluminação para poder prosseguir`)
-        } else if (selecao === "yes" && uviCheck === false && uvaCheck === false && uvCheck === false && comumCheck === false) {
+        } else if (selecao === "yes" && uvaCheck === false && uvbCheck === false && comumCheck === false) {
             alert("Por favor, selecione pelo menos uma checkbox.");
         } else{
-            show.innerHTML = `Você perde R$ sem os nossos sensores. <br>
-                R$ por lâmpadas que degradam com o tempo <br>
-                Além de poder perder R$ caso seus répteis desenvolvam algum problema devido ao nível de luz desregulado.`
+            if(selecao === "yes"){
+                valorLampadas += 300
+                qtdLampadas += 1
+            }
+            if(uvbCheck === true){
+                valorLampadas += 200
+                qtdLampadas += 2
+            } 
+            if(comumCheck === true){
+                valorLampadas += 50
+                qtdLampadas += 3
+            }
+            show.innerHTML = `Com a utilização das luzes atificiais, observou-se que os répteis desenvolveram sensibilidade à luz, manifestando desorientação e desânimo conforme a intensidade luminosa do ambiente.
+            <br>
+            Sem um sistema de monitoramento adequado, você compromete a saúde e segurança do seu réptil, resultando em um gasto anual de cerca de R$<b>R$ ${(valorLampadas * qtdLampadas) * qtd_Repteis}</b> em lâmpadas, além de um significativo desperdício desses recursos.
+            <br>
+            De acordo com o Estadão, os brasileiros consomem em média 200 milhões de lâmpadas por ano, porém apenas 6% delas são descartadas corretamente. Adicionalmente, a iluminação representa 20% do consumo total de energia no Brasil. 
+            <br>
+            A presença de luzes UV, UVA e UVB pode elevar a temperatura nos ambientes em que são utilizadas. Sem um monitoramento adequado, essas lâmpadas tendem a se desgastar mais rapidamente, reduzindo sua vida útil e gerando mais resíduos tóxicos. Com nossos sensores, seria possível observar um aumento de até 30% na longevidade dessas lâmpadas, contribuindo para a preservação do habitat e a saúde dos répteis, além de proporcionar um controle mais eficaz da temperatura ambiente!
+            `
+            // show.innerHTML = `Você perde R$ sem os nossos sensores. <br>
+            //     R$ por lâmpadas que degradam com o tempo <br>
+            //     Além de poder perder R$ caso seus répteis desenvolvam algum problema devido ao nível de luz desregulado.`
 
         }
     }

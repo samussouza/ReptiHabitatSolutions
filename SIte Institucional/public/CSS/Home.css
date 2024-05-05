@@ -394,80 +394,178 @@ nav a:hover{
     height: 78.3vh;
 }  
 
-/*Aqui começa o footer*/
-
-.footer {
-  margin-top: 26px;
-  background-color: #156d36; 
+/* Aqui começa o Footer (Rodapé) */
+footer {
+  background-color: #548D3D;
   color: white;
-
-}
-
-.container {
+  width: 100%;
+  height: 350px;
+  padding: 40px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
- 
 }
 
-.cardList {
-  width: 205px;
-  margin: 0 20px;
+footer p {
+  width: 375px;
 }
 
-.cardList h3 {
-  font-size: 20px;
+/* Detalhes da parte esquerda do Footer */
+.column1 {
+  margin-left: 10px;
+  width: 400px;
+  border-right: solid;
 }
 
-.cardList ul {
-  list-style: none;
-  line-height: 1.5;
-  padding: 0;
+.column1 img {
+  border-radius: 100%;
+  margin-right: 3px;
+  height: 50px;
+  width: 50px;
 }
 
-.cardList ul li {
+.column1 h2 {
+  display: flex;
+  align-items: center;
+  font-size: 27px;
+  margin-top: 20px;  
+}
+
+.column1 p{
+  margin-top: 20px; 
+}
+
+.column1 .logos{
+  margin-top: 20px; 
+}
+
+
+/* Detalhes da parte central do Footer */
+.column2 {
+  width: 302px;
+  border-right: solid;
+  margin-left: 20px;
+  flex-direction: column;
+  display: flex;
+}
+
+.column2 h2 {
+  /* margin-left: 20px; */
+  margin: 20px;
+}
+
+.column2 a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: white;
   margin-bottom: 5px;
-  
 }
 
-.cardList a {
-  color: white;
+/* Detalhes da parte direita do Footer */
+.column3 {
+  margin-left: 10px;
+  width: 440px;
+  display: flex;
+}
+
+.column3 h2 {
+  margin: 20px;
+}
+
+.column3 p {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  width: 330px;
+  margin: 16px;
+}
+
+.column3 a {
   text-decoration: none;
-  transition: color 0.3s ease;
-}
-.cardList a:hover{
-  color: goldenrod;
-}
-
-.cardFooter {
-  text-align: left;
-  margin-top: 30px;
-  margin: 0 80px;
-}
-.atendimento{
-  margin: 0 128px;
-}
-
-.cardFooter h2 {
-  margin: 0;
-  font-size: 24px;
-  font-weight: bold;
-}
-.spanFooter{
-  margin-left: 800px;
-  font-size: 18px;
-}
-.spanFooter a {
+  margin-left: 10px;
   color: white;
-  text-decoration: none;
-  transition: color 0.3s ease;
 }
-.spanFooter a:hover{
-  color: goldenrod;
+
+/* Mapa do Endereço */
+iframe {
+  border-radius: 20px;
+  margin: 10px;
 }
 
 
-.nameEmpresa{
-  font-size: 24px;
-  font-weight: bold;
+/* Tamanho dos ícones (facebook, instagram, twitter, linkedin) */
+.logos .icone1 {
+  height: 34px;
+  width: 34px;
+}
+
+.logos .icone2 {
+  height: 32px;
+  width: 32px;
+}
+
+.logos .icone3 {
+  height: 33px;
+  width: 32px;
+}
+
+.logos .icone4 {
+  height: 32px;
+  width: 32px;
+}
+
+/* Ícones localização, telefone e email */
+.icone5 {
+  height: 29px;
+  width: 29px;
+}
+
+.icone6 {
+  height: 29px;
+  width: 29px;
+}
+
+.icone7 {
+  height: 32px;
+  width: 32px;
+}
+
+/* Animação dos ícones */
+.logos .icone1:hover {
+  transform: translateY(-5px);
+  transition: all 0.4s;
+}
+
+.logos .icone2:hover {
+  transform: translateY(-5px);
+  transition: all 0.4s;
+}
+
+.logos .icone3:hover {
+  transform: translateY(-5px);
+  transition: all 0.4s;
+}
+
+.logos .icone4:hover {
+  transform: translateY(-5px);
+  transition: all 0.4s;
+}
+
+.logos2 .icone5:hover {
+  transform: translateY(-5px);
+  transition: all 0.4s;
+}
+
+.logos2 .icone6:hover {
+  transform: translateY(-5px);
+  transition: all 0.4s;
+}
+
+.logos2 .icone7:hover {
+  transform: translateY(-5px);
+  transition: all 0.4s;
+}
+
+/* Animação do menu */
+.column2 a:hover {
+  transform: translateX(5px);
+  transition: all 0.4s;
 }

@@ -59,20 +59,20 @@
 
         if (qtd_Repteis == " ") {
             alert(`Nenhum campo pode estar vazio, insira um valor.`)
-        } else if (selecao === "vazio" ) {
+        } else if (selecao === "vazio") {
             alert(`Informe se possui ou não um sistema de iluminação para poder prosseguir`)
         } else if (selecao === "yes" && uvaCheck === false && uvbCheck === false && comumCheck === false) {
             alert("Por favor, selecione pelo menos uma checkbox.");
-        } else{
-            if(selecao === "yes"){
+        } else {
+            if (selecao === "yes") {
                 valorLampadas += 300
                 qtdLampadas += 1
             }
-            if(uvbCheck === true){
+            if (uvbCheck === true) {
                 valorLampadas += 200
                 qtdLampadas += 2
-            } 
-            if(comumCheck === true){
+            }
+            if (comumCheck === true) {
                 valorLampadas += 50
                 qtdLampadas += 3
             }

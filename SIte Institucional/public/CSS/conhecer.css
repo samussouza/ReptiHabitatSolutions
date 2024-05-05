@@ -3,27 +3,26 @@
 * {
     margin: 0;
     font-family: 'Poppins';
-    
 }
 
 /* css para body  */
 body {
     background-color: white;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
-
 /* css para header */
-header{
+header {
     position: absolute;
-    width:100%; 
-    padding:30px 100px;
+    width: 100%;
+    padding: 30px 100px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 
-header img{
+header img {
     top: 20px;
     border-radius: 100%;
     width: 60px;
@@ -31,8 +30,8 @@ header img{
     margin-right: 270px;
     pointer-events: none;
 }
-  
-nav a{
+
+nav a {
     text-decoration: none;
     color: #359381;
     padding: 6px 15px;
@@ -41,51 +40,47 @@ nav a{
     cursor: pointer;
 }
 
-nav a:hover{
+nav a:hover {
     border-bottom: 2px solid #359381;
     width: 100%;
     left: 0;
 }
-
 /* fim css para header */
 
 .h1 {
-    color:  #2c5f18;
+    color: #2c5f18;
     font-weight: bold;
     font-size: 26px;
     margin: 0;
 }
 
-.team-text{
-    display: inline-block;   /* inline-block para centralizar horizontalmente */
+.team-text {
+    display: inline-block; /* inline-block para centralizar horizontalmente */
     text-align: start;
     width: 950px;
     height: 10px;
     padding-top: 190px;
     padding-left: 200px;
-
 }
 
 /* css para section da equipe */
 .team-section {
-    display: inline-block;   /* inline-block para centralizar horizontalmente */
+    display: inline-block; /* inline-block para centralizar horizontalmente */
     text-align: center;
     width: 100%;
-    margin: 100px auto;  /* Centraliza o texto e adiciona margem superior e inferior */
-    
+    margin: 100px auto; /* Centraliza o texto e adiciona margem superior e inferior */
 }
 
-.top-cards{
+.top-cards {
     display: flex;
     justify-content: space-between;
     margin: 20px;
 }
 
-.bottom-cards{
+.bottom-cards {
     display: flex;
     justify-content: space-between;
     margin: 20px;
-
 }
 
 .card {
@@ -96,13 +91,11 @@ nav a:hover{
     margin: 10px;
     padding: 43px;
     background-color: #5b8e4780;
-
 }
 
 .card:hover {
     background-color: #53a73380;
     transition: all 0.3s;
-
 }
 
 /* css para a imagem do membro da equipe */
@@ -110,11 +103,11 @@ nav a:hover{
     width: 125px;
     height: 125px;
     border-radius: 50%;
-    object-fit: cover;     /* Ajuste da imagem */
+    object-fit: cover; /* Ajuste da imagem */
 }
 
 .card h2 {
-    margin: 10px ;     /* Espaçamento do texto */
+    margin: 10px; /* Espaçamento do texto */
     font-size: 20px;
     color: #011404;
 }
@@ -125,16 +118,194 @@ nav a:hover{
     margin: 5px 0;
     color: #111111;
     font-size: 15px;
-  }
+}
 
-  .social-icons {
-    margin-top: 50px;     /* Espaçamento superior */
-  }
+.social-icons {
+    margin-top: 50px; /* Espaçamento superior */
+}
 
-  /* css para os links das redes sociais*/
+/* css para os links das redes sociais*/
 .social-icons a {
     color: #2e754e;
-    margin-right: 10px;        /* Espaçamento direito */
+    margin-right: 10px; /* Espaçamento direito */
     font-size: 20px;
-    text-decoration: none;      /* Remove a decoração do link */
-  }
+    text-decoration: none; /* Remove a decoração do link */
+}
+
+
+/* Aqui começa o Footer (Rodapé) */
+footer {
+    background-color: #548D3D;
+    color: white;
+    width: 100%;
+    height: 270px;
+    padding: 40px;
+    display: flex;
+}
+
+footer p {
+    width: 375px;
+}
+
+/* Detalhes da parte esquerda do Footer */
+.column1 {
+    margin-left: 10px;
+    width: 400px;
+    border-right: solid;
+}
+
+.column1 img {
+    border-radius: 100%;
+    margin-right: 3px;
+    height: 50px;
+    width: 50px;
+}
+
+.column1 h2 {
+    display: flex;
+    align-items: center;
+    font-size: 27px;
+    margin-top: 20px;  
+}
+
+.column1 p{
+    margin-top: 20px; 
+}
+
+.column1 .logos{
+    margin-top: 20px; 
+}
+
+
+/* Detalhes da parte central do Footer */
+.column2 {
+    width: 302px;
+    border-right: solid;
+    margin-left: 20px;
+    flex-direction: column;
+    display: flex;
+}
+
+.column2 h2 {
+    /* margin-left: 20px; */
+    margin: 20px;
+}
+
+.column2 a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: white;
+    margin-bottom: 5px;
+}
+
+/* Detalhes da parte direita do Footer */
+.column3 {
+    margin-left: 10px;
+    width: 440px;
+    display: flex;
+}
+
+.column3 h2 {
+    margin: 20px;
+}
+
+.column3 p {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    width: 330px;
+    margin: 16px;
+}
+
+.column3 a {
+    text-decoration: none;
+    margin-left: 10px;
+    color: white;
+}
+
+/* Mapa do Endereço */
+iframe {
+    border-radius: 20px;
+    margin: 10px;
+}
+
+
+/* Tamanho dos ícones (facebook, instagram, twitter, linkedin) */
+.logos .icone1 {
+    height: 34px;
+    width: 34px;
+}
+
+.logos .icone2 {
+    height: 32px;
+    width: 32px;
+}
+
+.logos .icone3 {
+    height: 33px;
+    width: 32px;
+}
+
+.logos .icone4 {
+    height: 32px;
+    width: 32px;
+}
+
+/* Ícones localização, telefone e email */
+.icone5 {
+    height: 29px;
+    width: 29px;
+}
+
+.icone6 {
+    height: 29px;
+    width: 29px;
+}
+
+.icone7 {
+    height: 32px;
+    width: 32px;
+}
+
+/* Animação dos ícones */
+.logos .icone1:hover {
+    transform: translateY(-5px);
+    transition: all 0.4s;
+}
+
+.logos .icone2:hover {
+    transform: translateY(-5px);
+    transition: all 0.4s;
+}
+
+.logos .icone3:hover {
+    transform: translateY(-5px);
+    transition: all 0.4s;
+}
+
+.logos .icone4:hover {
+    transform: translateY(-5px);
+    transition: all 0.4s;
+}
+
+.logos2 .icone5:hover {
+    transform: translateY(-5px);
+    transition: all 0.4s;
+}
+
+.logos2 .icone6:hover {
+    transform: translateY(-5px);
+    transition: all 0.4s;
+}
+
+.logos2 .icone7:hover {
+    transform: translateY(-5px);
+    transition: all 0.4s;
+}
+
+/* Animação do menu */
+.column2 a:hover {
+    transform: translateX(5px);
+    transition: all 0.4s;
+
+}

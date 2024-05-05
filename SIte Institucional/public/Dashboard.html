@@ -17,7 +17,7 @@
             -ms-user-select: none;
             user-select: none;
         }
-    </style>
+        </style>
   </head>
 
   <!-- <body onload=" atualizarFeed()"> -->
@@ -28,9 +28,9 @@
           <h1>
               <span style="color:#0f7826;">RHS</span>olutions
           </h1>
-  
-          <img id="img-foto" src="IMG/Dashboard/adicionar-usuario (1).png" alt="">
-  
+          <div class="div_fotouser">
+            <img id="img-foto" src="IMG/Dashboard/adicionar-usuario (1).png" alt="">
+          </div>
           <div class="hello">
             <h3>Olá, <span id="b_usuario">usuário</span>!</h3> <br>
           </div>
@@ -70,18 +70,18 @@
       <div class="dash">
         <div class="div_graficos">
             <div class="div_grafico" >
-                <span>Temperatura</span>
-                <canvas id="lm35Temperatura"></canvas>
+                <span>Análise de Temperatura nos Habitats</span>
+                <canvas id="luminosidade"></canvas>
             </div>
             <div class="div_grafico">
-                <span>Luminosidade</span>
-                <canvas id="luminosidade"></canvas>
+                <span>Média de Luminosidade nos Habitats</span>
+                <canvas id="lm35Temperatura"></canvas>
             </div></div>
             <section class="section_KPIs">
                 
             <div class="div_KPIs">
                 <div class="div_KPI">
-                    
+                    <canvas id="KPI_donout"></canvas>
                 </div>
                 <div class="div_KPI">
                     
@@ -96,7 +96,29 @@
                 </div>
             </section>
             <div class="div_filtro">
-               
+                <div class="search">
+                    <input type="search" class="search__input" id="input_search" placeholder="Search...">
+                    <div class="search__fechar">
+                    <!-- <img id="limpar_input" src="./IMG/Dashboard/botao-fechar.png" onclick="document.getElementById('input_search').value = '';"> -->
+                    </div>
+                    <div class="search__icon">
+                      <img src="./IMG/Dashboard/lupa.png" >
+                    </div>
+                  </div>
+                  <div class="div_lista">
+                      <ul id="ul_lista" class="habitat_lista">
+                          <li id="li_habitat" class="li_habitat"><a>Habitat 1</a></li>
+                          <li id="li_habitat" class="li_habitat"><a>Habitat 2</a></li>
+                          <li id="li_habitat" class="li_habitat"><a>Habitat 3</a></li>
+                          <li id="li_habitat" class="li_habitat"><a>Habitat 4</a></li>
+                          <li id="li_habitat" class="li_habitat"><a>Habitat 5</a></li>
+                          <li id="li_habitat" class="li_habitat"><a>Habitat 6</a></li>
+                          <li id="li_habitat" class="li_habitat"><a>Habitat 7</a></li>
+                          <li id="li_habitat" class="li_habitat"><a>Habitat 8</a></li>
+                          <li id="li_habitat" class="li_habitat"><a>Habitat 9</a></li>
+                          <li id="li_habitat" class="li_habitat"><a>Habitat 10</a></li>
+                      </ul>
+                  </div>
             </div>
             </div>
   </body>
@@ -107,12 +129,16 @@
             contextoLm35Temperatura,{
                 type: 'line',
                 data: {
-                    labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-                    datasets: [{
-                        label: 'Temperatura',
-                        data: [30, 29, 28, 25, 22, 23],
-                        borderColor: ['#548D3D'],
-                        backgroundColor: ['#548D3D81']
+                    labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+                        datasets: [{
+                        label: 'Luminosidade',
+                        data: [475, 390, 500, 620, 560, 520, 600],
+                        borderwidht: 1,
+                        fill: false,
+                        tension: 0.1,
+                        pointStyle: 'circle',
+                        backgroundColor: '#b3ffb3',
+                        borderColor: '#b3ffb3'
                     }]
                 },
                 options: {
@@ -149,12 +175,24 @@
                 data: {
                     labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
                     datasets: [{
-                        label: 'Luminosidade',
-                        data: [22, 24, 27, 23, 20, 18],
+                        label: 'Abaixo da média',
+                        data: [ 7, 12, 8, 7, 2, 8],
                         borderwidht: 1,
-                        borderColor: ['#548D3D', '#548D3D','#548D3D','#548D3D','#548D3D','#548D3D'],
-                        backgroundColor: ['#548D3D81', '#548D3D81', '#548D3D81', '#548D3D81', '#548D3D81', '#548D3D81']
+                        backgroundColor: "#99b3ff"
+                    },
+                    {
+                        label: 'Na média',
+                        data: [5, 4, 7, 3, 6, 5],
+                        borderwidht: 1,
+                        backgroundColor: '#ccffcc'
+                    },
+                    {
+                        label: 'Acima da média',
+                        data: [9, 8, 10, 3, 5, 1],
+                        borderwidht: 1,
+                        backgroundColor: '#ffb3b3'
                     }]
+                    
                 },
                 options: {
                     scales: {
@@ -167,7 +205,7 @@
                         yAxes: [{
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Luminosidade'
+                                labelString: 'Quantidade de habitats'
                             },
                             ticks: {
                                 beginAtZero: true
@@ -180,5 +218,30 @@
                 }
             }
         );
+        
+
+
+        const barraDePesquisa = document.querySelector("input")//<input/>
+const lista = document.querySelector("ul");//<ul></ul>
+const itens = document.querySelectorAll("li");//<li><li/>
+
+    barraDePesquisa.addEventListener("input", ()=>{
+    let valorDigitado = barraDePesquisa.value.toLowerCase();
+    itens.forEach((item)=>{
+         if(item.textContent.toLowerCase().includes(valorDigitado)){
+            item.style.display = "block"
+         } else {
+             item.style.display = "none"
+        }
+  
+
+    })
+});
+
+// function limpar_input() {
+//     document.getElementById("input_search").value = '' ;
+// }
+
+
   </script>
 </html>

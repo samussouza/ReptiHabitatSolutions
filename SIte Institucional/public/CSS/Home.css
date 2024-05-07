@@ -72,7 +72,7 @@ nav a:hover{
     color: black;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(180deg, #003329 0%, rgba(0,51,41,1) 35%, rgba(158,228,130,1) 100%);
+    background: linear-gradient(180deg, #003329 0%, #003329 35%, rgba(158,228,130,1) 100%);
     z-index: 1;
 }
 

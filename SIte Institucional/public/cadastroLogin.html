@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS/cadastroLogin.css">
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="content1  sign-in-container"> 
+            <form class="login">
+                <h2 class="tituloForm1">Login</h2> 
+                <p class="texto"> Acesse com um e-mail existente</p>
+                <div class="socialMedia">
+                    <img src="IMG/Cadastro/google.png" alt="">
+                    <img src="IMG/Cadastro/linkedin.png" alt="">
+                    <img src="IMG/Cadastro/twitter-x-logo-png-9.png" alt="">
+                </div>
+                <p class="texto">Ou faça o login com os dados criados aqui</p>
+                <label class="label-input">
+                    <input type="email" placeholder="E-mail">
+                </label>
+                <label class="label-input">
+                    <input type="password" placeholder="Senha">
+                </label>
+                
+                <a class="esqueciSenha" href="#">Esqueci a senha</a>
+                <button class="btn btnLogin1">Entrar</button>
+            </form>
+        </div> 
+        <div class="content1 sign-up-container"> 
+            <form class="login">
+                <h2 class="tituloForm2">Crie sua Conta</h2> 
+                <div class="socialMedia">
+                    <img src="IMG/Cadastro/google.png" alt="">
+                    <img src="IMG/Cadastro/linkedin.png" alt="">
+                    <img src="IMG/Cadastro/twitter-x-logo-png-9.png" alt="">
+                </div>
+                <p class="texto">Ou crie use seu e-mail para se cadastrar</p>
+                <label class="label-input">
+                    <input type="text" placeholder="Nome">
+                </label>
+                <label class="label-input">
+                    <input type="email" placeholder="E-mail">
+                </label>
+                <label class="label-input">
+                    <input type="password" placeholder="Senha">
+                </label>
+                <button class="btn btnCadastro1">Cadastro</button>
+            </form>
+        </div>  
+        
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="content2 contentEsq">
+                 <h2 class="tituloInform">Bem vindo, novamente!</h2>
+                    <p class="texto2">Se você ja tem uma conta faça o seu login</p>
+                    <button class="btn2 btnLogin2" id="signIn">Entrar</button>
+                </div>
+                <div class="content2 contentDir">
+                    <h2 class="tituloInform">Olá, faça parte da RHS!</h2>
+                    <p class="texto2">Cadastre-se com seu e-mail para se juntar a nós</p>
+                    <button class="btn2 btnCadastro2" id="signUp"></span>Cadastro</span></button>
+                </div>
+           </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
+
+signUpButton.addEventListener('click', () => {
+	container.classList.add("right-panel-active");
+});
+
+signInButton.addEventListener('click', () => {
+	container.classList.remove("right-panel-active");
+});
+
+
+</script>

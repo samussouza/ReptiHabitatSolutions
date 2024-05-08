@@ -4,7 +4,7 @@
   font-family: 'Poppins';
   margin: 0;
   overflow: hidden;
-  
+  margin-top: 10px;
 }
 
 .menu{
@@ -128,7 +128,7 @@ margin-top: 9px;
 .div_graficos{
   display: flex;
   flex-direction: column;
-  margin-top: 50px;
+  margin-top: 30px;
   gap: 40px;
   width: 500px;
 }
@@ -155,18 +155,29 @@ border-radius: 10px;
 }
 .div_KPIs{
   display: flex;
-  gap: 30px;
+  gap: 20px;
   margin: 0;
-  
+  align-items: center;
 }
 .div_KPI{
-  margin-top: 50px;
+  margin-top: 30px;
   width: 300px;
-  height: 125px;
+  height: 150px;
   border-radius: 10px;
   background-color: #e7e5e5;
-  
+  display: flex;
+  align-items: center;
 }
+
+
+
+
+
+
+
+
+
+
 
 .div_filtro{
   overflow-y: auto;
@@ -210,9 +221,9 @@ border-radius: 10px;
   color: #548D3D;   
 }  
 .search__icon {
-  width: 15px;
-  height: 15px;
-  font-size: 0.5rem;
+  width: 25px;
+  height: 25px;
+  font-size: 0.7rem;
   padding: 0 2rem;
   display: flex;
   transition: .3s ease;

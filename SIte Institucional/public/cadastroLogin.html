@@ -101,9 +101,8 @@ function cadastrar() {
         {
             // caso não tenha, será emitido uma mensagem via innerHTML
             mensagemErrorEmail.innerHTML = "<center>Email inválido</center>";
-        }
-        // checando a quantidade de carcteres da senha
-        if (senha.length >= 8){
+
+        } else if (senha.length >= 8){ // checando a quantidade de carcteres da senha
             // checando os caracteres especiais 
             if(senha.indexOf("!") !== -1 ||
             senha.indexOf('@') !== -1 ||
@@ -123,13 +122,10 @@ function cadastrar() {
                 concluído.innerHTML = ` Cadastro concluído com sucesso, redirecionando para tela de Login`
                 // redirecionamento para a página de login
                 setTimeout(() => { window.location = "Sobre.html" }, "2500")
-                setInterval(sumirMensagem, 2500);
+                setTimeout(sumirMensagem, 2500);
                 finalizarMensagem();
                 return false;
-                
-                function sumirMensagem() {
-                card_concluido.style.display = 'none';
-                }
+
                 
                 } else if (numSenha == -1 ){
                     mensagemErroSenha.innerHTML = "<center>A senha deve conter pelo menos 8 caracteres, um caracter especial e um número</center>"
@@ -145,6 +141,10 @@ function cadastrar() {
             mensagemErrorSenha.innerHTML = "<center>A senha deve conter pelo menos 8 caracteres, um caracter especial e um número</center>"
         }
     }
+// Função para esconder a mensagem de conclusão
+    setTimeout(sumirMensagem, 2500);
+    finalizarMensagem();
+    return false;
 }
     
     const signUpButton = document.getElementById('signUp');

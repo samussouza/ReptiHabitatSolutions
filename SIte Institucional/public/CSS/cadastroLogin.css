@@ -7,13 +7,26 @@
 body{
     font-family: 'Montserrat', sans-serif;
     background:white;
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     height:100vH;
     margin: -20px 0 50px;
     transition:  580ms ease-in;
+    overflow: hidden;
+}
+.div_flex{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.img_seta{
+ height: 75px;
+ width: 75px;
+ cursor: pointer;
+ position: relative;
+ top: 45px;
+ left: 15px;
 }
 
 /* criando circulos  */
@@ -36,8 +49,10 @@ background: linear-gradient(164deg, #036753 24%, #0c8e39 91%);
     width: 100%;
     height: 100%;
     background: #036753;
-    background: linear-gradient(164deg, #0c8e39 5%, #036753 95%);
+    background: linear-gradient(164deg, #0c8e39 5%, #036753 98%);
     clip-path: circle(20% at 10% 10%);
+    z-index: -1;
+
 }
 
 /* estilizando todos os titulos */
@@ -87,7 +102,7 @@ a{
     width: 768px;
     max-width: 100%;
     min-height: 480px;
-    
+    bottom: 75px;
 }
 
 /* estilizando content da direita (login) e da esquerda (cadastro) */

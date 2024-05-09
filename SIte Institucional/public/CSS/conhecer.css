@@ -1,97 +1,113 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 * {
-    margin: 0;
-    font-family: 'Poppins';
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins';
 }
 
-/* css para body  */
 body {
-    background-color: white;
-    min-height: 100vh;
-    overflow-x: hidden;
+  margin: 0;
+  background-color: #003329;
+  min-height: 100vh;
 }
 
-/* css para header */
+/* Logo e detalhes da NavBar*/
 header {
-    position: absolute;
-    width: 100%;
-    padding: 30px 100px;
+  position: fixed;
+    width:100%; 
+    height: 70px;
+    padding:30px 100px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    z-index: 100; 
+    background-color: white;
 }
 
 header img {
-    top: 20px;
-    border-radius: 100%;
-    width: 60px;
-    height: 60px;
-    margin-right: 270px;
-    pointer-events: none;
+  box-sizing: border-box;
+  top: 20px;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-right: 270px;
+  pointer-events: none;
 }
 
 nav a {
-    text-decoration: none;
-    color: #359381;
-    padding: 6px 15px;
-    margin: 0 10px;
-    font-weight: 600;
-    cursor: pointer;
+  text-decoration: none;
+  color: #1a4840;
+  padding: 6px 15px;
+  margin: 0 10px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 nav a:hover {
-    border-bottom: 2px solid #359381;
-    width: 100%;
-    left: 0;
+  border-bottom: 2px solid #359381;
+  width: 100%;
+  left: 0;
 }
 /* fim css para header */
 
+
+
 .h1 {
-    color: #2c5f18;
+    color: white;
     font-weight: bold;
     font-size: 26px;
     margin: 0;
 }
-
+.team-text p{
+    color: white;
+    width: 50%;
+}
 .team-text {
-    display: inline-block; /* inline-block para centralizar horizontalmente */
-    text-align: start;
-    width: 950px;
-    height: 10px;
-    padding-top: 190px;
-    padding-left: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-top: 150px;
     text-align: justify;
+
 }
 
 /* css para section da equipe */
 .team-section {
     display: inline-block; /* inline-block para centralizar horizontalmente */
     text-align: center;
-    width: 100%;
+    justify-content: center;
     margin: 100px auto; /* Centraliza o texto e adiciona margem superior e inferior */
 }
 
 .top-cards {
     display: flex;
-    justify-content: space-between;
-    margin: 20px;
+    justify-content: center;
+  
+    /* width: 1480px; */
 }
 
 .bottom-cards {
     display: flex;
-    justify-content: space-between;
-    margin: 20px;
+    justify-content: center;
+    height: 70vh;
 }
 
 .card {
-    width: 300px;
-    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 340px;
+    height: 380px;
     border: 2px solid #5b8e4780;
     border-radius: 12px;
-    margin: 10px;
-    padding: 43px;
-    background-color: #5b8e4780;
+    background-color: #5b8e4740;
+    margin: 30px;
 }
 
 .card:hover {
@@ -110,14 +126,14 @@ nav a:hover {
 .card h2 {
     margin: 10px; /* Espaçamento do texto */
     font-size: 20px;
-    color: #011404;
+    color: white;
 }
 
 
 /* css para o cargo do individuo */
 .card p {
     margin: 5px 0;
-    color: #111111;
+    color: white;
     font-size: 15px;
     
 }
@@ -137,177 +153,161 @@ nav a:hover {
 
 /* Aqui começa o Footer (Rodapé) */
 footer {
-    background-color: #548D3D;
-    color: white;
+    background-color: white;
+    color: black;
     width: 100%;
-    height: 270px;
+    height: 350px;
     padding: 40px;
     display: flex;
-}
-
-footer p {
-    width: 375px;
-}
-
-/* Detalhes da parte esquerda do Footer */
-.column1 {
+  }
+  
+  footer p{
+    width: 375px; 
+  }
+  
+  /* Detalhes da parte esquerda do Footer */
+  .column1 {
     margin-left: 10px;
-    width: 400px;
+    width: 440px;
     border-right: solid;
-}
-
-.column1 img {
+  }
+  
+  .column1 h2{
+    display: flex;
+    align-items: center;
+    font-size: 27px;
+  }
+  
+  .column1 img{
     border-radius: 100%;
     margin-right: 3px;
     height: 50px;
     width: 50px;
-}
-
-.column1 h2 {
-    display: flex;
-    align-items: center;
-    font-size: 27px;
-    margin-top: 20px;  
-}
-
-.column1 p{
-    margin-top: 20px; 
-}
-
-.column1 .logos{
-    margin-top: 20px; 
-}
-
-
-/* Detalhes da parte central do Footer */
-.column2 {
+  }
+  
+  /* Detalhes da parte central do Footer */
+  .column2{
     width: 302px;
     border-right: solid;
     margin-left: 20px;
     flex-direction: column;
     display: flex;
-}
-
-.column2 h2 {
-    /* margin-left: 20px; */
-    margin: 20px;
-}
-
-.column2 a {
+  }
+  
+  .column2 h2{
     margin-left: 20px;
-    text-decoration: none;
-    color: white;
+  }
+  
+  .column2 a{
+    margin-left: 20px;
+    text-decoration:none;
+    color: black;
     margin-bottom: 5px;
-}
-
-/* Detalhes da parte direita do Footer */
-.column3 {
+  }
+  
+  /* Detalhes da parte direita do Footer */
+  .column3{
     margin-left: 10px;
     width: 440px;
     display: flex;
-}
-
-.column3 h2 {
-    margin: 20px;
-}
-
-.column3 p {
+  }
+  
+  .column3 h2{
+    margin-left: 10px;
+  }
+  
+  .column3 p{
     display: flex;
     align-items: center;
     margin-left: 10px;
     width: 330px;
-    margin: 16px;
-}
-
-.column3 a {
-    text-decoration: none;
+  }
+  
+  .column3 a{
+    text-decoration:none;
     margin-left: 10px;
-    color: white;
-}
-
-/* Mapa do Endereço */
-iframe {
+    color: black;
+  }
+  
+  /* Mapa do Endereço */
+  iframe{
     border-radius: 20px;
     margin: 10px;
-}
-
-
-/* Tamanho dos ícones (facebook, instagram, twitter, linkedin) */
-.logos .icone1 {
+  }
+  
+  
+  /* Tamanho dos ícones (facebook, instagram, twitter, linkedin) */
+  .logos .icone1{
+    filter:invert();
     height: 34px;
     width: 34px;
-}
-
-.logos .icone2 {
+  }
+  .logos .icone2{
+    filter:invert();
     height: 32px;
     width: 32px;
-}
-
-.logos .icone3 {
+  }
+  .logos .icone3{
+    filter:invert();
     height: 33px;
     width: 32px;
-}
-
-.logos .icone4 {
+  }   
+  .logos .icone4{
+    filter:invert();
     height: 32px;
     width: 32px;
-}
-
-/* Ícones localização, telefone e email */
-.icone5 {
+  }
+  
+  /* Ícones localização, telefone e email */
+  .icone5{
+    filter:invert();
     height: 29px;
     width: 29px;
-}
-
-.icone6 {
+  }
+  .icone6{
+    filter:invert();
     height: 29px;
     width: 29px;
-}
-
-.icone7 {
+  }
+  .icone7{
+    filter:invert();
     height: 32px;
     width: 32px;
-}
-
-/* Animação dos ícones */
-.logos .icone1:hover {
+  }
+  
+  /* Animação dos ícones Footer*/
+  .logos .icone1:hover {
     transform: translateY(-5px);
     transition: all 0.4s;
-}
-
-.logos .icone2:hover {
+  }
+  .logos .icone2:hover {
     transform: translateY(-5px);
     transition: all 0.4s;
-}
-
-.logos .icone3:hover {
+  }
+  .logos .icone3:hover {
     transform: translateY(-5px);
     transition: all 0.4s;
-}
-
-.logos .icone4:hover {
+  }
+  .logos .icone4:hover {
     transform: translateY(-5px);
     transition: all 0.4s;
-}
-
-.logos2 .icone5:hover {
+  } 
+  .logos2 .icone5:hover {
     transform: translateY(-5px);
     transition: all 0.4s;
-}
-
-.logos2 .icone6:hover {
+  } 
+  .logos2 .icone6:hover {
     transform: translateY(-5px);
     transition: all 0.4s;
-}
-
-.logos2 .icone7:hover {
+  } 
+  .logos2 .icone7:hover {
     transform: translateY(-5px);
     transition: all 0.4s;
-}
-
-/* Animação do menu */
-.column2 a:hover {
+  } 
+  
+  /* Animação do menu */
+  .column2 a:hover{
     transform: translateX(5px);
     transition: all 0.4s;
-
-}
+    
+  } 

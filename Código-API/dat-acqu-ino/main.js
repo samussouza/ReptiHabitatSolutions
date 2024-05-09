@@ -71,8 +71,7 @@ const serial = async (
 
             // altere!
             // Este insert irá inserir os dados na tabela "leitura"
-            await poolBancoDados.execute(
-                                                                               //ALTERAR PARA NOME DA MINHA TABELA
+            await poolBancoDados.execute( //ALTERAR PARA NOME DA MINHA TABELA
                 'INSERT INTO leitura (lm35Temperatura, luminosidade) VALUES (?, ?)', 
                 [lm35Temperatura, luminosidade] // TROCAR O "?" PELOS VALORES EM AZUL AQUI <<
             );

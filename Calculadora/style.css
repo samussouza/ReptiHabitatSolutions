@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap') * {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap'); * {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
@@ -15,13 +15,11 @@ body {
     background-size: cover;
     overflow-y: hidden;
     overflow-x: hidden;
-    /*   background-image: url( https://petanjo.com/blog/wp-content/uploads/2023/07/reptil.jpg)*/
-   background-image: url('https://petanjo.com/blog/wp-content/uploads/2023/07/lagarto-reptil.jpg')
-   /*background-image: url(https://img.freepik.com/fotos-premium/repteis-no-zoologico-um-lagarto-turquesa-brilhante-gaiola-em-um-terrario-zoologico_126267-10192.jpg)*/
-    
+    background-image: url(https://petanjo.com/blog/wp-content/uploads/2023/07/reptil.jpg);
+    background-image: url(https://petanjo.com/blog/wp-content/uploads/2023/07/lagarto-reptil.jpg);
+    background-image: url(https://img.freepik.com/fotos-premium/repteis-no-zoologico-um-lagarto-turquesa-brilhante-gaiola-em-um-terrario-zoologico_126267-10192.jpg)
 }
 
-   
 #container {
     display: flex;
     align-items: center;
@@ -63,7 +61,6 @@ body {
     bottom: 0;
     left: 0;
     border-radius: 3px;
-
 }
 
 .input-box label {
@@ -80,7 +77,6 @@ body {
     padding: 0.3rem;
     border-radius: 8px;
     margin-top: 3px;
-
 }
 
 .input-field span,
@@ -99,8 +95,8 @@ body {
     padding: 0 0.5rem;
 }
 
-.input-field input:: ::-webkit-outer-spin-button,
-.input-field input:: ::-webkit-inner-spin-button {
+.input-field input::-webkit-outer-spin-button,
+.input-field input::-webkit-inner-spin-button {
     appearance: none;
 }
 
@@ -139,8 +135,6 @@ body {
     font-size: 1rem;
 }
 
-
-
 #description {
     width: 15.5rem;
 }
@@ -167,8 +161,6 @@ body {
 #more_info a:hover {
     color: #f8f8f6;
 }
-
-
 
 .normal {
     color: #49f926;

@@ -6,34 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador Financeiro</title>
     <link rel="stylesheet" href="simulador.css">
+    <link rel="shortcut icon" href="../SIte Institucional/public/IMG/Home_fundo/icone.ico" type="image/x-icon">
 </head>
-
 <body>
     <div class="divcontainer">
         <div class="container" id="tela_calculadora">
             <div class="calculosinf" id="calculos_inf">
-                <label for="qtd_repteis_input">Quantos répteis você possui?</label>
+                <label class="question" for="qtd_repteis_input">Quantos répteis você possui?
+                    <input type="number" id="qtd_repteis_input">
+                </label>
                 <br>
-                <input type="number" id="qtd_repteis_input">
-                <br>
-                <label for="">Você possui um sistema de iluminação?</label>
-                <br>
-                <select onchange='mostrarLampadas()' id="sistema_iluminacao_select">
-                    <option value="vazio">---</option>
-                    <option value="yes">Sim</option>
-                    <option value="no">Não</option>
-                </select>
+                <label class="question" for="">Você possui um sistema de iluminação?
+                    <br>
+                    <select onchange='mostrarLampadas()' id="sistema_iluminacao_select">
+                        <option value="vazio">---</option>
+                        <option value="yes">Sim</option>
+                        <option value="no">Não</option>
+                    </select>
+                </label>
                 <br>
                 <div id="lampadas" style="display: none;">
                     <span>Quais lâmpadas você utiliza no habitat?</span>
                     <br>
-                    <input type="checkbox" id="lampada_uvi">
+                    <input class="lamp" type="checkbox" id="lampada_uvi">
                     <label for="lampada_uva">UVI</label>
                     <br>
-                    <input type="checkbox" id="lampada_uva">
+                    <input class="lamp" type="checkbox" id="lampada_uva">
                     <label for="lampada_uvb">UVA</label>
                     <br>
-                    <input type="checkbox" id="lampada_comum">
+                    <input class="lamp" type="checkbox" id="lampada_comum">
                     <label for="lampada_comum">LÂMPADAS COMUNS</label>
                 </div>
                 <br>

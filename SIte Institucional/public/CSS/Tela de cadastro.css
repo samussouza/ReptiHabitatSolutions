@@ -3,7 +3,6 @@
 * {
   font-family: "Poppins", sans-serif;
 }
-
 body {
   background-color: whitesmoke;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -17,9 +16,6 @@ body {
   /* Impede a exibição da barra de rolagem */
 
 }
-
-
-<<<<<<< HEAD
 
 .section_flex{
   display: flex;  
@@ -39,7 +35,7 @@ body {
   background: rgb(255, 255, 255);
 
 }
-=======
+
 .cards {
   width: 535px;
   height: 515px;
@@ -51,7 +47,7 @@ body {
   background: rgb(255, 255, 255);
 
 }
->>>>>>> 07a4688e7894c27b6f7093955360844e9848ae37
+
 
 .card_concluido {
   border-color: #2f4f22;
@@ -75,7 +71,6 @@ body {
 }
 
 .Input {
-<<<<<<< HEAD
     height: 35px;
     width: 390px;
     border-radius: 5px;
@@ -88,8 +83,6 @@ body {
     font-size: medium;
     outline:  0;
     
-  }
-=======
   height: 35px;
   width: 390px;
   border-radius: 0px;
@@ -100,7 +93,7 @@ body {
   background-color: #A9C59D;
   color: black;
   font-size: medium;
->>>>>>> 07a4688e7894c27b6f7093955360844e9848ae37
+
 
 }
 
@@ -116,7 +109,6 @@ body {
 }
 
 button {
-<<<<<<< HEAD
     padding: 8px;
     height: 45px;
     width: 180px;
@@ -128,7 +120,6 @@ button {
     outline: 0;
     border: none;
     
-=======
   padding: 8px;
   height: 45px;
   width: 180px;
@@ -139,7 +130,7 @@ button {
   color: #FFFFFF;
   outline: 0;
   border: none;
->>>>>>> 07a4688e7894c27b6f7093955360844e9848ae37
+
 }
 
 
@@ -149,23 +140,14 @@ button:hover {
   transition: all 0.5s;
 }
 
-
-<<<<<<< HEAD
 .cards a{
-=======
-a {
->>>>>>> 07a4688e7894c27b6f7093955360844e9848ae37
+
   color: #548D3D;
   font-weight: 300;
   text-decoration: none;
 }
 
-
-<<<<<<< HEAD
 .cards a:hover{
-=======
-a:hover {
->>>>>>> 07a4688e7894c27b6f7093955360844e9848ae37
   color: #548D3D;
   font-weight: 500;
   transition: all 0.3s;

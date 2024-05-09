@@ -13,12 +13,13 @@
 <body>
   <header>
     <a href="HomePage.html"><img src="./IMG/Home_fundo/logoRHS.png" alt="LOGO"></a>
-    <nav class="nav">
-      <a href="Login.html">Login</a>
+    <nav class="nav" >
+      <a href="Login.html"  >Login</a>
       <a href="Cadastro.html">Cadastro</a>
       <a href="Sobre.html">Sobre nós</a>
       <a href="ConhecaEquipe.html">Conheça a equipe</a>
     </nav>
+
   </header>
 
   <section class="parallax" id="parallax">
@@ -81,7 +82,7 @@
         <div class="card__container">
           <h2 class="card_price">R$ 0,00<span>/mês</span></h2>
           <p class="card-description">Fala pro cliente que a normalização da data facilitou a resolução de conflito na
-            criação de</p>
+            criação de:</p>
           <ul class="list">
             <li class="list_item">As vantagens</li>
             <li class="list_item">As vantagens</li>
@@ -102,7 +103,7 @@
         <div class="card__container">
           <h2 class="card_price">R$ 0,00<span>/mês</span></h2>
           <p class="card-description">
-            Fala pro cliente que a normalização da data facilitou a resolução de conflito na criação de
+            Fala pro cliente que a normalização da data facilitou a resolução de conflito na criação de:
           </p>
           <ul class="list">
             <li class="list_item">As vantagens</li>
@@ -122,7 +123,7 @@
         <div class="card__container flex column">
           <h2 class="card_price">R$ 0,00<span>/mês</span></h2>
           <p class="card-description">Fala pro cliente que a normalização da data facilitou a resolução de conflito na
-            criação de</p>
+            criação de:</p>
           <ul class="list">
             <li class="list_item">As vantagens</li>
             <li class="list_item">As vantagens</li>
@@ -178,8 +179,12 @@
           No horizonte, as montanhas se erguiam majestosas, envoltas em uma aura de mistério e beleza. Era um dia
           perfeito para explorar e se perder na imensidão da natureza."</div>
       </div>
-      <!-- <img class="img_triangulo" src="./IMG/Home_Fundo/Fundo.png"> -->
     </div>
+    <a href="#parallax">
+    <div class="setaBorda" >
+      <div class="seta"></div>
+    </div>
+  </a>
   </section>
   <footer class="rodape">
     <div class="column1">
@@ -225,15 +230,15 @@
 <script>
   let text = document.getElementById('text');
   let leaf = document.getElementById('leaf');
-  let hill1 = document.getElementById('hill1');
+  let hill1 = document.getElementById('h  ill1');
   let hill4 = document.getElementById('hill4');
   let hill5 = document.getElementById('hill5');
-
-
+  let navbar = document.getElementById('nav_movel')
+  let seta = document.getElementById('setaBorda')
 
   window.addEventListener('scroll', () => {
-
     let value = window.scrollY;
+
 
     if (value <= 1000) {
       text.style.marginTop = value * 2.5 + 'px';
@@ -243,8 +248,10 @@
       hill4.style.left = value * -0.5 + 'px';
       hill1.style.top = value * 0.5 + 'px';
     }
-
+    
+    
   });
+
 
 </script>
 

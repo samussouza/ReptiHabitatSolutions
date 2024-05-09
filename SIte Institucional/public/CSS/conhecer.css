@@ -61,6 +61,7 @@ nav a:hover {
     height: 10px;
     padding-top: 190px;
     padding-left: 200px;
+    text-align: justify;
 }
 
 /* css para section da equipe */
@@ -118,6 +119,7 @@ nav a:hover {
     margin: 5px 0;
     color: #111111;
     font-size: 15px;
+    
 }
 
 .social-icons {

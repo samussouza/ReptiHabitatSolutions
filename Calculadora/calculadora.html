@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="simulador.css">
     <link rel="shortcut icon" href="../SIte Institucional/public/IMG/Home_fundo/icone.ico" type="image/x-icon">
 </head>
+
 <body>
-    <div class="divcontainer">
+    <div class="tela_calculadora">
         <div class="container" id="tela_calculadora">
-            <div class="calculosinf" id="calculos_inf">
+            <div class="frente" id="calculos_inf">
                 <label class="question" for="qtd_repteis_input">Quantos répteis você possui?
                     <input type="number" id="qtd_repteis_input">
                 </label>
@@ -38,11 +39,14 @@
                     <label for="lampada_comum">LÂMPADAS COMUNS</label>
                 </div>
                 <br>
-                <button id="botao" onclick="calcularPreju()">Calcular Prejuízo</button>
+                <button id="botao" onclick="calcularPreju()">Calcular Prejuízo</button><br>
+                <div id="error"></div>
             </div>
-            <div class="resposta" id="show" style="display: none;"></div>
+            <div class="telaDOIS" id="resposta_calculadora" style="display: none">
+                <div class="resposta" id="show"></div>
+                <button onclick="voltarCalculadora()"> Voltar </button>
+            </div>
         </div>
-    </div>
 </body>
 
 </html>
@@ -59,9 +63,6 @@
 
 
     function calcularPreju() {
-        show.innerHTML = ""
-        let telaCalc = document.getElementById("tela_calculadora");
-        let msgCalc = document.getElementById("show")
         let qtd_Repteis = Number(qtd_repteis_input.value)
         let selecao = sistema_iluminacao_select.value
         let uvaCheck = lampada_uvi.checked
@@ -71,15 +72,28 @@
         let qtdLampadas = 0
 
         if (qtd_Repteis == " ") {
-            alert(`Nenhum campo pode estar vazio, insira um valor.`)
+            error.style.display = 'block'
+            error.innerHTML = `Nenhum campo pode estar vazio, insira um valor.`
+            setTimeout(function () {
+                error.style.display = 'none'
+            }, 2500);
         } else if (selecao === "vazio") {
-            alert(`Informe se possui ou não um sistema de iluminação para poder prosseguir`)
+            error.style.display = 'block'
+            error.innerHTML = `Informe se possui ou não um sistema de iluminação para poder prosseguir`
+            setTimeout(function () {
+                error.style.display = 'none'
+            }, 2500);
         } else if (selecao === "yes" && uvaCheck === false && uvbCheck === false && comumCheck === false) {
-            alert("Por favor, selecione pelo menos uma checkbox.");
+            error.style.display = 'block'
+            error.innerHTML = "Por favor, selecione pelo menos uma checkbox."
+            setTimeout(function () {
+                error.style.display = 'none'
+            }, 2500);
         } else {
-            telaCalc.style.transform = "rotateY(180deg)";
-            msgCalc.style.transform = "rotateY(180deg)";
-            calculos_inf.style.display = 'none';
+            calculos_inf.style.display = 'none'
+            resposta_calculadora.style.display = 'block'
+            let cards = document.querySelector('.container');
+            cards.classList.toggle('flip');
             if (selecao === "yes") {
                 if (uvaCheck === true) {
                     valorLampadas += 300
@@ -104,23 +118,28 @@
             `
             } else if (selecao === "no") {
                 show.style.display = 'block'
+
                 show.innerHTML = `Sem um sistema de iluminação adequado, você está comprometendo a <b>saúde</b> do seu réptil!<br>
                 Por serem animais ectotérmicos, eles dependem do calor do ambiente externo para regular sua temperatura corpórea, diminuindo sua atividade em baixas temperaturas e podendo até levá-los a <b>morte!</b><br>
                 É indicado que você compre lâmpadas de iluminação <b>UVA</b> e <b>UVB</b>, cerca de <b>R$ ${700 * qtd_Repteis}</b> anualmente com seus répteis, porém, sem o monitoramento adequado, essas lâmpadas tendem a desgastar mais facilmente, encurtando sua vida útil e gerando mais lixos tóxicos.<br>
                 Com nossos sensores, seria notório um aumento de <b>até 30%</b> de longevidade dessas lâmpadas, preservando assim o habitat e a saúde de seus répteis, além de um maior controle a respeito da temperatura do ambiente!`
             }
-            show.innerHTML += `<br> <button class="botao_volta" onclick="voltar()"> Voltar </button>`
         }
     }
 
-    function voltar() {
-        let telaCalc = document.getElementById("tela_calculadora");
-        let msgCalc = document.getElementById("calculos_inf");
-        telaCalc.style.transform = "rotateY(180deg)";
-        msgCalc.style.transform = "rotateY(180deg)";
-        calculos_inf.style.display = 'block';
-        show.style.display = 'none';
+    function voltarCalculadora() {
+        qtd_repteis_input.value = '';
+        sistema_iluminacao_select.value = 'vazio';
+        lampadas.style.display = 'none';
+        lampada_uvi.checked = false;
+        lampada_uva.checked = false;
+        lampada_comum.checked = false;
+        resposta_calculadora.style.display = 'none'
+        calculos_inf.style.display = 'block'
+        let cards = document.querySelector('.container');
+        cards.classList.toggle('flip');
     }
+
     // Mantive o código assim temporáriamente até finalizar a lógica, por favor, não altere!!!
 
 </script>

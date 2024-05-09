@@ -212,6 +212,64 @@ border-radius: 10px;
   font-size: 18px;
   color: red;
 }
+.div_KPI3content{
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+  width: 300px;
+  height: 150px;
+}
+.spanTitulo3{
+  text-align: center  ;
+  height: 50px;
+  margin-top: 10px;
+  font-size: 18px;
+  /* margin-bottom: 15px; */
+}
+.divTextoKPI3 span{
+font-family: 'Poetsen One';
+font-size: 30px;
+color: #548D3D;
+}
+.divTextoKPI3{
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+.divTextoKPI3 img{
+  width: 90px;
+  height: 90px;
+}
+
+.div_KPI4content{
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+  width: 300px;
+  height: 150px;
+}
+.spanTitulo4{
+  text-align: center  ;
+  height: 50px;
+  margin-top: 10px;
+  font-size: 18px;
+  /* margin-bottom: 15px; */
+}
+.divTextoKPI4 span{
+font-family: 'Poetsen One';
+font-size: 30px;
+color: #548D3D;
+}
+.divTextoKPI4{
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+.divTextoKPI4 img{
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+}
 .div_filtro{
   overflow-y: auto;
   width: 300px;

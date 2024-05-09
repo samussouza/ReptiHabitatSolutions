@@ -6,243 +6,287 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ReptiHabitatSolutions | Dashboards</title>
     <link rel="stylesheet" href="CSS/dashboard.css" />
-    <link rel="shortcut icon" href="../public/IMG/Home fundo/icone.ico" type="image/x-icon">
+    <link
+      rel="shortcut icon"
+      href="../public/IMG/Home fundo/icone.ico"
+      type="image/x-icon"
+    />
 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-      <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
-      <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
-      <style>
-        canvas {
-            -moz-user-select: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-        </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <style>
+      canvas {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+    </style>
   </head>
 
   <!-- <body onload=" atualizarFeed()"> -->
 
-    <body>
-        <!--  inicio do menu da dashboard  -->
-        <div class="menu">
-          <h1>
-              <span style="color:#0f7826;">RHS</span>olutions
-          </h1>
-          <div class="div_fotouser">
-            <img id="img-foto" src="IMG/Dashboard/adicionar-usuario (1).png" alt="">
-          </div>
-          <div class="hello">
-            <h3>Olá, <span id="b_usuario">usuário</span>!</h3> <br>
-          </div>
-  
-          <span id="menu-separacao">Menu</span>
-          <div class="separacao"></div>
-  
-          <div class="btn-navbar">
-          <span>
-              <a href="">
-                  <img src="IMG/Dashboard/painel-de-controle-verde.png" alt="">
-                  Dashboards
-              </a>
-          </span> <br>
-  
-          <span>
-              <a href="">  
-                  <img src="IMG/Dashboard/sino.png" alt="">
-                  Notificações
-              </a>
-          </span> <br>
-  
-          <span>
-              <a href=""> 
-                  <img src="IMG/Dashboard/configuracoes.png" alt=""> 
-                  Configurações
-              </a>
-          </span><br>
-          </div>
-  
-          <div class="btn-logout">
-            <a href="HomPage.html">SAIR</a>
-          </div>
+  <body>
+    <!--  inicio do menu da dashboard  -->
+
+    <div class="menu">
+      <h1><span style="color: #0f7826">RHS</span>olutions</h1>
+      <div class="div_fotouser">
+        <img
+          id="img-foto"
+          src="IMG/Dashboard/adicionar-usuario (1).png"
+          alt=""
+        />
+      </div>
+      <div class="hello">
+        <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+        <br />
+      </div>
+
+      <span id="menu-separacao">Menu</span>
+      <div class="separacao"></div>
+
+      <div class="btn-navbar">
+        <span>
+          <a href="">
+            <img src="IMG/Dashboard/painel-de-controle-verde.png" alt="" />
+            Dashboards
+          </a>
+        </span>
+        <br />
+
+        <span>
+          <a href="">
+            <img src="IMG/Dashboard/sino.png" alt="" />
+            Notificações
+          </a>
+        </span>
+        <br />
+
+        <span>
+          <a href="">
+            <img src="IMG/Dashboard/configuracoes.png" alt="" />
+            Configurações
+          </a> </span
+        ><br />
+      </div>
+
+      <div class="btn-logout">
+        <a href="HomPage.html">SAIR</a>
+      </div>
+    </div>
+    <!-- fim do menu da dashboard -->
+
+    <div class="dash">
+      <div class="tituloDash">
+        <h1>Dashboard geral dos Habitats</h1>
+      </div>
+      <div class="div_graficos">
+        <div class="div_grafico">
+          <span>Análise de Temperatura(??º - ??º) nos Habitats</span>
+          <canvas id="luminosidade"></canvas>
         </div>
-        <!-- fim do menu da dashboard -->
-
-      <div class="dash">
-        <div class="div_graficos">
-            <div class="div_grafico" >
-                <span>Análise de Temperatura nos Habitats</span>
-                <canvas id="luminosidade"></canvas>
+        <div class="div_grafico">
+          <span>Média de Luminosidade nos Habitats</span>
+          <canvas id="lm35Temperatura"></canvas>
+        </div>
+      </div>
+      <section class="section_KPIs">
+        <div class="div_KPIs">
+          <div class="div_KPI" id="KPI1">
+            <span class="spanTitulo1"> Quantidade de habitats em aleta</span>
+            <div class="div_KPI1content">
+            <span class="spanPorcentagemKPI1">10%</span>
+            <div class="divTextoKPI1">02/20</div>
             </div>
-            <div class="div_grafico">
-                <span>Média de Luminosidade nos Habitats</span>
-                <canvas id="lm35Temperatura"></canvas>
-            </div></div>
-            <section class="section_KPIs">
-                
-            <div class="div_KPIs">
-                <div class="div_KPI">
-
+          </div>
+          <div class="div_KPI" id="KPI2">
+            <span class="spanTitulo2"> Ultimo alerta gerado</span>
+            <div class="div_KPI2content">
+                <span class="spanPorcentagemKPI2">Habitat 18</span>
+                <div class="divTextoKPI1">
+                    09/05/2024 às 15:31
                 </div>
-                <div class="div_KPI">
-                    
-                </div></div>
-                <div class="div_KPIs">
-                    <div class="div_KPI">
-                    
-                    </div>
-                    <div class="div_KPI">
-                    
-                    </div>
-                </div>
-            </section>
-            <div class="div_filtro">
-                <div class="search">
-                    <input type="search" class="search__input" id="input_search" placeholder="Search...">
-                    <div class="search__fechar">
-                    <!-- <img id="limpar_input" src="./IMG/Dashboard/botao-fechar.png" onclick="document.getElementById('input_search').value = '';"> -->
-                    </div>
-                    <div class="search__icon">
-                      <img src="./IMG/Dashboard/lupa.png" >
-                    </div>
-                  </div>
-                  <div class="div_lista">
-                      <ul id="ul_lista" class="habitat_lista">
-                          <li id="li_habitat" class="li_habitat"><a>Habitat 1</a></li>
-                          <li id="li_habitat" class="li_habitat"><a>Habitat 2</a></li>
-                          <li id="li_habitat" class="li_habitat"><a>Habitat 3</a></li>
-                          <li id="li_habitat" class="li_habitat"><a>Habitat 4</a></li>
-                          <li id="li_habitat" class="li_habitat"><a>Habitat 5</a></li>
-                          <li id="li_habitat" class="li_habitat"><a>Habitat 6</a></li>
-                          <li id="li_habitat" class="li_habitat"><a>Habitat 7</a></li>
-                          <li id="li_habitat" class="li_habitat"><a>Habitat 8</a></li>
-                          <li id="li_habitat" class="li_habitat"><a>Habitat 9</a></li>
-                          <li id="li_habitat" class="li_habitat"><a>Habitat 10</a></li>
-                      </ul>
-                  </div>
             </div>
-            </div>
+        </div>
+          <div class="div_KPI" id="KPI3"></div>
+          <div class="div_KPI" id="KPI4"></div>
+        </div>
+      </section>
+      <div class="search">
+        <input
+          type="search"
+          class="search__input"
+          id="input_search"
+          placeholder="Search..."
+        />
+        <div class="search__fechar">
+          <!-- <img id="limpar_input" src="./IMG/Dashboard/botao-fechar.png" onclick="document.getElementById('input_search').value = '';"> -->
+        </div>
+        <div class="search__icon">
+          <img src="./IMG/Dashboard/lupa.png" />
+        </div>
+      </div>
+      <div class="div_filtro">
+        <div class="div_lista">
+          <ul id="ul_lista" class="habitat_lista">
+            <li id="li_habitat" class="li_habitat"><a>Habitat 1</a></li>
+            <li id="li_habitat" class="li_habitat"><a>Habitat 2</a></li>
+            <li id="li_habitat" class="li_habitat"><a>Habitat 3</a></li>
+            <li id="li_habitat" class="li_habitat"><a>Habitat 4</a></li>
+            <li id="li_habitat" class="li_habitat"><a>Habitat 5</a></li>
+            <li id="li_habitat" class="li_habitat"><a>Habitat 6</a></li>
+            <li id="li_habitat" class="li_habitat"><a>Habitat 7</a></li>
+            <li id="li_habitat" class="li_habitat"><a>Habitat 8</a></li>
+            <li id="li_habitat" class="li_habitat"><a>Habitat 9</a></li>
+            <li id="li_habitat" class="li_habitat"><a>Habitat 10</a></li>
+            <li id="li_habitat" class="li_habitat"><a>Habitat 11</a></li>
+            <li id="li_habitat" class="li_habitat"><a>Habitat 12</a></li>
+            <li id="li_habitat" class="li_habitat"><a>Habitat 13</a></li>
+            <li id="li_habitat" class="li_habitat"><a>Habitat 14</a></li>
+            <li id="li_habitat" class="li_habitat"><a>Habitat 15</a></li>
+            <li id="li_habitat" class="li_habitat"><a>Habitat 16</a></li>
+            <li id="li_habitat" class="li_habitat"><a>Habitat 17</a></li>
+            <li id="li_habitat" class="li_habitat"><a>Habitat 18</a></li>
+            <li id="li_habitat" class="li_habitat"><a>Habitat 19</a></li>
+            <li id="li_habitat" class="li_habitat"><a>Habitat 20</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </body>
   <script>
-    const contextoLm35Temperatura = document.getElementById('lm35Temperatura').getContext('2d');
-  
-        var lm35Temperatura = new Chart(
-            contextoLm35Temperatura,{
-                type: 'line',
-                data: {
-                    labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
-                        datasets: [{
-                        label: 'Luminosidade',
-                        data: [475, 390, 500, 620, 560, 520, 600],
-                        borderwidht: 1,
-                        fill: false,
-                        tension: 0.1,
-                        pointStyle: 'circle',
-                        backgroundColor: '#b3ffb3',
-                        borderColor: '#b3ffb3'
-                    }]
-                },
-                options: {
-                    scales: {
-                        xAxes: [{
-                            distribution: 'series',
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }],
-                        yAxes: [{
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Temperatura'
-                            },
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                    },
-                    animation: {
-                        duration: 0
-                        
-                    }
-                }
-            }
-        );
-        
-        const contextoLuminosidade = document.getElementById('luminosidade').getContext('2d');
-        var luminosidade = new Chart(
-            contextoLuminosidade,
+    const contextoLm35Temperatura = document
+      .getElementById("lm35Temperatura")
+      .getContext("2d");
+
+    var lm35Temperatura = new Chart(contextoLm35Temperatura, {
+      type: "line",
+      data: {
+        labels: [
+          "Segunda",
+          "Terça",
+          "Quarta",
+          "Quinta",
+          "Sexta",
+          "Sábado",
+          "Domingo",
+        ],
+        datasets: [
+          {
+            label: "Luminosidade",
+            data: [475, 390, 500, 620, 560, 520, 600],
+            borderwidht: 1,
+            fill: false,
+            tension: 0.1,
+            pointStyle: "circle",
+            backgroundColor: "#99b3ff",
+            borderColor: "#99b3ff",
+          },
+        ],
+      },
+      options: {
+        scales: {
+          xAxes: [
             {
-                type: 'bar',
-                data: {
-                    labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
-                    datasets: [{
-                        label: 'Abaixo da média',
-                        data: [ 7, 12, 8, 7, 2, 8],
-                        borderwidht: 1,
-                        backgroundColor: "#99b3ff"
-                    },
-                    {
-                        label: 'Na média',
-                        data: [5, 4, 7, 3, 6, 5],
-                        borderwidht: 1,
-                        backgroundColor: '#ccffcc'
-                    },
-                    {
-                        label: 'Acima da média',
-                        data: [9, 8, 10, 3, 5, 1],
-                        borderwidht: 1,
-                        backgroundColor: '#ffb3b3'
-                    }]
-                    
-                },
-                options: {
-                    scales: {
-                        xAxes: [{
-                            distribution: 'series',
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }],
-                        yAxes: [{
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Quantidade de habitats'
-                            },
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                    },
-                    animation: {
-                        duration: 0,
-                    }
-                }
-            }
-        );
-        
+              distribution: "series",
+              ticks: {
+                beginAtZero: true,
+              },
+            },
+          ],
+          yAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: "Temperatura",
+              },
+              ticks: {
+                beginAtZero: true,
+              },
+            },
+          ],
+        },
+        animation: {
+          duration: 0,
+        },
+      },
+    });
 
+    const contextoLuminosidade = document
+      .getElementById("luminosidade")
+      .getContext("2d");
+    var luminosidade = new Chart(contextoLuminosidade, {
+      type: "bar",
+      data: {
+        labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho"],
+        datasets: [
+          {
+            label: "Abaixo da média",
+            data: [7, 12, 8, 7, 2, 8],
+            borderwidht: 1,
+            backgroundColor: "#99b3ff",
+          },
+          {
+            label: "Na média",
+            data: [5, 4, 7, 3, 6, 5],
+            borderwidht: 1,
+            backgroundColor: "#ccffcc",
+          },
+          {
+            label: "Acima da média",
+            data: [9, 8, 10, 3, 5, 1],
+            borderwidht: 1,
+            backgroundColor: "#ffb3b3",
+          },
+        ],
+      },
+      options: {
+        scales: {
+          xAxes: [
+            {
+              distribution: "series",
+              ticks: {
+                beginAtZero: true,
+              },
+            },
+          ],
+          yAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: "Quantidade de habitats",
+              },
+              ticks: {
+                beginAtZero: true,
+              },
+            },
+          ],
+        },
+        animation: {
+          duration: 0,
+        },
+      },
+    });
 
-        const barraDePesquisa = document.querySelector("input")//<input/>
-const lista = document.querySelector("ul");//<ul></ul>
-const itens = document.querySelectorAll("li");//<li><li/>
+    const barraDePesquisa = document.querySelector("input"); //<input/>
+    const lista = document.querySelector("ul"); //<ul></ul>
+    const itens = document.querySelectorAll("li"); //<li><li/>
 
-    barraDePesquisa.addEventListener("input", ()=>{
-    let valorDigitado = barraDePesquisa.value.toLowerCase();
-    itens.forEach((item)=>{
-         if(item.textContent.toLowerCase().includes(valorDigitado)){
-            item.style.display = "block"
-         } else {
-             item.style.display = "none"
+    barraDePesquisa.addEventListener("input", () => {
+      let valorDigitado = barraDePesquisa.value.toLowerCase();
+      itens.forEach((item) => {
+        if (item.textContent.toLowerCase().includes(valorDigitado)) {
+          item.style.display = "block";
+        } else {
+          item.style.display = "none";
         }
-  
+      });
+    });
 
-    })
-});
-
-// function limpar_input() {
-//     document.getElementById("input_search").value = '' ;
-// }
-
-
+    // function limpar_input() {
+    //     document.getElementById("input_search").value = '' ;
+    // }
   </script>
 </html>

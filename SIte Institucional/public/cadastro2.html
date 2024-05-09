@@ -15,62 +15,38 @@
     <div class="container" id="container">
         <div class="content1  sign-in-container"> 
             <form class="login">
-                <h2 class="tituloForm1">Login</h2> 
-                <p class="texto"> Acesse com um e-mail existente</p>
+                <h2 class="tituloForm1">Crie sua Conta</h2> 
+                <p class="texto"> Ou crie use seu e-mail para se cadastrar</p>
                 <div class="socialMedia">
                     <img src="IMG/Cadastro/social.png" alt="">
                     <img src="IMG/Cadastro/linkedin.png" alt="">
                     <img src="IMG/Cadastro/twitter.png" alt="">
                 </div>
-                <p class="texto">Ou faça o login com os dados criados aqui</p>
                 <label class="label-input">
-                    <input type="email" placeholder="E-mail">
-                </label>
-                <label class="label-input">
-                    <input type="password" placeholder="Senha">
-                </label>
-                
-                <a class="esqueciSenha" href="#">Esqueci a senha</a>
-                <button class="btn btnLogin1">Entrar</button>
-            </form>
-        </div> 
-        <div class="content1 sign-up-container"> 
-            <form class="login">
-                <h2 class="tituloForm2">Crie sua Conta</h2> 
-                <div class="socialMedia">
-                    <img src="IMG/Cadastro/google.png" alt="">
-                    <img src="IMG/Cadastro/linkedin.png" alt="">
-                    <img src="IMG/Cadastro/twitter-x-logo-png-9.png" alt="">
-                </div>
-                <p class="texto">Ou crie use seu e-mail para se cadastrar</p>
-                <label class="label-input">
-                    <input type="text" placeholder="Nome" id="n_nome" required>
+                    <input type="text" placeholder="Nome" id="n_nome" >
                 </label>
                 <div id="mensagemErrorNome"></div>
                 <label class="label-input">
-                    <input type="email" placeholder="E-mail" id="e_email" required>
+                    <input type="email" placeholder="E-mail" id="e_email" >
                 </label>
                 <div id="mensagemErrorEmail"></div>
                 <label class="label-input">
-                    <input type="password" placeholder="Senha" id="s_senha" required>
+                    <input type="password" placeholder="Senha" id="s_senha" >
                 </label>
                 <div id="mensagemErrorSenha"></div>
-                <div id=" mensagemGeral"></div>
+               
                 <button onclick="cadastrar()" class="btn btnCadastro1">Cadastro</button>
+                <div id=" mensagemGeral"></div>
             </form>
-        </div>  
+        </div> 
         
         <div class="overlay-container">
             <div class="overlay">
-                <div class="content2 contentEsq">
-                 <h2 class="tituloInform">Bem vindo, novamente!</h2>
-                    <p class="texto2">Se você ja tem uma conta faça o seu login</p>
-                    <button class="btn2 btnLogin2" id="signIn">Entrar</button>
-                </div>
                 <div class="content2 contentDir">
                     <h2 class="tituloInform">Olá, faça parte da RHS!</h2>
-                    <p class="texto2">Cadastre-se com seu e-mail para se juntar a nós</p>
-                    <button class="btn2 btnCadastro2" id="signUp"></span>Cadastro</span></button>
+                    <p class="texto2">Cadastre-se com seu e-mail para se juntar a nós! <br><br>
+                        Caso <b>possui </b> uma conta, clique no botão abaixo para fazer seu login.</p>
+                    <a href="login2.html"><button onclick="logar" class="btn2">Login</button></a>
                 </div>
            </div>
         </div>
@@ -81,7 +57,6 @@
 </html>
 
 <script>
-
 function cadastrar() {
     const user = n_nome.value;
     const email = e_email.value;
@@ -92,7 +67,7 @@ function cadastrar() {
         email == "" || 
         senha == ""){
         // caso estejam, será emitido uma mensagem via innerHTML
-        mensagemGeral.innerHTML = "<center>Preencha todos os campos</center>";
+        mensagemGeral.innerHTML = `<center>Preencha todos os campos</center>`;
     }else{
     // checando as se o email possui @ ou .
         if (email.indexOf("@") == -1 || 
@@ -121,11 +96,10 @@ function cadastrar() {
                 // adicionar pop up
                 concluído.innerHTML = ` Cadastro concluído com sucesso, redirecionando para tela de Login`
                 // redirecionamento para a página de login
-                setTimeout(() => { window.location = "Sobre.html" }, "2500")
+                setTimeout(() => { window.location = "Login2.html" }, "2500")
                 setTimeout(sumirMensagem, 2500);
                 finalizarMensagem();
                 return false;
-
                 
                 } else if (numSenha == -1 ){
                     mensagemErroSenha.innerHTML = "<center>A senha deve conter pelo menos 8 caracteres, um caracter especial e um número</center>"
@@ -133,31 +107,15 @@ function cadastrar() {
 
             }
             } else {
-            // caso não tenha carcteres especiais, será emitida a seguinte mensagem
-            mensagemErroSenha.innerHTML = "<center>A senha deve conter pelo menos 8 caracteres, um caracter especial e um número</center>"
+                // caso não tenha carcteres especiais, será emitida a seguinte mensagem
+                mensagemErroSenha.innerHTML = "<center>A senha deve conter pelo menos 8 caracteres, um caracter especial e um número</center>"
             }
+
         } else{
             // caso não passe na validação da quantidade correta de carcteres, será emitido uma mensagem de ERROR
             mensagemErrorSenha.innerHTML = "<center>A senha deve conter pelo menos 8 caracteres, um caracter especial e um número</center>"
         }
     }
-// Função para esconder a mensagem de conclusão
-    setTimeout(sumirMensagem, 2500);
-    finalizarMensagem();
-    return false;
 }
-    
-    const signUpButton = document.getElementById('signUp');
-    const signInButton = document.getElementById('signIn');
-    const container = document.getElementById('container');
-
-    signUpButton.addEventListener('click', () => {
-	container.classList.add("right-panel-active");
-    });
-
-    signInButton.addEventListener('click', () => {
-	container.classList.remove("right-panel-active");
-    });
-
 </script>
 

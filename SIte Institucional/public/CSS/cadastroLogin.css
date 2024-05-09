@@ -205,7 +205,7 @@ button:hover {
     background: #f1f1f1;
     color: #0c8e39;
     transition: all 580ms ease-in-out;
-    box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 4px 4px 4px 2px rgba(0,0,0,0.5);
 }
 
 .content1 {
@@ -272,36 +272,32 @@ button:hover {
     transform: translateX(0);
 
 }
-
-.contentEsq {
+.contentEsq{
     transform: translateX(-20%);
-
+    
 }
-
 .container.right-panel-active .contentDir {
-    transform: translateX(20%);
+	transform: translateX(20%);
 }
-
 .container.right-panel-active .contentEsq {
-    transform: translateX(0%);
+	transform: translateX(0%);
 }
 
 .container.right-panel-active .sign-in-container {
-    transform: translateX(100%);
+	transform: translateX(100%);
     opacity: 0;
 }
-
 .container.right-panel-active .sign-up-container {
-    transform: translateX(100%);
-    opacity: 1;
-    z-index: 5;
-    animation: show 0.6s;
+	transform: translateX(100%);
+	opacity: 1;
+	z-index: 5;
+	animation: show 0.6s;
 }
-
-.container.right-panel-active .overlay-container {
-    transform: translateX(-100%);
+.container.right-panel-active .overlay-container{
+	transform: translateX(-100%);
 }
-
 .container.right-panel-active .overlay {
     transform: translateX(50%);
 }
+
+    

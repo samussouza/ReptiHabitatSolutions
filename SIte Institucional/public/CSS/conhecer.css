@@ -104,14 +104,14 @@ nav a:hover {
     flex-direction: column;
     width: 340px;
     height: 380px;
-    border: 2px solid #5b8e4780;
+    border: 2px solid #ffffff60;
     border-radius: 12px;
-    background-color: #5b8e4740;
+    background-color: #ffffff40;
     margin: 30px;
 }
 
 .card:hover {
-    background-color: #53a73380;
+    background-color: #00000072;
     transition: all 0.3s;
 }
 
@@ -139,12 +139,12 @@ nav a:hover {
 }
 
 .social-icons {
-    margin-top: 50px; /* Espaçamento superior */
+     margin-top: 50px; /* Espaçamento superior */
 }
 
 /* css para os links das redes sociais*/
 .social-icons a {
-    color: #2e754e;
+ color: white;
     margin-right: 10px; /* Espaçamento direito */
     font-size: 20px;
     text-decoration: none; /* Remove a decoração do link */

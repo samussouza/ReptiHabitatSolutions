@@ -22,8 +22,8 @@ header{
     transition: background-color 0.3s ease;
 }
 header a{
-  width: 50px;
-  margin-right: 215px;
+      width: 50px;
+    margin-right: 215px;
 }
 
 header img{
@@ -189,17 +189,17 @@ nav a:hover{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 600px;
+    height: 80vh;
     color: rgb(255, 255, 255);
-    padding:30px 100px;
-    z-index: 1;
+    /* padding:30px 100px; */
     background-color: #003329;
 }
 .div_titulo_planos{
-    font-size: 35px;
+    font-size: 50px;
+    font-weight: 100;
    margin-bottom: 30px;  
    z-index: 1;
-   color: #0000;
+   color: white;
 }
 .card__header {
   padding: 16px 16px;
@@ -346,7 +346,8 @@ nav a:hover{
 .section_perguntas_frequentes {
     position: relative;
     /* min-height: 400px; */
-    height: 646px;
+    height: 800px;
+    padding-top: 150px;
     font-family: Verdana, sans-serif;
     z-index: 1;
     background-color: #003329;
@@ -357,7 +358,7 @@ nav a:hover{
     color: white;
     display: flex;
     justify-content: center;
-    padding: 10px 20px;
+    margin-top: 20;
     font-size: 35px;
 }
 
@@ -441,50 +442,40 @@ nav a:hover{
 
 /* Aqui começa o Footer (Rodapé) */
 footer {
-  background-color: #548D3D;
-  color: white;
+  background-color: white;
+  color: black;
   width: 100%;
   height: 350px;
   padding: 40px;
   display: flex;
 }
 
-footer p {
-  width: 375px;
+footer p{
+  width: 375px; 
 }
 
 /* Detalhes da parte esquerda do Footer */
 .column1 {
   margin-left: 10px;
-  width: 400px;
+  width: 440px;
   border-right: solid;
 }
 
-.column1 img {
+.column1 h2{
+  display: flex;
+  align-items: center;
+  font-size: 27px;
+}
+
+.column1 img{
   border-radius: 100%;
   margin-right: 3px;
   height: 50px;
   width: 50px;
 }
 
-.column1 h2 {
-  display: flex;
-  align-items: center;
-  font-size: 27px;
-  margin-top: 20px;  
-}
-
-.column1 p{
-  margin-top: 20px; 
-}
-
-.column1 .logos{
-  margin-top: 20px; 
-}
-
-
 /* Detalhes da parte central do Footer */
-.column2 {
+.column2{
   width: 302px;
   border-right: solid;
   margin-left: 20px;
@@ -492,125 +483,120 @@ footer p {
   display: flex;
 }
 
-.column2 h2 {
-  /* margin-left: 20px; */
-  margin: 20px;
+.column2 h2{
+  margin-left: 20px;
 }
 
-.column2 a {
+.column2 a{
   margin-left: 20px;
-  text-decoration: none;
-  color: white;
+  text-decoration:none;
+  color: black;
   margin-bottom: 5px;
 }
 
 /* Detalhes da parte direita do Footer */
-.column3 {
+.column3{
   margin-left: 10px;
   width: 440px;
   display: flex;
 }
 
-.column3 h2 {
-  margin: 20px;
+.column3 h2{
+  margin-left: 10px;
 }
 
-.column3 p {
+.column3 p{
   display: flex;
   align-items: center;
   margin-left: 10px;
   width: 330px;
-  margin: 16px;
 }
 
-.column3 a {
-  text-decoration: none;
+.column3 a{
+  text-decoration:none;
   margin-left: 10px;
-  color: white;
+  color: black;
 }
 
 /* Mapa do Endereço */
-iframe {
+iframe{
   border-radius: 20px;
   margin: 10px;
 }
 
 
 /* Tamanho dos ícones (facebook, instagram, twitter, linkedin) */
-.logos .icone1 {
+.logos .icone1{
+  filter:invert();
   height: 34px;
   width: 34px;
 }
-
-.logos .icone2 {
+.logos .icone2{
+  filter:invert();
   height: 32px;
   width: 32px;
 }
-
-.logos .icone3 {
+.logos .icone3{
+  filter:invert();
   height: 33px;
   width: 32px;
-}
-
-.logos .icone4 {
+}   
+.logos .icone4{
+  filter:invert();
   height: 32px;
   width: 32px;
 }
 
 /* Ícones localização, telefone e email */
-.icone5 {
+.icone5{
+  filter:invert();
   height: 29px;
   width: 29px;
 }
-
-.icone6 {
+.icone6{
+  filter:invert();
   height: 29px;
   width: 29px;
 }
-
-.icone7 {
+.icone7{
+  filter:invert();
   height: 32px;
   width: 32px;
 }
 
-/* Animação dos ícones */
+/* Animação dos ícones Footer*/
 .logos .icone1:hover {
   transform: translateY(-5px);
-  transition: all 0.4s; /*Deixa a animação mais fluida*/
+  transition: all 0.4s;
 }
-
 .logos .icone2:hover {
   transform: translateY(-5px);
-  transition: all 0.4s; /*Deixa a animação mais fluida*/
+  transition: all 0.4s;
 }
-
 .logos .icone3:hover {
   transform: translateY(-5px);
-  transition: all 0.4s; /*Deixa a animação mais fluida*/
+  transition: all 0.4s;
 }
-
 .logos .icone4:hover {
   transform: translateY(-5px);
-  transition: all 0.4s; /*Deixa a animação mais fluida*/
-}
-
+  transition: all 0.4s;
+} 
 .logos2 .icone5:hover {
   transform: translateY(-5px);
-  transition: all 0.4s; /*Deixa a animação mais fluida*/
-}
-
+  transition: all 0.4s;
+} 
 .logos2 .icone6:hover {
   transform: translateY(-5px);
-  transition: all 0.4s; /*Deixa a animação mais fluida*/
-}
-
+  transition: all 0.4s;
+} 
 .logos2 .icone7:hover {
   transform: translateY(-5px);
-  transition: all 0.4s; /*Deixa a animação mais fluida*/
-}
+  transition: all 0.4s;
+} 
 
 /* Animação do menu */
-.column2 a:hover {
-  transform: translateX(5px); 
-  transition: all 0.4s; /*Deixa a animação mais fluida*/
+.column2 a:hover{
+  transform: translateX(5px);
+  transition: all 0.4s;
+  
 }

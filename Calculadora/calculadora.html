@@ -5,38 +5,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador Financeiro</title>
+    <link rel="stylesheet" href="simulador.css">
+    <link rel="shortcut icon" href="../SIte Institucional/public/IMG/Home_fundo/icone.ico" type="image/x-icon">
 </head>
-
 <body>
-    <div class="container">
-        <label for="qtd_repteis_input">Quantos répteis você possui?</label>
-        <input type="number" id="qtd_repteis_input"><br>
-        <label for="">Você possui um sistema de iluminação?</label>
-        <select onchange='mostrarLampadas()' id="sistema_iluminacao_select">
-            <option value="vazio">---</option>
-            <option value="yes">Sim</option>
-            <option value="no">Não</option>
-        </select><br>
-        <div id="lampadas" style="display: none;">
-            Quais lâmpadas você utiliza no habitat?
-            <br>
-            <input type="checkbox" id="lampada_uvi">
-            <label for="lampada_uva">UVI</label>
-            <br>
-            <input type="checkbox" id="lampada_uva">
-            <label for="lampada_uvb">UVA</label>
-            <br>
-            <input type="checkbox" id="lampada_comum">
-            <label for="lampada_comum">LÂMPADAS COMUNS</label>
-            <br><br>
+    <div class="tela_calculadora">
+        <div class="container" id="tela_calculadora">
+            <div class="frente" id="calculos_inf">
+                <label class="question" for="qtd_repteis_input">Quantos répteis você possui?
+                    <input type="number" id="qtd_repteis_input">
+                </label>
+                <br>
+                <label class="question" for="">Você possui um sistema de iluminação?
+                    <br>
+                    <select onchange='mostrarLampadas()' id="sistema_iluminacao_select">
+                        <option value="vazio">---</option>
+                        <option value="yes">Sim</option>
+                        <option value="no">Não</option>
+                    </select>
+                </label>
+                <br>
+                <div id="lampadas" style="display: none;">
+                    <span>Quais lâmpadas você utiliza no habitat?</span>
+                    <br>
+                    <input class="lamp" type="checkbox" id="lampada_uvi">
+                    <label for="lampada_uva">UVI</label>
+                    <br>
+                    <input class="lamp" type="checkbox" id="lampada_uva">
+                    <label for="lampada_uvb">UVA</label>
+                    <br>
+                    <input class="lamp" type="checkbox" id="lampada_comum">
+                    <label for="lampada_comum">LÂMPADAS COMUNS</label>
+                </div>
+                <br>
+                <button id="botao" onclick="calcularPreju()">Calcular Prejuízo</button>
+            </div>
+            <div class="resposta" id="show" style="display: none;"></div>
         </div>
-
-        <button onclick="calcularPreju()">Calcular Prejuízo</button>
-        <div id="show"></div>
     </div>
 </body>
 
 </html>
+
 <script>
     function mostrarLampadas() {
         let selecao = sistema_iluminacao_select.value
@@ -47,8 +57,11 @@
         }
     }
 
+
     function calcularPreju() {
         show.innerHTML = ""
+        let telaCalc = document.getElementById("tela_calculadora");
+        let msgCalc = document.getElementById("show")
         let qtd_Repteis = Number(qtd_repteis_input.value)
         let selecao = sistema_iluminacao_select.value
         let uvaCheck = lampada_uvi.checked
@@ -64,31 +77,49 @@
         } else if (selecao === "yes" && uvaCheck === false && uvbCheck === false && comumCheck === false) {
             alert("Por favor, selecione pelo menos uma checkbox.");
         } else {
+            telaCalc.style.transform = "rotateY(180deg)";
+            msgCalc.style.transform = "rotateY(180deg)";
+            calculos_inf.style.display = 'none';
             if (selecao === "yes") {
-                valorLampadas += 300
-                qtdLampadas += 1
-            }
-            if (uvbCheck === true) {
-                valorLampadas += 200
-                qtdLampadas += 2
-            }
-            if (comumCheck === true) {
-                valorLampadas += 50
-                qtdLampadas += 3
-            }
-            show.innerHTML = `Com a utilização das luzes atificiais, observou-se que os répteis desenvolveram sensibilidade à luz, manifestando desorientação e desânimo conforme a intensidade luminosa do ambiente.
+                if (uvaCheck === true) {
+                    valorLampadas += 300
+                    qtdLampadas += 1
+                }
+                if (uvbCheck === true) {
+                    valorLampadas += 200
+                    qtdLampadas += 2
+                }
+                if (comumCheck === true) {
+                    valorLampadas += 50
+                    qtdLampadas += 3
+                }
+                show.style.display = 'block'
+                show.innerHTML = `Com a utilização das luzes atificiais, observou-se que os répteis desenvolveram sensibilidade à luz, manifestando desorientação e desânimo conforme a intensidade luminosa do ambiente.
             <br>
-            Sem um sistema de monitoramento adequado, você compromete a saúde e segurança do seu réptil, resultando em um gasto anual de cerca de R$<b>R$ ${(valorLampadas * qtdLampadas) * qtd_Repteis}</b> em lâmpadas, além de um significativo desperdício desses recursos.
+            Sem um sistema de monitoramento adequado, você compromete a saúde e segurança do seu réptil, resultando em um gasto anual de cerca de <b>R$ ${(valorLampadas * qtdLampadas) * qtd_Repteis}</b> em lâmpadas, além de um significativo desperdício desses recursos.
             <br>
             De acordo com o Estadão, os brasileiros consomem em média 200 milhões de lâmpadas por ano, porém apenas 6% delas são descartadas corretamente. Adicionalmente, a iluminação representa 20% do consumo total de energia no Brasil. 
             <br>
             A presença de luzes UV, UVA e UVB pode elevar a temperatura nos ambientes em que são utilizadas. Sem um monitoramento adequado, essas lâmpadas tendem a se desgastar mais rapidamente, reduzindo sua vida útil e gerando mais resíduos tóxicos. Com nossos sensores, seria possível observar um aumento de até 30% na longevidade dessas lâmpadas, contribuindo para a preservação do habitat e a saúde dos répteis, além de proporcionar um controle mais eficaz da temperatura ambiente!
             `
-            // show.innerHTML = `Você perde R$ sem os nossos sensores. <br>
-            //     R$ por lâmpadas que degradam com o tempo <br>
-            //     Além de poder perder R$ caso seus répteis desenvolvam algum problema devido ao nível de luz desregulado.`
-
+            } else if (selecao === "no") {
+                show.style.display = 'block'
+                show.innerHTML = `Sem um sistema de iluminação adequado, você está comprometendo a <b>saúde</b> do seu réptil!<br>
+                Por serem animais ectotérmicos, eles dependem do calor do ambiente externo para regular sua temperatura corpórea, diminuindo sua atividade em baixas temperaturas e podendo até levá-los a <b>morte!</b><br>
+                É indicado que você compre lâmpadas de iluminação <b>UVA</b> e <b>UVB</b>, cerca de <b>R$ ${700 * qtd_Repteis}</b> anualmente com seus répteis, porém, sem o monitoramento adequado, essas lâmpadas tendem a desgastar mais facilmente, encurtando sua vida útil e gerando mais lixos tóxicos.<br>
+                Com nossos sensores, seria notório um aumento de <b>até 30%</b> de longevidade dessas lâmpadas, preservando assim o habitat e a saúde de seus répteis, além de um maior controle a respeito da temperatura do ambiente!`
+            }
+            show.innerHTML += `<br> <button class="botao_volta" onclick="voltar()"> Voltar </button>`
         }
+    }
+
+    function voltar() {
+        let telaCalc = document.getElementById("tela_calculadora");
+        let msgCalc = document.getElementById("calculos_inf");
+        telaCalc.style.transform = "rotateY(180deg)";
+        msgCalc.style.transform = "rotateY(180deg)";
+        calculos_inf.style.display = 'block';
+        show.style.display = 'none';
     }
     // Mantive o código assim temporáriamente até finalizar a lógica, por favor, não altere!!!
 

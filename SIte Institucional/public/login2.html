@@ -1,11 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
     <link rel="stylesheet" href="CSS/cadastroLogin.css">
+    <link rel="shortcut icon" href="./IMG/Home_fundo/icone.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -26,14 +28,14 @@
                     </div>
                     <p class="texto">Ou faça o login com os dados criados aqui</p>
                     <label class="label-input">
-                        <input type="text" placeholder="E-mail">
+                        <input type="text" placeholder="E-mail" id="e_email">
                     </label>
                     <label class="label-input">
-                        <input type="password" placeholder="Senha">
+                        <input type="password" placeholder="Senha" id="s_senha">
                     </label>
 
                     <a class="esqueciSenha" href="#">Esqueci a senha</a>
-                    <button class="btn btnLogin1">Entrar</button>
+                    <button class="btn btnLogin1" onclick="validarLogin()">Entrar</button>
 
                 </form>
             </div>
@@ -57,70 +59,76 @@
 
 <script>
     function validarLogin() {
-        let senha = input_senha.value;
-        let email = input_email.value;
-        erroEmail.innerHTML = "";
-        erroSenha.innerHTML = "";
+        const email = e_email.value;
+        const senha = s_senha.value;
+        let tamanhoSenha = senha.length;
+        let senhaValida = false;
 
-        if (email == "") {
-            erroEmail.innerHTML = "Campo vazio";
-        }
-        if (senha == "") {
-            erroSenha.innerHTML = "Campo vazio";
-        }
-        else {
-            if (email.indexOf("@") !== -1 && email.indexOf(".com") !== -1 && email.length > 10) {
-
-            } else {
-                erroEmail.innerHTML = "Email inválido"
-            }
-            if (senha.length >= 8) {
-
-            } else {
-                erroSenha.innerHTML = "A senha deve conter pelo menos 8 caracter"
-            }
-            if (senha.indexOf("@") !== -1 || senha.indexOf("#") !== -1 && (senha.indexOf('1') !== 1 ||
-                senha.indexOf('2') !== 1 ||
-                senha.indexOf('3') !== 1 ||
-                senha.indexOf('4') !== 1 ||
-                senha.indexOf('5') !== 1 ||
-                senha.indexOf('6') !== 1 ||
-                senha.indexOf('7') !== 1 ||
-                senha.indexOf('8') !== 1 ||
-                senha.indexOf('9') !== 1)) {
-
-            } else {
-                erroSenha.innerHTML = "Senha deve conter:<br> 8 ou mais caracteres;<br>1 caractere numérico;<br>1 caractere especial."
+        // checando se o nome, o email e a senha do usuario estão vazias, 
+        if (email == "" ||
+            senha == "") {
+            // caso estejam, será emitido uma mensagem via innerHTML
+            alert(`Preencha todos os campos`);
+        } else {
+            // checando as se o email possui @ ou .
+            if (email.indexOf("@") == -1 ||
+                email.indexOf(".") == -1) {
+                // caso não tenha, será emitido uma mensagem via innerHTML
+                alert("Email inválido, deve conter '@' e '.'.");
                 return false;
-            }
+            } else {
+                /*loop para verificar se a senha possui pelo menos 8 caracteres*/
+                for (let contador = 0; contador < tamanhoSenha; contador++) {
+                    if (tamanhoSenha >= 8) {
+                        senhaValida = true;
+                        break;
+                    }
+                }
+                if (!senhaValida) {
+                    alert("A senha deve conter pelo menos 8 caracteres.");
+                    return false;
+                }
+                // checando os caracteres especiais 
+                if (senha.indexOf("!") !== -1 ||
+                    senha.indexOf('@') !== -1 ||
+                    senha.indexOf('#') !== -1 ||
+                    senha.indexOf('$') !== -1 ||
+                    senha.indexOf('%') !== -1 ||
+                    senha.indexOf('&') !== -1 ||
+                    senha.indexOf('*') !== -1) {
 
-            setTimeout(function () {
-                window.location.href = `Dashboard.html`;
-            }, 2500);
+                } else {
+                    alert("A senha deve conter pelo menos um caractere especial.")
+                }
+                if (senha.indexOf('0') !== -1 ||
+                    senha.indexOf('1') !== -1 ||
+                    senha.indexOf('2') !== -1 ||
+                    senha.indexOf('3') !== -1 ||
+                    senha.indexOf('4') !== -1 ||
+                    senha.indexOf('5') !== -1 ||
+                    senha.indexOf('6') !== -1 ||
+                    senha.indexOf('7') !== -1 ||
+                    senha.indexOf('8') !== -1 ||
+                    senha.indexOf('9') !== -1) {
 
-            return false;
-            status = true
+                } else {
+                    alert("A senha deve conter pelo menos um caracter numérico")
+                    return false;
+                }
 
-            if (status == true) {
-                window.location.href = 'Dashboard.html'
+                setTimeout(function () {
+                    window.location.href = `Dashboard.html`;
+                }, 2500);
+                
+                return false;
+                status = true
+
+                if (status == true){
+                    window.location.href = 'Dashboard.html'
+                }
             }
         }
     }
-    /* if (senha.length >= 8) {
-let caracter_especial = [`!`, `@`, "#", "$", "%", "&", "*"];
-for (let numero = 0; numero <= 9; numero++) {
-for (let i = 0; i < senha.length; i++) {
-if (
-caracter_especial[i] = senha.indexOf[i] &&
-senha.indexOf(numero) !== -1
-) {
-}        
- 
- 
-}
-}} else {
-erroSenha.innerHTML =
-"Senha deve conter:<br> 8 ou mais caracteres;<br>1 caractere numérico;<br>1 caractere especial.";
-}}*/
+
 </script>
 </script>

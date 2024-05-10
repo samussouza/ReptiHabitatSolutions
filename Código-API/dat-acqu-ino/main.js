@@ -30,7 +30,7 @@ const serial = async (
             host: 'localhost',            //Na máquina virtual devo pegar o IP da nova máquina.
             user: 'ReptiHabitatSolution', // ReptiHabitatSolution
             password: 'Repti@123', // 
-            database: 'arduino',
+            database: 'ReptiHabitatSolutions',
             port: 3307
         }
     ).promise();
@@ -69,12 +69,25 @@ const serial = async (
         // Insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
 
+            
+            for (let fkSensor = 1; fkSensor <=3; fkSensor++){
+                // altere!
+                // Este insert irá inserir os dados na tabela "leitura"
+                await poolBancoDados.execute( //ALTERAR PARA NOME DA MINHA TABELA
+                'INSERT INTO leituraTemperatura (leituraTemp, fkSensor, dataHora) VALUES (?, ?, NOW())', 
+                [lm35Temperatura, fkSensor] // TROCAR O "?" PELOS VALORES EM AZUL AQUI <<
+            );
+        }
+        
+        for (let fkIdSensor = 1; fkIdSensor <=3; fkIdSensor++){
             // altere!
             // Este insert irá inserir os dados na tabela "leitura"
             await poolBancoDados.execute( //ALTERAR PARA NOME DA MINHA TABELA
-                'INSERT INTO leitura (lm35Temperatura, luminosidade) VALUES (?, ?)', 
-                [lm35Temperatura, luminosidade] // TROCAR O "?" PELOS VALORES EM AZUL AQUI <<
-            );
+            'INSERT INTO leituraLuminosidade (leituraLumi, fkIDSensor, dataHora) VALUES (?, ?, NOW())', 
+            [luminosidade, fkIdSensor] // TROCAR O "?" PELOS VALORES EM AZUL AQUI <<
+        );
+    }
+
             console.log("valores inseridos no banco: ", lm35Temperatura + ", " + luminosidade)
         }
         

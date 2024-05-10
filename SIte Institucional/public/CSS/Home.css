@@ -401,10 +401,11 @@ nav a:hover{
 /*contem os textos das perguntas*/
 .text_pergunta {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     padding: 10px;
     font-size: 15px;
     color: #FFFFFF;
+    
 }
 
 /*comtem o nome da pergunta*/
@@ -412,7 +413,8 @@ nav a:hover{
     text-align: center;
     color: #FFFFFF;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 18px;
+    padding: 5px 6px;
 }
 /*criando a seta*/
 .setaBorda{

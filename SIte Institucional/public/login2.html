@@ -73,13 +73,14 @@
         else {
             if (email.indexOf("@") !== -1 && email.indexOf(".com") !== -1 && email.length > 10) {
 
-            } else {
+            } 
+            else {
                 erroEmail.innerHTML = "Email inválido"
             }
             if (senha.length >= 8) {
 
             } else {
-                erroSenha.innerHTML = "A senha deve conter pelo menos 8 caracter"
+                erroSenha.innerHTML = "A senha deve conter pelo menos 8 caracteres"
             }
             if (senha.indexOf("@") !== -1 || senha.indexOf("#") !== -1 && (senha.indexOf('1') !== 1 ||
                 senha.indexOf('2') !== 1 ||
@@ -97,11 +98,9 @@
             }
 
             setTimeout(function() {
-                window.location.href = "Dashboard.html"
+                window.location.replace('Dashboard.html');
             }, 100)
-            
-            
-           
+        
         }
     }
     /* if (senha.length >= 8) {

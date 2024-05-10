@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador Financeiro</title>
-    <link rel="stylesheet" href="simulador.css">
-    <link rel="shortcut icon" href="../SIte Institucional/public/IMG/Home_fundo/icone.ico" type="image/x-icon">
+    <title>RHS | Simulador Financeiro</title>
+    <link rel="stylesheet" href="../public/CSS/simulador.css">
+    <link rel="shortcut icon" href="../public/IMG/icone.ico" type="image/x-icon">
 </head>
 
 <body>
+    <a href="HomePage.html"><img class="img_seta" src="IMG/Simulador/seta-direita.png" alt="setaReturn"></a>
     <div class="tela_calculadora">
         <div class="container" id="tela_calculadora">
             <div class="frente" id="calculos_inf">
@@ -50,12 +51,10 @@
                 <button onclick="voltarCalculadora()"> Voltar </button>
             </div>
             <div id="img_rep" class="imagem_repteis">
-                <img src="assets/repteis.png" alt="dino" >
+                <img src="../public/IMG/Simulador/repteis.png" alt="dino" >
             </div>
         </div>
     </body>
-<span style=""></span>
-
 </html>
 
 <script>
@@ -120,17 +119,20 @@
 
                 <b>Sem um sistema de monitoramento adequado, você compromete a saúde e segurança do seu réptil, resultando em um gasto anual de cerca de <i style= "color: #ffa700;fon;font-family: sans-serif;font-size: large;"">R$ ${(valorLampadas * qtdLampadas) * qtd_Repteis}</i> em lâmpadas, além de um significativo desperdício desses recursos.</b> <br> <br>
                 
-                Os brasileiros consomem 200 milhões de lâmpadas por ano, mas apenas 6% são descartadas corretamente. A iluminação representa <i style= "color: #ffa700;fon;font-family: sans-serif;font-size: large;">20%</i> do consumo total de energia no Brasil. A presença de luzes UV, UVA e UVB pode elevar a temperatura e, sem monitoramento adequado, essas lâmpadas se desgastam mais rápido, gerando mais resíduos tóxicos. <br> <br>
+                Os brasileiros consomem 200 milhões de lâmpadas por ano, mas apenas 6% são descartadas corretamente. A iluminação representa <b><i style= "color: #ffa700;fon;font-family: sans-serif;font-size: large;">20%</i></b> do consumo total de energia no Brasil. A presença de luzes <b>UV, UVA</b> e <b>UVB</b> pode elevar a temperatura e, sem monitoramento adequado, essas lâmpadas se desgastam mais rápido, gerando mais resíduos tóxicos. <br> <br>
 
                 <b>Com nossos sensores, seria possível observar um aumento de até <i style= "color: #ffa700;fon;font-family: sans-serif;font-size: large;"">30% </i> na longevidade dessas lâmpadas, contribuindo para a preservação do habitat e a saúde dos répteis, além de proporcionar um controle mais eficaz da temperatura ambiente!</b>`
+
             } else if (selecao === "no") {
                 show.style.display = 'block'
+                show.innerHTML = `Sem um sistema de iluminação adequado, você está comprometendo a <b><i style= "color: #ffa700;fon;font-family: sans-serif;font-size: large;"">saúde</i></b> do seu réptil! <br> <br>
 
-                show.innerHTML = `Sem um sistema de iluminação adequado, você está comprometendo a <b>saúde</b> do seu réptil!<br>
-                Por serem animais ectotérmicos, eles dependem do calor do ambiente externo para regular sua temperatura corpórea, diminuindo sua atividade em baixas temperaturas e podendo até levá-los a <b>morte!</b><br>
-                É indicado que você compre lâmpadas de iluminação <b>UVA</b> e <b>UVB</b>, cerca de <b>R$ ${700 * qtd_Repteis}</b> anualmente com seus répteis, porém, sem o monitoramento adequado, essas lâmpadas tendem a desgastar mais facilmente, encurtando sua vida útil e gerando mais lixos tóxicos.<br>
-                Com nossos sensores, seria notório um aumento de <b>até 30%</b> de longevidade dessas lâmpadas, preservando assim o habitat e a saúde de seus répteis, além de um maior controle a respeito da temperatura do ambiente!`
-                
+                <b>Por serem animais ectotérmicos, eles dependem do calor do ambiente externo para regular sua temperatura corpórea, diminuindo sua atividade em baixas temperaturas e podendo até levá-los a <i style= "color: #ffa700;fon;font-family: sans-serif;font-size: large;"">morte!</i></b> <br> <br>
+
+                É indicado que você compre lâmpadas de iluminação <b>UVA</b> e <b>UVB</b>, cerca de <b><i style= "color: #ffa700;fon;font-family: sans-serif;font-size: large;">R$ ${700 * qtd_Repteis}</i></b> anualmente com seus répteis, porém, sem o monitoramento adequado, essas lâmpadas tendem a desgastar mais facilmente, encurtando sua vida útil e gerando mais lixos tóxicos. <br> <br>
+
+                <b>Com nossos sensores, seria notório um aumento de até <i style= "color: #ffa700;fon;font-family: sans-serif;font-size: large;"">30%</i> de longevidade dessas lâmpadas, preservando assim o habitat e a saúde de seus répteis, além de um maior controle a respeito da temperatura do ambiente!</b>
+                `
             }
         }
     }

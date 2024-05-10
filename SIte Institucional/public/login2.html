@@ -1,59 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="CSS/cadastroLogin.css">
 </head>
+
 <body>
-        <a href="HomePage.html"><img class="img_seta" src="IMG/Cadastro/seta-direita.png" alt=""></a>
-        <div id="card_concluido" class="card_concluido" style="display: none;">
-            <span id="concluído"></span>
-        </div>
+    <a href="HomePage.html"><img class="img_seta" src="IMG/Cadastro/seta-direita.png" alt=""></a>
+    <div id="card_concluido" class="card_concluido" style="display: none;">
+        <span id="concluído"></span>
+    </div>
     <div class="div_flex">
-    <div class="container" id="container">
-        <div class="content1  sign-in-container"> 
-            <form class="login">
-                <h2 class="tituloForm1">Login</h2> 
-                <p class="texto"> Acesse com um e-mail existente</p>
-                <div class="socialMedia">
-                    <img src="IMG/Cadastro/social.png" alt="">
-                    <img src="IMG/Cadastro/linkedin.png" alt="">
-                    <img src="IMG/Cadastro/twitter.png" alt="">
+        <div class="container" id="container">
+            <div class="content1  sign-in-container">
+                <form class="login">
+                    <h2 class="tituloForm1">Login</h2>
+                    <p class="texto"> Acesse com um e-mail existente</p>
+                    <div class="socialMedia">
+                        <img src="IMG/Cadastro/social.png" alt="">
+                        <img src="IMG/Cadastro/linkedin.png" alt="">
+                        <img src="IMG/Cadastro/twitter.png" alt="">
+                    </div>
+                    <p class="texto">Ou faça o login com os dados criados aqui</p>
+                    <label class="label-input">
+                        <input type="text" placeholder="E-mail">
+                    </label>
+                    <label class="label-input">
+                        <input type="password" placeholder="Senha">
+                    </label>
+
+                    <a class="esqueciSenha" href="#">Esqueci a senha</a>
+                    <button class="btn btnLogin1">Entrar</button>
+
+                </form>
+            </div>
+
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="content2 contentDir">
+                        <h2 class="tituloInform">Bem vindo, novamente!</h2>
+                        <p class="texto2">Se você ja tem uma conta faça o seu login e aproveite nosso serviço de
+                            qualidade. <br> <br>
+                            Caso <b>não possua</b> uma conta, junte-se a nós clicando no botão abaixo</p>
+                        <a href="cadastro2.html"><button onclick="logar" class="btn2">Cadastrar</button></a>
+                    </div>
                 </div>
-                <p class="texto">Ou faça o login com os dados criados aqui</p>
-                <label class="label-input">
-                    <input type="email" placeholder="E-mail">
-                </label>
-                <label class="label-input">
-                    <input type="password" placeholder="Senha">
-                </label>
-                
-                <a class="esqueciSenha" href="#">Esqueci a senha</a>
-                <button class="btn btnLogin1">Entrar</button>
-         
-            </form>
-        </div> 
-        
-        <div class="overlay-container">
-            <div class="overlay">
-                <div class="content2 contentDir">
-                    <h2 class="tituloInform">Bem vindo, novamente!</h2>
-                    <p class="texto2">Se você ja tem uma conta faça o seu login e aproveite nosso serviço de qualidade. <br> <br>
-                    Caso <b>não possua</b> uma conta, junte-se a nós clicando no botão abaixo</p>
-                    <a href="cadastro2.html"><button onclick="logar" class="btn2">Cadastrar</button></a>
-                </div>
-           </div>
+            </div>
         </div>
     </div>
-</div>
 </body>
 
 </html>
 
 <script>
-   function validarLogin() {
+    function validarLogin() {
         let senha = input_senha.value;
         let email = input_email.value;
         erroEmail.innerHTML = "";
@@ -88,6 +91,18 @@
 
             } else {
                 erroSenha.innerHTML = "Senha deve conter:<br> 8 ou mais caracteres;<br>1 caractere numérico;<br>1 caractere especial."
+                return false;
+            }
+
+            setTimeout(function () {
+                window.location.href = `Dashboard.html`;
+            }, 2500);
+
+            return false;
+            status = true
+
+            if (status == true) {
+                window.location.href = 'Dashboard.html'
             }
         }
     }
@@ -109,4 +124,3 @@ erroSenha.innerHTML =
 }}*/
 </script>
 </script>
-

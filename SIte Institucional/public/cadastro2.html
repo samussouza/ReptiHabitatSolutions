@@ -119,10 +119,18 @@
             }
             if (!senhaValida) {
                 alert("A senha deve conter pelo menos 8 caracteres");
-            } else {    
-             
-            
-            }
+                return false;
+            } 
+            setTimeout(function () {
+                    window.location.href = 'login2.html';
+                }, 2500);
+                
+                status = true
+
+                if (status == true){
+                    window.location.href = 'login2.html'
+                }
+                return false;
         }
     }
 </script>

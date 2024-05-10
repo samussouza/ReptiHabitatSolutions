@@ -128,7 +128,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 flex-direction: column;
-font-size: 20px;
+font-size: 17px;
 width: 500px;
 height: 325px;
 background-color: #e7e5e5;
@@ -136,7 +136,7 @@ border-radius: 10px;
 }
 .section_KPIs{
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
   position: absolute;
   top: 1px;
   margin-top: 60px;
@@ -159,9 +159,7 @@ border-radius: 10px;
   align-items: center;
   justify-content: center;
 }
-/* #KPI2{
-  border: 3px solid red;
-} */
+
 .div_KPI1content{
   display: flex;
   align-items: center;
@@ -199,7 +197,7 @@ border-radius: 10px;
   height: 50px;
   margin-top: 10px;
   font-size: 18px;
-  /* margin-bottom: 15px; */
+
 }
 .spanPorcentagemKPI2{
   position: relative;
@@ -341,5 +339,16 @@ input[type="search"]::-webkit-search-cancel-button:after {
   height: 30px;
   text-decoration: none;
   color: #0f7826;
-  
+  cursor: pointer;
+}
+.KPIhabi{
+  margin-top: 20px;
+  width: 300px;
+  height: 150px;
+  border-radius: 10px;
+  background-color: #e7e5e5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

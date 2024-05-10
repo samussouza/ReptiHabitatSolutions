@@ -13,6 +13,7 @@
     <div class="tela_calculadora">
         <div class="container" id="tela_calculadora">
             <div class="frente" id="calculos_inf">
+                <h1> <span class="titulo">SIMULADOR</span> <br> <br>FINANCEIRO</h1>
                 <label class="question" for="qtd_repteis_input">Quantos répteis você possui?<br>
                     <input type="number" id="qtd_repteis_input">
                 </label>
@@ -28,14 +29,13 @@
                 </label>
                 <br>
                 <div class="option_lampadas" id="lampadas" style="display: none;">
-                    <span>Quais lâmpadas você <br>utiliza no habitat?</span>
-                    <br>
+                    <span style="display: flex; align-items: center; margin-left: 10px;">Quais lâmpadas você utiliza no habitat?</span>
                     <div class="checkselect">
                         <input class="lamp" type="checkbox" id="lampada_uvi">
                         <label for="lampada_uvi">UVI</label>
                         <br>
                         <input class="lamp" type="checkbox" id="lampada_uva">
-                        <label for="lampada_uva"><a href="">UVA</a></label>
+                        <label for="lampada_uva"><span href="">UVA</span></label>
                         <br>
                         <input class="lamp" type="checkbox" id="lampada_comum">
                         <label for="lampada_comum">COMUM</label>
@@ -49,11 +49,12 @@
                 <div class="resposta" id="show"></div>
                 <button onclick="voltarCalculadora()"> Voltar </button>
             </div>
-            <div class="imagem_repteis">
-                <img src="assets/repteis.png" alt="dino">
+            <div id="img_rep" class="imagem_repteis">
+                <img src="assets/repteis.png" alt="dino" >
             </div>
         </div>
     </body>
+<span style=""></span>
 
 </html>
 
@@ -96,6 +97,7 @@
                 error.style.display = 'none'
             }, 2500);
         } else {
+            img_rep.style.display = 'none'
             calculos_inf.style.display = 'none'
             resposta_calculadora.style.display = 'block'
             let cards = document.querySelector('.container');
@@ -114,14 +116,13 @@
                     qtdLampadas += 3
                 }
                 show.style.display = 'block'
-                show.innerHTML = `Com a utilização das luzes atificiais, observou-se que os répteis desenvolveram sensibilidade à luz, manifestando desorientação e desânimo conforme a intensidade luminosa do ambiente.
-            <br>
-            Sem um sistema de monitoramento adequado, você compromete a saúde e segurança do seu réptil, resultando em um gasto anual de cerca de <b>R$ ${(valorLampadas * qtdLampadas) * qtd_Repteis}</b> em lâmpadas, além de um significativo desperdício desses recursos.
-            <br>
-            De acordo com o Estadão, os brasileiros consomem em média 200 milhões de lâmpadas por ano, porém apenas 6% delas são descartadas corretamente. Adicionalmente, a iluminação representa 20% do consumo total de energia no Brasil. 
-            <br>
-            A presença de luzes UV, UVA e UVB pode elevar a temperatura nos ambientes em que são utilizadas. Sem um monitoramento adequado, essas lâmpadas tendem a se desgastar mais rapidamente, reduzindo sua vida útil e gerando mais resíduos tóxicos. Com nossos sensores, seria possível observar um aumento de até 30% na longevidade dessas lâmpadas, contribuindo para a preservação do habitat e a saúde dos répteis, além de proporcionar um controle mais eficaz da temperatura ambiente!
-            `
+                show.innerHTML = `Com o uso de luzes artificiais, os répteis demonstram sensibilidade à luz, podendo manifestar desorientação e desânimo conforme a intensidade luminosa do ambiente. <br> <br>
+
+                <b>Sem um sistema de monitoramento adequado, você compromete a saúde e segurança do seu réptil, resultando em um gasto anual de cerca de <i style= "color: #ffa700;fon;font-family: sans-serif;font-size: large;"">R$ ${(valorLampadas * qtdLampadas) * qtd_Repteis}</i> em lâmpadas, além de um significativo desperdício desses recursos.</b> <br> <br>
+                
+                Os brasileiros consomem 200 milhões de lâmpadas por ano, mas apenas 6% são descartadas corretamente. A iluminação representa <i style= "color: #ffa700;fon;font-family: sans-serif;font-size: large;">20%</i> do consumo total de energia no Brasil. A presença de luzes UV, UVA e UVB pode elevar a temperatura e, sem monitoramento adequado, essas lâmpadas se desgastam mais rápido, gerando mais resíduos tóxicos. <br> <br>
+
+                <b>Com nossos sensores, seria possível observar um aumento de até <i style= "color: #ffa700;fon;font-family: sans-serif;font-size: large;"">30% </i> na longevidade dessas lâmpadas, contribuindo para a preservação do habitat e a saúde dos répteis, além de proporcionar um controle mais eficaz da temperatura ambiente!</b>`
             } else if (selecao === "no") {
                 show.style.display = 'block'
 
@@ -129,6 +130,7 @@
                 Por serem animais ectotérmicos, eles dependem do calor do ambiente externo para regular sua temperatura corpórea, diminuindo sua atividade em baixas temperaturas e podendo até levá-los a <b>morte!</b><br>
                 É indicado que você compre lâmpadas de iluminação <b>UVA</b> e <b>UVB</b>, cerca de <b>R$ ${700 * qtd_Repteis}</b> anualmente com seus répteis, porém, sem o monitoramento adequado, essas lâmpadas tendem a desgastar mais facilmente, encurtando sua vida útil e gerando mais lixos tóxicos.<br>
                 Com nossos sensores, seria notório um aumento de <b>até 30%</b> de longevidade dessas lâmpadas, preservando assim o habitat e a saúde de seus répteis, além de um maior controle a respeito da temperatura do ambiente!`
+                
             }
         }
     }
@@ -137,6 +139,7 @@
         qtd_repteis_input.value = '';
         sistema_iluminacao_select.value = 'vazio';
         lampadas.style.display = 'none';
+        img_rep.style.display = 'block'
         lampada_uvi.checked = false;
         lampada_uva.checked = false;
         lampada_comum.checked = false;

@@ -48,7 +48,7 @@
       <div class="separacao"></div>
 
       <div class="btn-navbar">
-        <span>
+        <span onclick="voltarDash()">
           <a href="">
             <img src="IMG/Dashboard/painel-de-controle-verde.png" alt="" />
             Dashboards
@@ -80,19 +80,38 @@
 
     <div class="dash">
       <div class="tituloDash">
-        <h1>Dashboard geral dos Habitats</h1>
+        <h1 id="tituloDash"> Dashboard Geral </h1>
+        <h1 id="tituloAlt"></h1>
       </div>
-      <div class="div_graficos">
+      <div id="graftemp" class="div_graficos">
         <div class="div_grafico">
-          <span>Análise de Temperatura(??º - ??º) nos Habitats</span>
+          <span>Análise de Temperatura(22º a 29ºC) nos Habitats</span>
           <canvas id="luminosidade"></canvas>
         </div>
-        <div class="div_grafico">
-          <span>Média de Luminosidade nos Habitats 120 - 900</span>
+        <div id="graflumi" class="div_grafico">
+          <span>Média de Luminosidade(120 a 900) nos Habitats</span>
           <canvas id="lm35Temperatura"></canvas>
         </div>
       </div>
+      <div id="temphabi" class="div_graficos" style="display: none;">
+        <div class="div_grafico">
+          <span>Variação da Luminosidade a cada 6 horas</span>
+          <canvas id="luminosidadeHabi"></canvas>
+        </div>
+        <div id="lumihabi" class="div_grafico" style="display: none;">
+          <span>Variação da Temperatura a cada 6 horas</span>
+          <canvas id="lm35TemperaturaHabi"></canvas>
+        </div>
+      </div>
       <section class="section_KPIs">
+        <div id="KPI1habi" class="KPIhabi" style="display: none;">
+            <span class="spanTitulo2">Habitats em alerta</span>
+            <div class="div_KPI2content">
+                <span class="spanPorcentagemKPI2" style="font-size: 25px; margin-top: 20px;">Habitat 5 e Habitat 18</span>
+                <div class="divTextoKPI2">
+                </div>
+            </div>
+        </div>
         <div class="div_KPIs">
           <div class="div_KPI" id="KPI1">
             <span class="spanTitulo1"> Quantidade de habitats em alerta</span>
@@ -101,7 +120,15 @@
             <div class="divTextoKPI1">02/20</div>
             </div>
           </div>
-          <div class="div_KPI" id="KPI2">
+          <div id="KPI2habi" class="KPIhabi" style="display: none;">
+            <span class="spanTitulo2" style="height: 100px" >Tempetatura e Luminosidade atual</span>
+            <div class="div_KPI2content">
+                <span class="spanPorcentagemKPI2">18ºC e 702 Lux </span>
+                <div class="divTextoKPI2">
+                </div>
+            </div>
+        </div>
+          <div class="div_KPI" id="KPI2" >
             <span class="spanTitulo2"> Ultimo alerta gerado</span>
             <div class="div_KPI2content">
                 <span class="spanPorcentagemKPI2">Habitat 18</span>
@@ -110,18 +137,19 @@
                 09/05/2024 às 15:31
             </div>
         </div>
-          <div class="div_KPI" id="KPI3"><span class="spanTitulo3">Média da Temperatur</span>
+          <div class="div_KPI" id="KPI3"><span class="spanTitulo3">Média da Temperatura</span>
             <div class="div_KPI3content">
                 <div class="divTextoKPI3">
                     <img src="./IMG/Dashboard/temperatura-alta.png" alt="">
-                    <span>21.5%</span>
+                    <span id="span_media_temp">21.5%</span>
                 </div>
             </div></div>
-          <div class="div_KPI" id="KPI4"><span class="spanTitulo4">Média da Luminosidade</span>
+          <div class="div_KPI" id="KPI4">
+            <span class="spanTitulo4">Média da Luminosidade</span>
             <div class="div_KPI4content">
                 <div class="divTextoKPI4">
                     <img src="./IMG/Dashboard/temperaturas.png" alt="">
-                    <span>777 Lux</span>
+                    <span id="span_media_lumi">777 Lux</span>
                 </div>
             </div></div>
         </div>
@@ -147,7 +175,7 @@
             <li id="li_habitat" class="li_habitat" id="habitat2"><a>Habitat 2</a></li>
             <li id="li_habitat" class="li_habitat" id="habitat3"><a>Habitat 3</a></li>
             <li id="li_habitat" class="li_habitat" id="habitat4"><a>Habitat 4</a></li>
-            <li id="li_habitat" class="li_habitat" id="habitat5" style="color: red;"><a>Habitat 5</a></li>
+            <li id="li_habitat" class="li_habitat" id="habitat5" style="color: red;" onclick="mudarDash()"><a>Habitat 5</a></li>
             <li id="li_habitat" class="li_habitat" id="habitat6"><a>Habitat 6</a></li>
             <li id="li_habitat" class="li_habitat" id="habitat7"><a>Habitat 7</a></li>
             <li id="li_habitat" class="li_habitat" id="habitat8"><a>Habitat 8</a></li>
@@ -184,7 +212,7 @@
         datasets: [
           {
             label: "Luminosidade",
-            data: [7, 8, 5],
+            data: [1, 18, 1],
             borderwidht: 1,
             backgroundColor: ["#75b9d7", "#ffd166", "#ff4d4d"],
             borderColor: ["#75b9d7", "#ffd166", "#ff4d4d"]
@@ -292,6 +320,118 @@
 
     // function limpar_input() {
     //     document.getElementById("input_search").value = '' ;
+    // }
+
+    function mudarDash() {
+        tituloAlt.innerHTML = "Habitat 5"
+        tituloDash.style.display = 'none'
+        KPI1.style.display = 'none'
+        KPI2.style.display = 'none'
+        graftemp.style.display = 'none'
+        graflumi.style.display = 'none'
+        temphabi.style.display = 'flex'
+        lumihabi.style.display = 'flex'
+        KPI1habi.style.display = 'flex'
+        KPI2habi.style.display = 'flex'
+
+        const contextoLm35Temperatura = document
+      .getElementById("lm35TemperaturaHabi")
+      .getContext("2d");
+
+    var lm35Temperatura = new Chart(contextoLm35Temperatura, {
+      type: "line",
+      data: {
+        labels: ['13H', '14H', '15H', '16H', '17H', '18H'],
+                        datasets: [{
+                        label: 'Temperatura',
+                        data: [22, 29, 21, 24, 14, 23, 31],
+                        borderwidht: 1,
+                        fill: false,
+                        tension: 0.1,
+                        pointStyle: 'circle',
+                        backgroundColor: '#ffd166',
+                        borderColor: '#ffd166'
+          },
+        ],
+      },
+      options: {
+        scales: {
+          xAxes: [
+            {
+              distribution: "series",
+              ticks: {
+                beginAtZero: true,
+              },
+            },
+          ],
+          yAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: "Temperatura",
+              },
+              ticks: {
+                beginAtZero: true,
+              },
+            },
+          ],
+        },
+        animation: {
+          duration: 0,
+        },
+      },
+    });
+
+    const contextoLuminosidade = document
+      .getElementById("luminosidadeHabi")
+      .getContext("2d");
+    var luminosidade = new Chart(contextoLuminosidade, {
+      type: "bar",
+      data: {
+        labels: ["13H", "14H", "15H", "16H", "17H", "18H"],
+        datasets: [
+          {
+            label: "Luminosidade",
+            data: [702, 754, 810, 520, 793, 831],
+            borderwidht: 1,
+            backgroundColor: "#75b9d7"
+          },
+        ],
+      },
+      options: {
+        scales: {
+          xAxes: [
+            {
+              distribution: "series",
+              ticks: {
+                beginAtZero: true,
+              },
+            },
+          ],
+          yAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: "Luminosidade",
+              },
+              ticks: {
+                beginAtZero: true,
+              },
+            },
+          ],
+        },
+        animation: {
+          duration: 0,
+        },
+      },
+    });
+    }
+
+    // function voltarDash() {
+    //     KPI1.style.display = 'block'
+    //     KPI2.style.display = 'block'
+    //     KPI1habi.style.display = 'none'
+    //     KPI2habi.style.display = 'none'   
     // }
   </script>
 </html>

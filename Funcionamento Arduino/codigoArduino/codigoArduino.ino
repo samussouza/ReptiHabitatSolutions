@@ -16,5 +16,5 @@ sensorValue = analogRead(sensorPin);
 Serial.print(temperatura);
 Serial.print(";");
 Serial.println(sensorValue);
-delay(2000);
+delay(10000);
 }

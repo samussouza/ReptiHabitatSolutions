@@ -66,9 +66,11 @@
 
         if (email == "") {
             erroEmail.innerHTML = "Campo vazio";
+            return false;
         }
         if (senha == "") {
             erroSenha.innerHTML = "Campo vazio";
+            return false;
         }
         else {
             if (email.indexOf("@") !== -1 && email.indexOf(".com") !== -1 && email.length > 10) {
@@ -76,11 +78,13 @@
             } 
             else {
                 erroEmail.innerHTML = "Email inválido"
+                return false;
             }
             if (senha.length >= 8) {
 
             } else {
                 erroSenha.innerHTML = "A senha deve conter pelo menos 8 caracteres"
+                return false;
             }
             if (senha.indexOf("@") !== -1 || senha.indexOf("#") !== -1 && (senha.indexOf('1') !== 1 ||
                 senha.indexOf('2') !== 1 ||

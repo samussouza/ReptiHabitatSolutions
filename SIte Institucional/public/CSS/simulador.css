@@ -80,7 +80,7 @@ body::after {
     position: relative;
     transform-style: preserve-3d;
     transition: transform 1s ease;
-    bottom: 105px;
+    bottom: 170px;
     left: 6px;
 }
 
@@ -233,4 +233,11 @@ button:hover {
 
 .verso button {
     margin-bottom: 25px;
+}
+
+.mensagem_erro {
+    font-size: 12px;
+    width: 60%;
+    text-align: center;
+    padding-bottom: 15px;
 }

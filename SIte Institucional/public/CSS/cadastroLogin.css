@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;600&display=swap');
 
 * {
     box-sizing: border-box;
+    text-decoration: none;
 }
 
 body {
@@ -89,11 +89,10 @@ h2 {
 }
 
 /* estilizando esqueci a senha */
-a {
+.esqueciSenha {
     color: #036753;
-    font-size: 18x;
-    text-decoration: none;
-    margin: 15px 0;
+    font-size: smaller;
+    margin: 5px;
 }
 
 .container {
@@ -146,7 +145,7 @@ a {
     color: white;
 }
 
-/* estilizando label e input */
+/* estilizando div e input */
 
 form input {
     height: 40px;
@@ -161,32 +160,42 @@ input {
     margin-left: 5px;
     /* essa margin é aplicada dentro da input, colocando um espaço na frente do texto */
 }
-
-.label-input {
-    background-color: #ecf0f1;
+.inputs{
     display: flex;
-    align-items: center;
-    margin: 8px;
+    flex-direction: column;
+    gap: 5px;
+}
+.div-input {
+    background-color: #ecf0f1;
     border-radius: 10px;
     padding: 2px;
 }
+.mensagensErros{
+    bottom: 2px;
+    position: relative;
+    font-size: 10px;
+    color: red;
+}
+
 
 /* estilizando btn 1 e 2 */
-button {
-    border-radius: 18px;
-    border: 1px solid #036753;
+.btn1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55%;
+    height: 30px;
+    border-radius: 10px;
+    margin-top: 10px;
     background: #036753;
     font-weight: bold;
-    padding: 13px 42px;
     letter-spacing: 1PX;
-    text-transform: uppercase;
     transition: 580ms ease-in;
     color: white;
     cursor: pointer;
-    margin-top: 5px;
 }
 
-button:hover {
+.btn1:hover {
     transition: all 580ms ease-in-out;
     box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.5);
     background: #0c8e39;
@@ -195,9 +204,16 @@ button:hover {
 }
 
 .btn2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55%;
+    height: 30px;
+    border-radius: 10px;
     background: white;
     color: #036753;
     border: #036753;
+    font-weight: bold;
     transition: all 580ms ease-in-out;
 }
 

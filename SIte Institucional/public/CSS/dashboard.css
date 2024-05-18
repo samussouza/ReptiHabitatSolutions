@@ -5,6 +5,7 @@
   font-family: 'Poppins';
   margin: 0;
   overflow: hidden;
+  text-decoration: none;
 }
 
 .menu{
@@ -37,19 +38,23 @@ margin-top: 9px;
   font-size: small;
   font-weight: 100;
 }
-
-.btn-navbar a{
+.flexNavBar{
   display: flex;
-  margin-left: 35px;
-  margin-bottom: 7px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+
+}
+.outrasPaginas{
+  width: 200px;
   text-decoration: none;
   font-weight:520 ;
   font-size: 16px;
   color: #646464;
-  
+  cursor: pointer;
 }
-
-.btn-navbar a:hover{
+.outrasPaginas:hover{
   color: #3a3838;
   font-weight:530 ;
   transition: all 0.3s;
@@ -70,24 +75,22 @@ margin-top: 9px;
 
 }
 
-.btn-logout{
-  background-color: #0f7826;
-  margin: 20px;
-  margin-left: 85px;
-  margin-right: 85px;
-  padding: 7px;
-  border-radius: 15px;
-}
 
-.btn-logout a{
+.btn-logout{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0f7826;
+  border-radius: 15px;
+  width: 80px;
+  height: 30px;
   outline: none;
   text-decoration: none;
-  color: #cfcbcb;
+  color: #ffffff;
   font-size: 14px;
-  margin-left: 15px;
   font-weight: 500;
 }
-.btn-logout:hover{
+.btn-logout a:hover{
  background-color: #168f30;
  transition: all 0.5s;
 }

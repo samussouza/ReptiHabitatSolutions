@@ -1,126 +1,127 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="CSS/cadastroLogin.css">
-</head>
+    <link rel="stylesheet" href="CSS/cadastroLogin.css" />
+  </head>
 
-<body>
-    <a href="HomePage.html"><img class="img_seta" src="IMG/Cadastro/seta-direita.png" alt=""></a>
-    <div id="card_concluido" class="card_concluido" style="display: none;">
-        <span id="concluído"></span>
+  <body>
+    <a href="HomePage.html"
+      ><img class="img_seta" src="IMG/Cadastro/seta-direita.png" alt=""
+    /></a>
+    <div id="card_concluido" class="card_concluido" style="display: none">
+      <span id="concluído"></span>
     </div>
     <div class="div_flex">
-        <div class="container" id="container">
-            <div class="content1  sign-in-container">
-                <form class="login">
-                    <h2 class="tituloForm1">Login</h2>
-                    <p class="texto"> Acesse com um e-mail existente</p>
-                    <div class="socialMedia">
-                        <img src="IMG/Cadastro/social.png" alt="">
-                        <img src="IMG/Cadastro/linkedin.png" alt="">
-                        <img src="IMG/Cadastro/twitter.png" alt="">
-                    </div>
-                    <p class="texto">Ou faça o login com os dados criados aqui</p>
-                    <label class="label-input">
-                        <input type="text" placeholder="E-mail" id="input_email">
-                    </label>
-                    <div id="erroEmail"></div>
-                    <label class="label-input">
-                        <input type="password" placeholder="Senha" id="input_senha">
-                    </label>
-                    <div id="erroSenha"></div>
-                    <a class="esqueciSenha" href="#">Esqueci a senha</a>
-                    <button onclick="validarLogin()">Entrar</button>
-
-                </form>
+      <div class="container" id="container">
+        <div class="content1 sign-in-container">
+          <form class="login">
+            <h2 class="tituloForm1">Login</h2>
+            <p class="texto">Acesse com um e-mail existente</p>
+            <div class="socialMedia">
+              <img src="IMG/Cadastro/social.png" alt="" />
+              <img src="IMG/Cadastro/linkedin.png" alt="" />
+              <img src="IMG/Cadastro/twitter.png" alt="" />
             </div>
-
-            <div class="overlay-container">
-                <div class="overlay">
-                    <div class="content2 contentDir">
-                        <h2 class="tituloInform">Bem vindo, novamente!</h2>
-                        <p class="texto2">Se você ja tem uma conta faça o seu login e aproveite nosso serviço de
-                            qualidade. <br> <br>
-                            Caso <b>não possua</b> uma conta, junte-se a nós clicando no botão abaixo</p>
-                        <a href="cadastro2.html"><button onclick="logar" class="btn2">Cadastrar</button></a>
-                    </div>
-                </div>
+            <p class="texto">Ou faça o login com os dados criados aqui</p>
+            <div class="inputs">
+            <div class="div-input">
+              <input type="text" placeholder="E-mail" id="input_email" /> 
             </div>
+            <div id="mensagemErroEmail" class="mensagensErros"></div>
+            
+            <div class="div-input">
+              <input
+                type="password"
+                placeholder="Senha"
+                id="input_senha"
+              />
+              <br />
+            </div>
+            <div id="mensagemErroSenha" class="mensagensErros"></div> 
         </div>
-    </div>
-</body>
+            <a class="btn1" onclick="validarLogin()">LOGIN</a>
+            <a class="esqueciSenha" href="#">Esqueci a senha</a>
+          </form>
+        </div>
 
+        <div class="overlay-container">
+          <div class="overlay">
+            <div class="content2 contentDir">
+              <h2 class="tituloInform">Bem vindo, novamente!</h2>
+              <p class="texto2">
+                Se você ja tem uma conta faça o seu login e aproveite nosso
+                serviço de qualidade. <br />
+                <br />
+                Caso <b>não possua</b> uma conta, junte-se a nós clicando no
+                botão abaixo
+              </p>
+              <a href="cadastro2.html" class="btn2"
+                >Cadastrar</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
 
 <script>
-    function validarLogin() {
+
+      function validarLogin(){
         let senha = input_senha.value;
         let email = input_email.value;
-        erroEmail.innerHTML = "";
-        erroSenha.innerHTML = "";
+        let emailValido = false
+      mensagemErroEmail.innerHTML = "";
+        mensagemErroSenha.innerHTML = "";
+    
+          if (email == "") {
+              mensagemErroEmail.innerHTML = "Campo vazio";
+          }
+          if (senha == "") {
+              mensagemErroSenha.innerHTML = "Campo vazio";
+          }
+          else {
+              if (email.indexOf("@") !== -1 && email.indexOf(".com") !== -1 && email.length > 10) {
+                emailValido = true;
+              }
+              else {
+                  mensagemErroEmail.innerHTML = "Email inválido"
+              }
+          
+  }     if(emailValido){
+         const caracterEspecial = [`!`, `@`, "#", "$", "%", "&", "*"];
+         const numeros = /[0-9]/;
+         const letrasMinusculas = /[a-z]/;
+         const letrasMaiuscula = /[A-z]/;
+         const tamanhoSenha = senha.length >= 8;
 
-        if (email == "") {
-            erroEmail.innerHTML = "Campo vazio";
-            return false;
+         let temLetraMinuscula = false;
+         let temLetraMaiuscula = false;
+         let temNumero = false;
+         let temCaracteres = false;
+         
+
+        if(tamanhoSenha){
+      for (let i = 0; i < senha.length; i++) {
+         var indexof = senha[i];
+            if(letrasMinusculas.test(indexof)){temLetraMinuscula = true;}
+            if(letrasMaiuscula.test(indexof)){temLetraMaiuscula = true;}
+            if(numeros.test(indexof)){temNumero = true}
+            if(caracterEspecial.includes(indexof)){temCaracteres = true;}
         }
-        if (senha == "") {
-            erroSenha.innerHTML = "Campo vazio";
-            return false;
-        }
-        else {
-            if (email.indexOf("@") !== -1 && email.indexOf(".com") !== -1 && email.length > 10) {
-
-            } 
-            else {
-                erroEmail.innerHTML = "Email inválido"
-                return false;
-            }
-            if (senha.length >= 8) {
-
-            } else {
-                erroSenha.innerHTML = "A senha deve conter pelo menos 8 caracteres"
-                return false;
-            }
-            if (senha.indexOf("@") !== -1 || senha.indexOf("#") !== -1 && (senha.indexOf('1') !== 1 ||
-                senha.indexOf('2') !== 1 ||
-                senha.indexOf('3') !== 1 ||
-                senha.indexOf('4') !== 1 ||
-                senha.indexOf('5') !== 1 ||
-                senha.indexOf('6') !== 1 ||
-                senha.indexOf('7') !== 1 ||
-                senha.indexOf('8') !== 1 ||
-                senha.indexOf('9') !== 1)) {
-
-            } else {
-                erroSenha.innerHTML = "Senha deve conter:<br> 8 ou mais caracteres;<br>1 caractere numérico;<br>1 caractere especial."
-                return false;
-            }
-
+        if(temNumero && temLetraMinuscula && temLetraMaiuscula && temCaracteres){
             setTimeout(function() {
-                window.location.replace('Dashboard.html');
-            }, 100)
-        
-        }
-    }
-    /* if (senha.length >= 8) {
-let caracter_especial = [`!`, `@`, "#", "$", "%", "&", "*"];
-for (let numero = 0; numero <= 9; numero++) {
-for (let i = 0; i < senha.length; i++) {
-if (
-caracter_especial[i] = senha.indexOf[i] &&
-senha.indexOf(numero) !== -1
-) {
-}        
- 
- 
+            window.location.replace('Dashboard.html');
+        }, 1000);
+            } 
+  }}else {
+                mensagemErroSenha.innerHTML =
+             "Senha inválida";
+            }
+
 }
-}} else {
-erroSenha.innerHTML =
-"Senha deve conter:<br> 8 ou mais caracteres;<br>1 caractere numérico;<br>1 caractere especial.";
-}}*/
 </script>

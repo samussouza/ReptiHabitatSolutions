@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RHS | Entre agora</title>
+    <link rel="stylesheet" href="CSS/cadastroLogin.css" />
+  </head>
+
+  <body>
+    <a href="HomePage.html"
+      ><img class="img_seta" src="IMG/Cadastro/seta-direita.png" alt=""
+    /></a>
+    <div id="card_concluido" class="card_concluido" style="display: none">
+      <span id="concluído"></span>
+    </div>
+    <div class="div_flex">
+      <div class="container" id="container">
+        <div class="content1 sign-in-container">
+          <form class="login">
+            <h2 class="tituloForm1">Login</h2>
+            <p class="texto">Acesse com um e-mail existente</p>
+            <div class="socialMedia">
+              <img src="IMG/Cadastro/social.png" alt="" />
+              <img src="IMG/Cadastro/linkedin.png" alt="" />
+              <img src="IMG/Cadastro/twitter.png" alt="" />
+            </div>
+            <p class="texto">Ou faça o login com os dados criados aqui</p>
+            <div class="inputs">
+              <div class="div-input">
+                <input type="text" placeholder="E-mail" id="input_email" />
+              </div>
+              <div id="mensagemErroEmail" class="mensagensErros"></div>
+
+              <div class="div-input">
+                <input type="password" placeholder="Senha" id="input_senha" />
+                <br />
+              </div>
+              <div id="mensagemErroSenha" class="mensagensErros"></div>
+            </div>
+            <a class="btn1" onclick="validarLogin()">LOGIN</a>
+            <a class="esqueciSenha" href="#">Esqueci a senha</a>
+          </form>
+        </div>
+
+        <div class="content1 sign-up-container">
+          <form class="login">
+            <h2 class="tituloForm1">Crie sua Conta</h2>
+            <p class="texto">Ou crie use seu e-mail para se cadastrar</p>
+            <div class="socialMedia">
+              <img src="IMG/Cadastro/social.png" alt="" />
+              <img src="IMG/Cadastro/linkedin.png" alt="" />
+              <img src="IMG/Cadastro/twitter.png" alt="" />
+            </div>
+
+            <div class="inputs">
+              <div class="div-input">
+                <input type="text" placeholder="Nome" id="input_nomeCadastro" />
+              </div>
+              <div id="mensagemErroNomeCadastro" class="mensagensErros"></div>
+
+              <div class="div-input">
+                <input
+                  type="text"
+                  placeholder="E-mail"
+                  id="input_emailCadastro"
+                />
+              </div>
+              <div id="mensagemErroEmailCadastro" class="mensagensErros"></div>
+
+              <div class="div-input">
+                <input
+                  type="password"
+                  placeholder="Senha"
+                  id="input_senhaCadastro"
+                />
+              </div>
+              <div id="mensagemErroSenhaCadastro" class="mensagensErros"></div>
+            </div>
+
+            <a onclick="validarCadastro()" class="btn1"> Cadastrar </a>
+            <a class="esqueciSenha" href="#">Esqueci a senha</a>
+
+            <div id="mensagemGeral" style="padding: 5px 10px"></div>
+          </form>
+        </div>
+
+        <div class="overlay-container">
+          <div class="overlay">
+            <div class="content2 contentDir">
+              <h2 class="tituloInform">Olá, faça parte da RHS!</h2>
+              <p class="texto2">
+                Cadastre-se com seu e-mail para se juntar a nós! <br /><br />
+                Caso <b>possui </b> uma conta, clique no botão abaixo para fazer
+                seu login.
+              </p>
+              <a class="btn2" id="irCadastro" onclick="mudarPagina()">
+                CADASTRAR</a
+              >
+            </div>
+
+            <div class="content2 contentEsq">
+              <h2 class="tituloInform">Bem vindo, novamente!</h2>
+              <p class="texto2">
+                Se você ja tem uma conta faça o seu login e aproveite nosso
+                serviço de qualidade. <br />
+                <br />
+                Caso <b>não possua</b> uma conta, junte-se a nós clicando no
+                botão abaixo
+              </p>
+              <a class="btn2" id="irLogin" onclick="mudarPagina()">LOGIN</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  function mudarPagina() {
+    const signUpButton = document.getElementById("irCadastro");
+    const signInButton = document.getElementById("irLogin");
+    const container = document.getElementById("container");
+
+    signUpButton.addEventListener("click", () => {
+      container.classList.add("right-panel-active");
+    
+    });
+
+    signInButton.addEventListener("click", () => {
+      container.classList.remove("right-panel-active");
+    });
+  }
+
+  function validarLogin() {
+    let senha = input_senha.value;
+    let email = input_email.value;
+    let emailValido = false;
+
+    mensagemErroEmail.innerHTML = "";
+    mensagemErroSenha.innerHTML = "";
+
+    if (email == "") {
+      mensagemErroEmail.innerHTML = "Campo vazio";
+    }
+    if (senha == "") {
+      mensagemErroSenha.innerHTML = "Campo vazio";
+    } else {
+      if (
+        email.indexOf("@") !== -1 &&
+        email.indexOf(".com") !== -1 &&
+        email.length > 10
+      ) {
+        emailValido = true;
+      } else {
+        mensagemErroEmail.innerHTML = "Email inválido";
+      }
+    }
+    if (emailValido) {
+      const caracterEspecial = [`!`, `@`, "#", "$", "%", "&", "*"];
+      const numeros = /[0-9]/;
+      const letraLowerUpper = /[a-z]/;
+
+      const tamanhoSenha = senha.length >= 8;
+
+      let temLetraLowerUpper = false;
+      let temNumero = false;
+      let temCaracteres = false;
+
+      if (tamanhoSenha) {
+        for (let i = 0; i < senha.length; i++) {
+          var indexof = senha[i];
+          if (letraLowerUpper.test(indexof)) {
+            temLetraLowerUpper = true;
+          }
+          if (numeros.test(indexof)) {
+            temNumero = true;
+          }
+          if (caracterEspecial.includes(indexof)) {
+            temCaracteres = true;
+          }
+        }
+        if (temNumero && temLetraLowerUpper && temCaracteres) {
+          setTimeout(function () {
+            window.location.replace("Dashboard.html");
+          }, 1000);
+        } else {
+          mensagemErroSenhaLogin.innerHTML = "Senha inválida";
+        }
+      } else {
+        mensagemErroSenhaLogin.innerHTML = "Senha inválida";
+      }
+    }
+  }
+
+  function validarCadastro(){
+    let senha = input_senhaCadastro.value;
+    let email = input_emailCadastro.value;
+    let nome = input_nomeCadastro.value;
+    let emailValido = false;
+    let nomeValido = false;
+
+    mensagemErroNomeCadastro.innerHTML = "";
+    mensagemErroEmailCadastro.innerHTML = "";
+    mensagemErroSenhaCadastro.innerHTML = "";
+
+      if (nome == '' || nome.length <= 3)
+      { mensagemErroNomeCadastro.innerHTML = "Nome inválido";} else {nomeValido = true;}
+      if (senha == "") {
+          mensagemErroSenhaCadastro.innerHTML = "Email inválido";
+      }
+          if (email.indexOf("@") >= 0 && email.indexOf(".com") >= 0 && email.length > 10) {
+            emailValido = true;
+          }
+          else {
+              mensagemErroEmailCadastro.innerHTML = "Email inválido"
+          }
+      
+     if(emailValido && nomeValido){
+        const caracterEspecial = [`!`, `@`, "#", "$", "%", "&", "*"];
+     const numeros = /[0-9]/;
+     const letraLowerUpper = /[a-z]/;
+     
+     const tamanhoSenha = senha.length >= 8;
+
+     let temLetraLowerUpper= false;
+     let temNumero = false;
+     let temCaracteres = false;
+     
+
+    if(tamanhoSenha){
+  for (let i = 0; i < senha.length; i++) {
+     var indexof = senha[i];
+        if(letraLowerUpper.test(indexof)){temLetraLowerUpper = true;}
+        if(numeros.test(indexof)){temNumero = true}
+        if(caracterEspecial.includes(indexof)){temCaracteres = true;}
+    }
+    if(temNumero && temLetraLowerUpper && temCaracteres){
+        setTimeout(function() {
+            container.classList.add("right-panel-active");
+            container.classList.remove("right-panel-active");
+    }, 500);
+        } 
+        else {
+            mensagemErroSenhaCadastro.innerHTML =
+         "Senha inválida";
+        } }  
+ else {
+            mensagemErroSenhaCadastro.innerHTML =
+         "Senha inválida";
+        }
+    }}
+</script>

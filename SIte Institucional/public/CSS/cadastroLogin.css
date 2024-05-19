@@ -215,6 +215,7 @@ input {
     border: #036753;
     font-weight: bold;
     transition: all 580ms ease-in-out;
+    cursor: pointer;
 }
 
 .btn2:hover {

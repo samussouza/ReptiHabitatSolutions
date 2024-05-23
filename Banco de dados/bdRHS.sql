@@ -1,6 +1,12 @@
 CREATE DATABASE ReptiHabitatSolutions;
 USE ReptiHabitatSolutions;
 
+-- Criação da tabela "empresa";
+CREATE TABLE empresa (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR(45),
+	cnpj CHAR(14)
+);
  
 -- Criação da tabela "usuário":
 
@@ -10,7 +16,9 @@ CREATE TABLE usuario (
     cpf CHAR(11),
     email VARCHAR(100) UNIQUE,
     senha VARCHAR(50),
-    PRIMARY KEY (idUsuario)
+    fkEmpresa int,
+    PRIMARY KEY (idUsuario),
+    CONSTRAINT fkEmpresa FOREIGN KEY (fkEmpresa) REFERENCES empresa (id)
 );
 
 -- Criação da tabela "endereco":
@@ -24,8 +32,10 @@ CREATE TABLE endereco (
     cidade VARCHAR(45) NOT NULL,
     contatoCelular CHAR(12) NOT NULL,
     fkUsuario INT,
+    fkIdEmpresa int,
     PRIMARY KEY (idEndereco),
-    CONSTRAINT fk_Usuario FOREIGN KEY (fkUsuario) REFERENCES usuario (idUsuario)
+    CONSTRAINT fk_Usuario FOREIGN KEY (fkUsuario) REFERENCES usuario (idUsuario),
+	CONSTRAINT fkIdEmpresa FOREIGN KEY (fkIdEmpresa) REFERENCES empresa (id)
 );
 
 
@@ -42,15 +52,24 @@ CREATE TABLE habitatAnimal (
     CONSTRAINT fk_Endereco FOREIGN KEY (fkEndereco) REFERENCES endereco (idEndereco)
 );
 
--- Criação da tabela 'sensor":
+-- Criação da tabela 'sensorlm35":
 
-CREATE TABLE sensor(
+CREATE TABLE sensorLM35(
 idSensor INT,
 tipo CHAR(4) NOT NULL,
 fkHabitat INT,
 PRIMARY KEY(idSensor),
-CONSTRAINT fk_Habitat FOREIGN KEY (fkHabitat) REFERENCES habitatAnimal (idHabitat),
-CONSTRAINT chk_tipo CHECK (tipo IN ('TEMP', 'LUMI'))
+CONSTRAINT fkHabitat FOREIGN KEY (fkHabitat) REFERENCES habitatAnimal (idHabitat),
+CONSTRAINT chk_tipo CHECK (tipo IN ('TEMP'))
+);
+-- Criação da tabela 'sensorldr":
+CREATE TABLE sensorLDR(
+idSensor INT,
+tipo CHAR(4) NOT NULL,
+fkIdHabitat INT,
+PRIMARY KEY(idSensor),
+CONSTRAINT fkIdHabitat FOREIGN KEY (fkIdHabitat) REFERENCES habitatAnimal (idHabitat),
+CONSTRAINT chk_tipo CHECK (tipo IN ('LUMI'))
 );
 
 -- Criação da tabela de "temperatura":
@@ -59,9 +78,9 @@ CREATE TABLE leituraTemperatura (
     idTemperatura INT AUTO_INCREMENT,
     leituraTemp DECIMAL(4, 2),
     dataHora DATETIME,
-    fkSensor INT,
-    PRIMARY KEY (idTemperatura, fkSensor),
-    CONSTRAINT fk_Sensor FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor)
+    fkSensorLM35 INT,
+    PRIMARY KEY (idTemperatura, fkSensorLM35),
+    CONSTRAINT fkSensorLM35 FOREIGN KEY (fkSensorLM35) REFERENCES sensor (idSensor)
 );
 
 -- Criação da tabela de "luminosidade":
@@ -70,30 +89,31 @@ CREATE TABLE leituraLuminosidade (
     idLuminosidade INT AUTO_INCREMENT,
     leituraLumi DECIMAL(5, 2),
     dataHora DATETIME,
-    fkIdSensor INT,
-    PRIMARY KEY (idLuminosidade , fkIdSensor),
-    CONSTRAINT fk_IdSensor FOREIGN KEY (fkIdSensor) REFERENCES sensor (idSensor)
+    fkSensorLDR INT,
+    PRIMARY KEY (idLuminosidade , fkSensorLDR),
+    CONSTRAINT fkSensorLDR FOREIGN KEY (fkSensorLDR) REFERENCES sensor (idSensor)
 );
 
 
 
+insert into empresa (nome,cpnj) values ('','');
 -- Inserção de dados na tabela "usuario":
 
-INSERT INTO  usuario(nome, cpf, email, senha)
+INSERT INTO  usuario(nome, cpf, email, senha,fkEmpresa)
 VALUES 
-('Maria', '15235896217', 'maria@email.com', 'Maria1234'),
-('Antonio','55598632178','antonio@email.com', 'Antonio1234'),
-('Marcos','66639586214','marcos@email.com', 'Marcos1234'),
-('Stefane','77845215986','stefane@email.com', 'Stefane1234'),
-('Ana','63598651548','ana@email.com', 'Ana1234'),
-('Selma','12768651500','selma@email.com', 'Selma1234');
+('Maria', '15235896217', 'maria@email.com', 'Maria1234',''),
+('Antonio','55598632178','antonio@email.com', 'Antonio1234',''),
+('Marcos','66639586214','marcos@email.com', 'Marcos1234',''),
+('Stefane','77845215986','stefane@email.com', 'Stefane1234',''),
+('Ana','63598651548','ana@email.com', 'Ana1234',''),
+('Selma','12768651500','selma@email.com', 'Selma1234','');
 
 
 SELECT * FROM usuario;
 
 -- Inserção de dados na tabela "endereco":
 
-INSERT INTO endereco (logradouro, numero, complemento, bairro, cidade, contatoCelular, fkUsuario)
+INSERT INTO endereco (logradouro, numero, complemento, bairro, cidade, contatoCelular, fkEmpresa)
 VALUES
 ('Avenida Machado Ferreira', 2000, 'Bloco B', 'Centro', 'São Paulo', '25698645385', 1),
 ('Avenida dos Imigrantes', 123, 'Bloco A', 'Jardim Azul', 'São Paulo', '69328564771', 2),
@@ -129,6 +149,15 @@ VALUES
 (5, 'Temp', 5),
 (6, 'LUMI', 6);
 
+
+INSERT INTO sensorLDR (idSensor,tipo, fkHabitat) 
+VALUES
+(1,'TEMP', 1),
+(2,'LUMI', 2),
+(3,'TEMP', 3),
+(4,'LUMI', 4),
+(5, 'Temp', 5),
+(6, 'LUMI', 6);
 SELECT * FROM sensor;
 
 -- Inserção de dados na tabela "temperatura":

@@ -43,7 +43,7 @@
           <a class="btn1" onclick="validarLogin()">LOGIN</a>
           <a class="esqueciSenha" href="#">Esqueci a senha</a>
 
-          <span id="mensagem_concluido" class="mensagem_concluido">Login realizado com sucesso...</span>
+          <span id="mensagem_concluido" class="mensagem_concluido"></span>
         </form>
       </div>
 
@@ -272,11 +272,11 @@
     mensagem_concluido.style.display = "none";
   }
 
-
+ 
   function validarLogin() {
-
     var emailVar = input_email.value;
-    var senhaVar = input_senha.value;
+  var senhaVar = input_senha.value;
+
     let emailValido = false;
     // if (emailVar == "" || senhaVar == "") {
     //   cardErro.style.display = "block"
@@ -299,11 +299,11 @@
         emailVar.indexOf("@") !== -1 &&
         emailVar.indexOf(".com") !== -1 &&
         emailVar.length > 10
-      
+
       ) {
         emailValido = true;
       } else {
-        
+
         mensagemErroEmail.innerHTML = "Email inválido";
       }
     }
@@ -325,77 +325,83 @@
           var indexof = senhaVar[i];
           if (letraLower.test(indexof)) { temLetraLower = true; }
           if (numeros.test(indexof)) { temNumero = true }
-          if (letraUpper.test(indexof)) { temLetraUpper = true }
+
           if (caracterEspecial.includes(indexof)) { temCaracteres = true; }
         }
-        if (temNumero && temLetraLower && temLetraUpper && temCaracteres) {
-          setTimeout(function () {
-            window.location.replace("Dashboard.html");
-          }, 1000);
-        } else {
+        if (temNumero && temLetraLower && temCaracteres) {
+          
+        }else {
           mensagemErroSenha.innerHTML = "Senha inválida";
         }
-      } else {
+        }  else {
         mensagemErroSenha.innerHTML = "Senha inválida";
       }
     }
 
-    else {
-      // setInterval(sumirMensagem, 5000)
+    // setInterval(sumirMensagem, 5000)
+    console.log("FORM LOGIN: ", emailVar);
+    console.log("FORM SENHA: ", senhaVar);
 
-
-
-      console.log("FORM LOGIN: ", emailVar);
-      console.log("FORM SENHA: ", senhaVar);
-
-      fetch("/usuarios/autenticar", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          emailServer: emailVar,
-          senhaServer: senhaVar
-        })
-      }).then(function (resposta) {
-        console.log("ESTOU NO THEN DO entrar()!")
-
-        if (resposta.ok) {
-          console.log(resposta);
-
-          resposta.json().then(json => {
-            console.log(json);
-            console.log(JSON.stringify(json));
-            sessionStorage.EMAIL_USUARIO = json.email;
-            sessionStorage.NOME_USUARIO = json.nome;
-            sessionStorage.ID_USUARIO = json.id;
-            sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
-            mostrarConcluido();
-            setTimeout(function () {
-              window.location = "Dashboard.html";
-              ocultarConcluido();
-            }, 3000); // apenas para exibir o loading
-
-          });
-
-        } else {
-
-          console.log("Houve um erro ao tentar realizar o login!");
-
-          resposta.text().then(texto => {
-            console.error(texto);
-            alert(texto)
-
-          });
-        }
-
-      }).catch(function (erro) {
-        console.log(erro);
+    fetch("/usuarios/autenticar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        emailServer: emailVar,
+        senhaServer: senhaVar
       })
+    }).then(function (resposta) {
+      console.log("ESTOU NO THEN DO entrar()!")
 
-      return false;
-    }
+      if (resposta.ok) {
+        console.log(resposta);
+
+        resposta.json().then(json => {
+          console.log(json);
+          console.log(JSON.stringify(json));
+          sessionStorage.EMAIL_USUARIO = json.email;
+          sessionStorage.NOME_USUARIO = json.nome;
+          sessionStorage.ID_USUARIO = json.id;
+          mensagem_concluido.innerHTML = "Login realizado com sucesso..."
+          mostrarConcluido();
+          setTimeout(function () {
+            ocultarConcluido();
+            window.location = "Dashboard.html";
+
+          }, 3000); // apenas para exibir o loading
+
+        });
+
+      } else {
+
+        console.log("Houve um erro ao tentar realizar o login!");
+
+        resposta.text().then(texto => {
+          console.error(texto);
+         
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    
+    })
+
+    return false;
   }
+
+  function finalizarAguardar(texto) {
+    var erroLogin = document.getElementById("mensagemGeral");
+    divAguardar.style.display = "none";
+
+    
+    if (texto) {
+        divErrosLogin.style.display = "flex";
+        divErrosLogin.innerHTML = texto;
+    }
+}
+
 
 
   const concluidoCadastro = document.getElementById('mensagemGeral');
@@ -426,9 +432,9 @@
     mensagemErroEmailCadastro.innerHTML = "";
     mensagemErroSenhaCadastro.innerHTML = "";
 
-    if (nomeVar == '' || nomeVar.length <= 3) { 
-      mensagemErroNomeCadastro.innerHTML = "Nome inválido"; 
-    
+    if (nomeVar == '' || nomeVar.length <= 3) {
+      mensagemErroNomeCadastro.innerHTML = "Nome inválido";
+
     } else { nomeValido = true; }
     if (senhaVar == "") {
       mensagemErroSenhaCadastro.innerHTML = "Email inválido";
@@ -467,15 +473,12 @@
           if (caracterEspecial.includes(indexof)) { temCaracteres = true; }
         }
         if (temNumero && temLetraLower && temLetraUpper && temCaracteres) {
-          setTimeout(function () {
-            container.classList.add("right-panel-active");
-            container.classList.remove("right-panel-active");
-          }, 500);
+          
         }
         else {
           mensagemErroSenhaCadastro.innerHTML =
             "Senha inválida";
-            return false;
+          return false;
         }
       }
       else {
@@ -483,58 +486,58 @@
           "Senha inválida";
       }
     }
- 
 
-      // Enviando o valor da nova input
-      fetch("/usuarios/cadastrar", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          // crie um atributo que recebe o valor recuperado aqui
-          // Agora vá para o arquivo routes/usuario.js
-          nomeServer: nomeVar,
-          emailServer: emailVar,
-          senhaServer: senhaVar,
-          empresaServer: empresaVar
-        }),
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        empresaServer: empresaVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+
+          resposta.json().then(json => {
+            mostrarCadastroFinalizado();
+            mensagemGeral.innerHTML = "Cadastro realizado com sucesso..."
+            setTimeout(() => {
+              ocultarCadastroFinalizado();
+              
+            container.classList.add("right-panel-active");
+            container.classList.remove("right-panel-active");
+            }, 2000);
+
+          });
+
+          limparFormulario();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+
+          resposta.text().then(texto => {
+            console.error(texto);
+
+          });
+        }
       })
-        .then(function (resposta) {
-          console.log("resposta: ", resposta);
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
 
-          if (resposta.ok) {
+    return false;
+  }
 
-            resposta.json().then(json => {
-              mostrarCadastroFinalizado();
-              mensagemGeral.innerHTML = "Cadastro realizado com sucesso..."
-              setTimeout(() => {
-                ocultarCadastroFinalizado();
-                window.location.reload(true);
-              }, 2000);
-
-            });
-
-            limparFormulario();
-          } else {
-            throw "Houve um erro ao tentar realizar o cadastro!";
-
-            resposta.text().then(texto => {
-              console.error(texto);
-              mensagemGeral.innerHTML = texto
-              alert(texto)
-
-            });
-          }
-        })
-        .catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
-          finalizarAguardar();
-        });
-
-      return false;
-    }
-  
   function listar() {
     fetch("/empresas/listar", {
       method: "GET",

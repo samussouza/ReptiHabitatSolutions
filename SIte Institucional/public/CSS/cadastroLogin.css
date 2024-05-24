@@ -327,4 +327,6 @@ input {
     transform: translateX(50%);
 }
 
-    
+.mensagem_concluido{
+    display: none;
+}

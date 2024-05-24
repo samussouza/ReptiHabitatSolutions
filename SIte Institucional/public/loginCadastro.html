@@ -9,10 +9,12 @@
   <script src="./js/sessao.js"></script>
 </head>
 
-<body>
+<body onload="listar()">
+
+  </div>
   <a href="index.html"><img class="img_seta" src="IMG/Cadastro/seta-direita.png" alt="" /></a>
-  <div id="card_concluido" class="card_concluido" style="display: none">
-    <span id="concluído"></span>
+
+  <span id="concluído"></span>
   </div>
   <div class="div_flex">
     <div class="container" id="container">
@@ -40,6 +42,8 @@
           </div>
           <a class="btn1" onclick="validarLogin()">LOGIN</a>
           <a class="esqueciSenha" href="#">Esqueci a senha</a>
+
+          <span id="mensagem_concluido" class="mensagem_concluido">Login realizado com sucesso...</span>
         </form>
       </div>
 
@@ -56,8 +60,10 @@
           <div class="inputs">
             <div class="div-input-select">
               <select name="empresas" id="listaEmpresas">
-                <option selected>Selecione uma empresa</option>
+                <option value="#">Selecione uma empresa</option>
+
               </select>
+              <div id="mensagemErroSelectCadastro" class="mensagensErros"></div>
             </div>
             <div class="div-input">
               <input type="text" placeholder="Nome" id="input_nomeCadastro" />
@@ -78,10 +84,10 @@
           <a onclick="validarCadastro()" class="btn1"> Cadastrar </a>
           <div id="div_aguardar" class="loading-div">
             <img src="./IMG/iconetwitterx.png" style="display: none;" id="loading-gif">
-        </div>
+          </div>
           <a class="esqueciSenha" href="#">Esqueci a senha</a>
 
-          <div id="mensagemGeral" style="padding: 5px 10px"></div>
+          <div id="mensagemGeral" style="padding: 5px 10px; display: none;"></div>
         </form>
       </div>
 
@@ -258,145 +264,277 @@
   //   }
   // }
 
-  function validarLogin() {
-        aguardar();
-
-    
-        var emailVar = input_email.value;
-        var senhaVar =  input_senha.value;
-
-        if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            finalizarAguardar();
-            return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
-        }
-
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
-
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
-
-                    setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
-    }
-
-    function sumirMensagem() {
-        cardErro.style.display = "none"
-    }
-
-  function validarCadastro() {
-    aguardar();
-
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var nomeVar = input_nomeCadastro.value;
-    var emailVar = input_emailCadastro.value;
-    var senhaVar = input_senhaCadastro.value;
-    if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      senhaVar == "" 
-      // confirmacaoSenhaVar == "" ||
-      // empresaVar == ""||
-      // CPFVar == "" 
-    ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
-
-      finalizarAguardar();
-      return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
-    }
-
-    // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        emailServer: emailVar,
-        // CPFServer: CPFVar,
-        senhaServer: senhaVar,
-        // empresaServer: empresaVar
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-          cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-          setTimeout(() => {
-            window.location = "login.html";
-          }, "2000");
-
-          limparFormulario();
-          finalizarAguardar();
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
-      });
-
-    return false;
+  function mostrarConcluido() {
+    mensagem_concluido.style.display = "block";
   }
 
+  function ocultarConcluido() {
+    mensagem_concluido.style.display = "none";
+  }
+
+
+  function validarLogin() {
+
+    var emailVar = input_email.value;
+    var senhaVar = input_senha.value;
+    let emailValido = false;
+    // if (emailVar == "" || senhaVar == "") {
+    //   cardErro.style.display = "block"
+    //   alert("Mensagem de erro para todos os campos em branco")
+    //   finalizarAguardar();
+
+    // }
+    mensagemErroEmail.innerHTML = "";
+    mensagemErroSenha.innerHTML = "";
+
+    if (emailVar == "") {
+      mensagemErroEmail.innerHTML = "Campo vazio";
+
+    }
+    if (senhaVar == "") {
+      mensagemErroSenha.innerHTML = "Campo vazio";
+
+    } else {
+      if (
+        emailVar.indexOf("@") !== -1 &&
+        emailVar.indexOf(".com") !== -1 &&
+        emailVar.length > 10
+      
+      ) {
+        emailValido = true;
+      } else {
+        
+        mensagemErroEmail.innerHTML = "Email inválido";
+      }
+    }
+    if (emailValido) {
+      const caracterEspecial = [`!`, `@`, "#", "$", "%", "&", "*"];
+      const numeros = /[0-9]/;
+      const letraLower = /[a-z]/;
+      const letraUpper = !/[A-Z]/;
+
+      const tamanhoSenha = senhaVar.length >= 8;
+
+      let temLetraLower = false;
+      let temLetraUpper = false;
+      let temNumero = false;
+      let temCaracteres = false;
+
+      if (tamanhoSenha) {
+        for (let i = 0; i < senhaVar.length; i++) {
+          var indexof = senhaVar[i];
+          if (letraLower.test(indexof)) { temLetraLower = true; }
+          if (numeros.test(indexof)) { temNumero = true }
+          if (letraUpper.test(indexof)) { temLetraUpper = true }
+          if (caracterEspecial.includes(indexof)) { temCaracteres = true; }
+        }
+        if (temNumero && temLetraLower && temLetraUpper && temCaracteres) {
+          setTimeout(function () {
+            window.location.replace("Dashboard.html");
+          }, 1000);
+        } else {
+          mensagemErroSenha.innerHTML = "Senha inválida";
+        }
+      } else {
+        mensagemErroSenha.innerHTML = "Senha inválida";
+      }
+    }
+
+    else {
+      // setInterval(sumirMensagem, 5000)
+
+
+
+      console.log("FORM LOGIN: ", emailVar);
+      console.log("FORM SENHA: ", senhaVar);
+
+      fetch("/usuarios/autenticar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          emailServer: emailVar,
+          senhaServer: senhaVar
+        })
+      }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
+
+        if (resposta.ok) {
+          console.log(resposta);
+
+          resposta.json().then(json => {
+            console.log(json);
+            console.log(JSON.stringify(json));
+            sessionStorage.EMAIL_USUARIO = json.email;
+            sessionStorage.NOME_USUARIO = json.nome;
+            sessionStorage.ID_USUARIO = json.id;
+            sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+            mostrarConcluido();
+            setTimeout(function () {
+              window.location = "Dashboard.html";
+              ocultarConcluido();
+            }, 3000); // apenas para exibir o loading
+
+          });
+
+        } else {
+
+          console.log("Houve um erro ao tentar realizar o login!");
+
+          resposta.text().then(texto => {
+            console.error(texto);
+            alert(texto)
+
+          });
+        }
+
+      }).catch(function (erro) {
+        console.log(erro);
+      })
+
+      return false;
+    }
+  }
+
+
+  const concluidoCadastro = document.getElementById('mensagemGeral');
+  function mostrarCadastroFinalizado() {
+    concluidoCadastro.style.display = "block"
+  }
+  function ocultarCadastroFinalizado() {
+    concluidoCadastro.style.display = "none"
+
+  }
+
+
+  function validarCadastro() {
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    // var nomeVar = input_nomeCadastro.value;
+    // var emailVar = input_emailCadastro.value;
+    // var senhaVar = input_senhaCadastro.value;
+    // var empresaVar = listaEmpresas.value;
+    let senhaVar = input_senhaCadastro.value;
+    let emailVar = input_emailCadastro.value;
+    let nomeVar = input_nomeCadastro.value;
+    let empresaVar = listaEmpresas.value;
+    let emailValido = false;
+    let nomeValido = false;
+
+    mensagemErroNomeCadastro.innerHTML = "";
+    mensagemErroEmailCadastro.innerHTML = "";
+    mensagemErroSenhaCadastro.innerHTML = "";
+
+    if (nomeVar == '' || nomeVar.length <= 3) { 
+      mensagemErroNomeCadastro.innerHTML = "Nome inválido"; 
+    
+    } else { nomeValido = true; }
+    if (senhaVar == "") {
+      mensagemErroSenhaCadastro.innerHTML = "Email inválido";
+
+    }
+    // if (empresaVar == "#") {
+    //   mensagemErroSelectCadastro.innerHTML = "Selecione uma empresa"
+    // }
+    if (emailVar.indexOf("@") >= 0 && emailVar.indexOf(".com") >= 0 && emailVar.length > 10) {
+      emailValido = true;
+    }
+    else {
+      mensagemErroEmailCadastro.innerHTML = "Email inválido"
+    }
+    if (emailValido && nomeValido) {
+
+      const tamanhoSenha = senhaVar.length >= 8;
+      let temLetraLower = false;
+      let temLetraUpper = false;
+      let temNumero = false;
+      let temCaracteres = false;
+
+
+      const caracterEspecial = [`!`, `@`, "#", "$", "%", "&", "*"];
+      const numeros = /[0-9]/;
+      const letraLower = /[a-z]/;
+      const letraUpper = /[A-Z]/;
+
+      if (tamanhoSenha) {
+
+        for (let i = 0; i < senhaVar.length; i++) {
+          var indexof = senhaVar[i];
+          if (letraLower.test(indexof)) { temLetraLower = true; }
+          if (numeros.test(indexof)) { temNumero = true }
+          if (letraUpper.test(indexof)) { temLetraUpper = true }
+          if (caracterEspecial.includes(indexof)) { temCaracteres = true; }
+        }
+        if (temNumero && temLetraLower && temLetraUpper && temCaracteres) {
+          setTimeout(function () {
+            container.classList.add("right-panel-active");
+            container.classList.remove("right-panel-active");
+          }, 500);
+        }
+        else {
+          mensagemErroSenhaCadastro.innerHTML =
+            "Senha inválida";
+            return false;
+        }
+      }
+      else {
+        mensagemErroSenhaCadastro.innerHTML =
+          "Senha inválida";
+      }
+    }
+ 
+
+      // Enviando o valor da nova input
+      fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+          nomeServer: nomeVar,
+          emailServer: emailVar,
+          senhaServer: senhaVar,
+          empresaServer: empresaVar
+        }),
+      })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+
+            resposta.json().then(json => {
+              mostrarCadastroFinalizado();
+              mensagemGeral.innerHTML = "Cadastro realizado com sucesso..."
+              setTimeout(() => {
+                ocultarCadastroFinalizado();
+                window.location.reload(true);
+              }, 2000);
+
+            });
+
+            limparFormulario();
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+
+            resposta.text().then(texto => {
+              console.error(texto);
+              mensagemGeral.innerHTML = texto
+              alert(texto)
+
+            });
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          finalizarAguardar();
+        });
+
+      return false;
+    }
+  
   function listar() {
     fetch("/empresas/listar", {
       method: "GET",

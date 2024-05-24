@@ -44,10 +44,12 @@ body::after {
 }
 
 .frente .titulo {
+    width: 50px;
     color: #0c933b;
     font-weight: 900;
     font-size: 30px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 5px;
 }
 
 .frente h1 {
@@ -55,6 +57,7 @@ body::after {
     font-weight: 900;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin-bottom: 26px;
+
 }
 
 .tela_calculadora {
@@ -194,6 +197,7 @@ button {
     color: #0c8e39;
     cursor: pointer;
     margin-top: 5px;
+    margin-left: 10px;
 }
 
 button:hover {

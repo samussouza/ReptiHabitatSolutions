@@ -11,6 +11,9 @@
 
 <body>
     <a href="HomePage.html"><img class="img_seta" src="IMG/Simulador/seta-direita.png" alt="setaReturn"></a>
+    <div style="margin-top: 70px; display: block;" id="espacamento">
+
+    </div>
     <div class="tela_calculadora">
         <div class="container" id="tela_calculadora">
             <div class="frente" id="calculos_inf">
@@ -69,6 +72,7 @@
 
 
     function calcularPreju() {
+        espacamento.style.display = "none"
         let qtd_Repteis = Number(qtd_repteis_input.value)
         let selecao = sistema_iluminacao_select.value
         let uvaCheck = lampada_uvi.checked
@@ -148,6 +152,7 @@
     }
 
     function voltarCalculadora() {
+        espacamento.style.display = "block"
         qtd_repteis_input.value = '';
         sistema_iluminacao_select.value = 'vazio';
         lampadas.style.display = 'none';

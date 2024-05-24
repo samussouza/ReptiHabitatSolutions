@@ -43,7 +43,7 @@ body::after {
 }
 
 .frente .titulo {
-    color: #08a53f;
+    color: #0c933b;
     font-weight: 900;
     font-size: 30px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -74,8 +74,8 @@ body::after {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 600px;
-    height: 460px;
+    width: 900px;
+    height: 10hv;
     margin: 20px;
     position: relative;
     transform-style: preserve-3d;
@@ -225,9 +225,6 @@ button:hover {
 .verso .resposta {
     display: block;
     text-align: justify;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    padding-right: 50px;
     font-size: 15px
 }
 

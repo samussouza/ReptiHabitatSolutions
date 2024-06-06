@@ -30,7 +30,6 @@ CREATE TABLE endereco (
     complemento VARCHAR(45),
     bairro VARCHAR(45) NOT NULL,
     cidade VARCHAR(45) NOT NULL,
-    contatoCelular CHAR(12) NOT NULL,
     fkUsuario INT,
     fkIdEmpresa int,
     PRIMARY KEY (idEndereco),
@@ -42,59 +41,39 @@ CREATE TABLE endereco (
 -- Criação da tabela do "habitatAnimal" que será registrado:
 
 CREATE TABLE habitatAnimal (
-    idHabitat INT AUTO_INCREMENT,
-    especieRepteis VARCHAR(45) NOT NULL,
-    qtdRepteis INT NOT NULL,
-    areaHabitat INT,
-    descricao VARCHAR(45) DEFAULT 'Adicionar Descrição',
-    fkEndereco INT,
-    PRIMARY KEY (idHabitat),
-    CONSTRAINT fk_Endereco FOREIGN KEY (fkEndereco) REFERENCES endereco (idEndereco)
+  idHabitat INT NOT NULL,
+  especieRepteis VARCHAR(45) NOT NULL,
+  qtdRepteis INT NOT NULL,
+  areaHabitat  INT NULL,
+  fkEnderecoINT INT NOT NULL,
+  PRIMARY KEY (idHabitat),
+  INDEX fk_habitatAnimal_endereco1_idx (fkEndereco ASC) VISIBLE,
+  CONSTRAINT fk_habitatAnimal_endereco1
+    FOREIGN KEY (fkEndereco)
+    REFERENCES endereco (idEndereco));
+
+
+-- Criação da tabela 'Leituras":
+CREATE TABLE Leituras(
+  idLuminosidade INT NOT NULL,
+  LeituraLumi DECIMAL(5,2) NULL,
+  LeituraTemp DECIMAL(5,2) NULL,
+  PRIMARY KEY (idLuminosidade));
+
+CREATE TABLE Medidas(
+	idMedidas INT AUTO_INCREMENT,
+    LeituraLumi INT NOT NULL,
+    DataLeitura DATETIME,
+    fkLeituraTemp INT,
+	fkHabitat INT,
+    CONSTRAINT fkLeituraTemp FOREIGN KEY (fkLeituraTemp) REFERENCES Leituras (idLuminosidade),
+    CONSTRAINT fkHabitat FOREIGN KEY (fkHabitat) REFERENCES Leituras (idLuminosidade),
+    PRIMARY KEY (idMedidas, LeituraLumi, LeituraTemp, fkHabitat)
 );
 
--- Criação da tabela 'sensorlm35":
-
-CREATE TABLE sensorLM35(
-idSensor INT,
-tipo CHAR(4) NOT NULL,
-fkHabitat INT,
-PRIMARY KEY(idSensor),
-CONSTRAINT fkHabitat FOREIGN KEY (fkHabitat) REFERENCES habitatAnimal (idHabitat),
-CONSTRAINT chk_tipo CHECK (tipo IN ('TEMP'))
-);
--- Criação da tabela 'sensorldr":
-CREATE TABLE sensorLDR(
-idSensor INT,
-tipo CHAR(4) NOT NULL,
-fkIdHabitat INT,
-PRIMARY KEY(idSensor),
-CONSTRAINT fkIdHabitat FOREIGN KEY (fkIdHabitat) REFERENCES habitatAnimal (idHabitat),
-CONSTRAINT chk_tipo CHECK (tipo IN ('LUMI'))
-);
-
--- Criação da tabela de "temperatura":
-
-CREATE TABLE leituraTemperatura (
-    idTemperatura INT AUTO_INCREMENT,
-    leituraTemp DECIMAL(4, 2),
-    dataHora DATETIME,
-    fkSensorLM35 INT,
-    PRIMARY KEY (idTemperatura, fkSensorLM35),
-    CONSTRAINT fkSensorLM35 FOREIGN KEY (fkSensorLM35) REFERENCES sensor (idSensor)
-);
-
--- Criação da tabela de "luminosidade":
-
-CREATE TABLE leituraLuminosidade (
-    idLuminosidade INT AUTO_INCREMENT,
-    leituraLumi DECIMAL(5, 2),
-    dataHora DATETIME,
-    fkSensorLDR INT,
-    PRIMARY KEY (idLuminosidade , fkSensorLDR),
-    CONSTRAINT fkSensorLDR FOREIGN KEY (fkSensorLDR) REFERENCES sensor (idSensor)
-);
-
-
+-- ================================================
+-- EXECUÇÃO 
+-- ================================================
 
 insert into empresa (nome,cpnj) values ('','');
 -- Inserção de dados na tabela "usuario":
@@ -202,9 +181,6 @@ SELECT * FROM habitatAnimal WHERE especieRepteis LIKE 'C%';
 SELECT * FROM habitatAnimal WHERE descricao LIKE '%a_';
 
 
-
-
-
 -------------- INNER JOINS ------------------:
 
 -- INNER JOIN entre leituraTemperatura e habitat, para visualizar de onde; qual habitat está vindo a leitura temperatura:
@@ -213,15 +189,14 @@ select  h.idhabitat, h.especieRepteis, h.qtdRepteis, h.areaHabitat, h.descricao,
  lt.idTemperatura, lt.leituraTemp, lt.dataHora
 from habitatAnimal h 
 inner join leituraTemperatura lt;
--- Join entre usuario e endereco:
 
+-- Join entre usuario e endereco:
 select  u.nome as nome_usuario, u.email,  e.logradouro, e.complemento, e.cidade
 from usuario u
 inner join endereco  e on e.fkUsuario = u.idUsuario;
 
 
 -- Join entre habitatAnimal, endereco e usuario:
-
 select h.especieRepteis, h.qtdRepteis, h.areaHabitat, h.descricao,
 e.logradouro, e.numero ,e.bairro , e.cidade, e.contatoCelular, u.nome
 from  habitatAnimal h 
@@ -229,15 +204,12 @@ inner join endereco  e on  h.fkEndereco = e.idEndereco
 inner join usuario u on e.fkUsuario = u.idUsuario;
 
 
-
 -- Join entre sensor e leituraTemperatura, listará da maior para a menor temperatura:
-
 SELECT lt.idTemperatura, lt.leituraTemp, lt.dataHora, s.idSensor
 FROM leituraTemperatura AS lt
 INNER JOIN sensor AS s
 ON fkSensor = idSensor
 ORDER BY  leituraTemp desc;
-
 
 -- JOIN ENTRE LEITURA TEMPERATURA E LEITURA LUMINOSIDADE, PARA VER AS DUAS
 SELECT lt.*, l.*, s.*
@@ -246,17 +218,16 @@ JOIN leituraTemperatura AS lt
 ON lt.fkSensor = s.idSensor
 JOIN leituraLuminosidade AS l
 ON l.fkIdSensor = s.idSensor;
+
+
 ----------- LEFT JOINS -----------------:
 
 -- LEFT JOIN entre endereco e habitatAnimal, para ver onde os habitats estão localizadoos:
-
 SELECT e.idEndereco, e.logradouro, e.bairro, e.cidade, h.idHabitat, h.areaHabitat, h.descricao
 FROM endereco AS e LEFT JOIN habitatAnimal AS h 
 ON e.idEndereco = h.fkEndereco;
 
-
 -- LEFT JOIN entre habitatAnimal e sensor, saber qual espécie e quais temperaturas e luminosidade dos respectivos habitats:
-
 SELECT h.especieRepteis, h.areaHabitat, s.idSensor, lt.leituraTemp
 FROM habitatAnimal AS h LEFT JOIN sensor AS s 
 ON h.idHabitat = s.fkHabitat
@@ -264,10 +235,3 @@ LEFT JOIN leituraTemperatura AS lt ON lt.fkSensor = s.idSensor;
 
 
 
-
-
-
-
-
-
- -- drop database ReptiHabitatSolutions;

@@ -27,7 +27,7 @@
 
   <!-- <body onload=" atualizarFeed()"> -->
 
-  <body>
+  <body onload="obterKPIs()">
     <!--  inicio do menu da dashboard  -->
 
     <div class="menu">
@@ -106,7 +106,7 @@
             <span class="spanTitulo2">Habitats em alerta</span>
             <div class="div_KPI2content">
                 <span class="spanPorcentagemKPI2" style="font-size: 25px; margin-top: 20px;">Habitat 5 e Habitat 18</span>
-                <div class="divTextoKPI2">
+                <div class="divTextoKPI2" id="divTextoKPI2">
                 </div>
             </div>
         </div>
@@ -121,25 +121,26 @@
           <div id="KPI2habi" class="KPIhabi" style="display: none;">
             <span class="spanTitulo2" style="height: 100px" >Tempetatura e Luminosidade atual</span>
             <div class="div_KPI2content">
-                <span class="spanPorcentagemKPI2">18ºC e 702 Lux </span>
+                <span class="spanPorcentagemKPI2" id="spanPorcentagemKPI2">18ºC e 702 Lux </span>
                 <div class="divTextoKPI2">
                 </div>
             </div>
         </div>
           <div class="div_KPI" id="KPI2" >
             <span class="spanTitulo2"> Ultimo alerta gerado</span>
-            <div class="div_KPI2content">
+            <div class="div_KPI2content" id="">
                 <span class="spanPorcentagemKPI2">Habitat 18</span>
-                <div class="divTextoKPI2">
+                <div class="divTextoKPI2" id="">
+                  <span id="textoKPI"></span>
                 </div>
-                09/05/2024 às 15:31
+                <!-- 09/05/2024 às 15:31 -->
             </div>
         </div>
           <div class="div_KPI" id="KPI3"><span class="spanTitulo3">Média da Temperatura</span>
             <div class="div_KPI3content">
                 <div class="divTextoKPI3">
                     <img src="./IMG/Dashboard/temperatura-alta.png" alt="">
-                    <span id="span_media_temp">21.5%</span>
+                    <span id="span_media_temp"></span>
                 </div>
             </div></div>
           <div class="div_KPI" id="KPI4">
@@ -147,7 +148,7 @@
             <div class="div_KPI4content">
                 <div class="divTextoKPI4">
                     <img src="./IMG/Dashboard/temperaturas.png" alt="">
-                    <span id="span_media_lumi">777 Lux</span>
+                    <span id="span_media_lumi"></span>
                 </div>
             </div></div>
         </div>
@@ -195,6 +196,119 @@
     </div>
   </body>
   <script>
+    setInterval(obterKPIs, 10000)
+      function obterKPIs() {
+        var fk_empresa1 = sessionStorage.FK_EMPRESA
+    fetch("/medidas/mediaAcertos", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+           fk_empresa: fk_empresa1 
+          })
+    })
+    .then(function (resposta) {
+        if (!resposta.ok) {
+            throw new Error('Erro ao recuperar o ranking');
+        }
+        return resposta.json();
+    })
+    .then((mediaAcertos) => {
+        let mediaAcertosTotal = "Média não disponível";
+        // let mediaPontuacaoTotal = "Média não disponível";
+        // let mediaTempoTotal = "Média não disponível";
+
+        if (mediaAcertos.length > 0) {
+       
+            const mediaTemp = parseFloat(mediaAcertos[0].media_temperatura);
+            const mediaLumin = parseFloat(mediaAcertos[0].media_lumin);
+            const mediaAtualTemp = mediaAcertos[0].FkLeituraTemp;
+            const mediaAtualLumin = mediaAcertos[0].FkLeituraLumi;
+            const ultimoAlerta = mediaAcertos[0].ultimo_alerta;
+           
+          console.log(mediaAtualTemp, ultimoAlerta)
+                // maior número inteiro
+                mediaTemperatura = Math.ceil(mediaTemp);
+                mediaLuminocidade = Math.ceil(mediaLumin);
+                mediaAtualLumin1 = mediaAtualLumin;
+                mediaAtualTemp1 = Math.ceil(mediaAtualTemp);
+                ultimoAlerta1 = ultimoAlerta
+          console.log(mediaTemperatura)
+                // mediaTempoTotal = media3;
+            
+        }
+
+        document.getElementById('span_media_temp').innerHTML = `${mediaTemperatura}<strong><span>°C</span></strong>`;
+        document.getElementById('span_media_lumi').innerHTML = `${mediaLuminocidade}<strong><span> Lux</span></strong>`;
+        document.getElementById('spanPorcentagemKPI2').innerHTML = `${mediaAtualLumin1} Lux e ${mediaAtualTemp1}°C<strong><span style="font-size: 20px;"> </span></strong>`;
+        document.getElementById('textoKPI').innerHTML = `${ultimoAlerta1}<strong><span></span></strong>`;
+    })
+    .catch(function (erro) {
+        console.error(`#ERRO: ${erro.message}`);
+        document.getElementById('span_media_temp').innerText = "Erro ao obter a média";
+    });
+}
+
+   
+    //    function obterKPIs() {
+    //     fetch("/medidas/mediaAcertos/${}", {
+    //         method: "GET",
+    //     })
+    //         .then(function (resposta) {
+    //             if (!resposta.ok) {
+    //                 throw new Error('Erro ao recuperar o ranking');
+    //             }
+    //             return resposta.json();
+    //         })
+    //         .then((mediaAcertos) => {
+    //             let mediaAcertosTotal = "Média não disponível";
+    //             // let mediaPontuacaoTotal = "Média não disponível";
+    //             // let mediaTempoTotal = "Média não disponível";
+
+    //             if (mediaAcertos.length > 0) {
+    //                 const media = parseFloat(mediaAcertos[0].media_acertos_total);
+    //                 // const media2 = parseFloat(mediaAcertos[0].media_pontuacao_total);
+    //                 // const media3 = mediaAcertos[0].media_tempo_gasto;
+
+    //                 if (!isNaN(media)) {
+    //                     //menor numero interiro
+    //                     mediaTemperatura = Math.ceil(media);
+    //                     mediaPontuacaoTotal = Math.ceil(media2);
+    //                     mediaTempoTotal = media3;
+    //                 }
+    //                 console.log("MEdia 3", media3)
+    //             }
+
+    //             document.getElementById('span_media_temp').innerHTML = `${mediaAcertosTotal}<strong><span style="font-size: 20px;"> questões</span></strong>`;
+    //             // document.getElementById('divPontuacao').innerHTML = `${mediaPontuacaoTotal}<strong><span style="font-size: 20px;"> pontos</span></strong>`;
+    //             // document.getElementById('divTempo').innerHTML = `${mediaTempoTotal}<strong><span style="font-size: 20px;"> </span></strong>`;
+    //         })
+    //         .catch(function (erro) {
+    //             console.error(`#ERRO: ${erro.message}`);
+    //             document.getElementById('divMediaAcertos').innerText = "Erro ao obter a média";
+    //         });
+    // }
+
+    // function preencherobterKPIs(mediaAcertos) {
+    //     const divMediaAcertos = document.getElementById('divMediaAcertos');
+    //     if (divMediaAcertos) {
+    //         divMediaAcertos.style.display = "block";
+    //         if (mediaAcertos.length > 0) {
+    //             const media = mediaAcertos[0].media_acertos_total;
+    //             if (media !== undefined) {
+    //                 divMediaAcertos.innerText = `Média: ${media}`;
+    //             } else {
+    //                 divMediaAcertos.innerText = "Média não disponível.";
+    //             }
+    //         } else {
+    //             divMediaAcertos.innerText = "Nenhum dado disponível.";
+    //         }
+    //     } else {
+    //         console.error("Div não encontrada para preencher a média de acertos.");
+    //     }
+    // }
+
     const contextoLm35Temperatura = document
       .getElementById("lm35Temperatura")
       .getContext("2d");

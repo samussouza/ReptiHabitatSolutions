@@ -1,7 +1,7 @@
 var medidaModel = require("../models/medidaModel");
-function mediaAcertos(req, res) {
+function indicadores(req, res) {
     const empresa = req.body.fk_empresa
-    medidaModel.mediaAcertos(empresa)
+    medidaModel.indicadores(empresa)
         .then((resultado) => {
             console.log(`\nResultados encontrados: ${resultado.length}`);
             console.log(`Resultados: ${JSON.stringify(resultado)}`);
@@ -57,6 +57,6 @@ function buscarMedidasEmTempoReal(req, res) {
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
-    mediaAcertos
+    indicadores
 
 }

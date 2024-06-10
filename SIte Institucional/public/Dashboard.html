@@ -98,7 +98,7 @@
       <div id="KPI1habi" class="KPIhabi" style="display: none;">
         <span class="spanTitulo2">Habitats em alerta</span>
         <div class="div_KPI2content">
-          <span class="spanPorcentagemKPI2" style="font-size: 25px; margin-top: 20px;">Habitat 5 e Habitat 18</span>
+          <span class="spanPorcentagemKPI2" id="span2UltimosAlertas" style="font-size: 25px; margin-top: 20px;"></span>
           <div class="divTextoKPI2" id="divTextoKPI2">
           </div>
         </div>
@@ -202,7 +202,7 @@
     })
       .then(function (resposta) {
         if (!resposta.ok) {
-          throw new Error('Erro ao recuperar o ranking');
+          throw new Error('Erro ao recuperar os dados');
         }
         return resposta.json();
       })
@@ -210,7 +210,7 @@
 
         if (indicadores.length > 0) {
 
-          var mediaTemp = parseFloat(indicadores[0].media_temperatura);
+          const mediaTemp = parseFloat(indicadores[0].media_temperatura);
           const mediaLumin = parseFloat(indicadores[0].media_lumin);
           const mediaAtualTemp = indicadores[0].FkLeituraTemp;
           const mediaAtualLumin = indicadores[0].FkLeituraLumi;
@@ -219,6 +219,7 @@
           const totalHabitat = indicadores[0].qtd_habitats;
           const porcetagemAlertas = indicadores[0].percentual_habitats_alerta;
           const idHabitatAlerta = indicadores[0].ultimo_alertaID;
+          const idHabitatAlerta2Ultmos = indicadores[0].ultimo2_alertaID;
 
           // maior número inteiro
           mediaTemperatura = Math.ceil(mediaTemp);
@@ -230,6 +231,7 @@
           qtdHabitatAlerta1 = qtdHabitatAlerta;
           porcetagemAlertas1 = Math.ceil(porcetagemAlertas);
           idHabitatAlerta1 = idHabitatAlerta;
+          idHabitatAlerta2Ultmos1 = idHabitatAlerta2Ultmos;
         }
 
         document.getElementById('span_media_temp').innerHTML = `<span>${mediaTemperatura} °C</span>`;
@@ -239,6 +241,7 @@
         document.getElementById('divTextoKPI1').innerHTML = `${qtdHabitatAlerta1}/${totalHabitat1}<strong><span></span></strong>`;
         document.getElementById('spanPorcentagemKPI1').innerHTML = `<strong><span>${porcetagemAlertas1}%</span></strong>`;
         document.getElementById('spanPorcentagemKPI2').innerHTML = `<strong><span>Habitat ${idHabitatAlerta1}</span></strong>`;
+        document.getElementById('span2UltimosAlertas').innerHTML = `<strong><span>Habitat ${idHabitatAlerta2Ultmos1}</span></strong>`;
 
       })
       .catch(function (erro) {

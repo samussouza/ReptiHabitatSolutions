@@ -1,4 +1,17 @@
 var medidaModel = require("../models/medidaModel");
+function indicadores(req, res) {
+    const empresa = req.body.fk_empresa
+    medidaModel.indicadores(empresa)
+        .then((resultado) => {
+            console.log(`\nResultados encontrados: ${resultado.length}`);
+            console.log(`Resultados: ${JSON.stringify(resultado)}`);
+            res.status(200).json(resultado);
+        })
+        .catch((error) => {
+            console.error("Erro ao obter dados de ranking:", error);
+            res.status(500).json({ error: "Erro ao obter dados de ranking" });
+        });
+}
 
 function buscarUltimasMedidas(req, res) {
 
@@ -43,6 +56,7 @@ function buscarMedidasEmTempoReal(req, res) {
 
 module.exports = {
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    buscarMedidasEmTempoReal,
+    indicadores
 
 }

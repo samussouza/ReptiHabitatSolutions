@@ -272,10 +272,12 @@
     mensagem_concluido.style.display = "none";
   }
 
- 
+
   function validarLogin() {
     var emailVar = input_email.value;
-  var senhaVar = input_senha.value;
+    var senhaVar = input_senha.value;
+    var empresa = sessionStorage.FK_EMPRESA;
+    console.log('empresa:', empresa)
 
     let emailValido = false;
     // if (emailVar == "" || senhaVar == "") {
@@ -329,11 +331,11 @@
           if (caracterEspecial.includes(indexof)) { temCaracteres = true; }
         }
         if (temNumero && temLetraLower && temCaracteres) {
-          
-        }else {
+
+        } else {
           mensagemErroSenha.innerHTML = "Senha inválida";
         }
-        }  else {
+      } else {
         mensagemErroSenha.innerHTML = "Senha inválida";
       }
     }
@@ -363,6 +365,9 @@
           sessionStorage.EMAIL_USUARIO = json.email;
           sessionStorage.NOME_USUARIO = json.nome;
           sessionStorage.ID_USUARIO = json.id;
+          sessionStorage.FK_EMPRESA = json.fk_empresa;
+
+          console.log()
           mensagem_concluido.innerHTML = "Login realizado com sucesso..."
           mostrarConcluido();
           setTimeout(function () {
@@ -379,13 +384,13 @@
 
         resposta.text().then(texto => {
           console.error(texto);
-         
+
         });
       }
 
     }).catch(function (erro) {
       console.log(erro);
-    
+
     })
 
     return false;
@@ -395,12 +400,12 @@
     var erroLogin = document.getElementById("mensagemGeral");
     divAguardar.style.display = "none";
 
-    
+
     if (texto) {
-        divErrosLogin.style.display = "flex";
-        divErrosLogin.innerHTML = texto;
+      divErrosLogin.style.display = "flex";
+      divErrosLogin.innerHTML = texto;
     }
-}
+  }
 
 
 
@@ -473,7 +478,7 @@
           if (caracterEspecial.includes(indexof)) { temCaracteres = true; }
         }
         if (temNumero && temLetraLower && temLetraUpper && temCaracteres) {
-          
+
         }
         else {
           mensagemErroSenhaCadastro.innerHTML =
@@ -513,9 +518,9 @@
             mensagemGeral.innerHTML = "Cadastro realizado com sucesso..."
             setTimeout(() => {
               ocultarCadastroFinalizado();
-              
-            container.classList.add("right-panel-active");
-            container.classList.remove("right-panel-active");
+
+              container.classList.add("right-panel-active");
+              container.classList.remove("right-panel-active");
             }, 2000);
 
           });

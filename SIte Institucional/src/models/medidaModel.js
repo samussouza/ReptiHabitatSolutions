@@ -143,7 +143,6 @@ function buscarMedidasEmTempoReal(idAquario) {
 function buscarResultadoGraficoBar(empresa) {
     var instrucaoSql = `
     SELECT 
-        
         AVG(CASE WHEN LeituraTemp < 22 THEN LeituraTemp END) AS MediaAbaixo22,
         AVG(CASE WHEN LeituraTemp >= 22 AND LeituraTemp <= 29 THEN LeituraTemp END) AS MediaEntre22e29,
         AVG(CASE WHEN LeituraTemp > 29 THEN LeituraTemp END) AS MediaAcima29
@@ -157,8 +156,16 @@ function buscarResultadoGraficoBar(empresa) {
     ) AS TempMes
     GROUP BY Mes
     ORDER BY Mes;
-
-
+                    `;
+  
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+  }
+function buscarResultadoGraficoBarLumin(empresa) {
+    var instrucaoSql = `
+   
+    SELECT AVG(l.LeituraTemp) AS MediaTemperatura
+    FROM Leituras l;
                     `;
   
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -169,5 +176,6 @@ module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
     indicadores,
-    buscarResultadoGraficoBar
+    buscarResultadoGraficoBar,
+    buscarResultadoGraficoBarLumin
 }

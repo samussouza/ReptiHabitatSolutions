@@ -12,6 +12,12 @@ function listar() {
   return database.executar(instrucaoSql);
 }
 
+function listarHabitats() {
+  var instrucaoSql = `select h.idHabitat as id from habitatAnimal as h inner join empresa as e on e.id = h.fk_empresa where e.id = 1;`;
+
+  return database.executar(instrucaoSql);
+}
+
 function buscarPorCnpj(cnpj) {
   var instrucaoSql = `SELECT * FROM empresa WHERE cnpj = '${cnpj}'`;
 
@@ -24,4 +30,4 @@ function cadastrar(razaoSocial, cnpj) {
   return database.executar(instrucaoSql);
 }
 
-module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar };
+module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar, listarHabitats};

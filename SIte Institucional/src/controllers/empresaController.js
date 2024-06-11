@@ -13,6 +13,13 @@ function listar(req, res) {
     res.status(200).json(resultado);
   });
 }
+function listarHabitats(req, res) {
+  var id = req.params.fk_empresa;
+  console.log(id);
+  empresaModel.listar().then((resultado) => {
+    res.status(200).json(resultado);
+  });
+}
 
 function buscarPorId(req, res) {
   var id = req.params.id;
@@ -44,4 +51,5 @@ module.exports = {
   buscarPorId,
   cadastrar,
   listar,
+  listarHabitats
 };

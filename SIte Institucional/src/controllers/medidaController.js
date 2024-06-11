@@ -72,11 +72,30 @@ function buscarResultadoGraficoBar(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
+function buscarResultadoGraficoBarLumin(req, res) {
+
+    var empresa = req.params.fk_empresa;
+
+    console.log(`controller buscando os resultados do jogador`);
+
+    medidaModel.buscarResultadoGraficoBarLumin(empresa).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado); /*resposta que o bd traz*/
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimos resultados.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
 
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
     indicadores,
-    buscarResultadoGraficoBar
+    buscarResultadoGraficoBar,
+    buscarResultadoGraficoBarLumin
 
 }

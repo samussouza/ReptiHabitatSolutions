@@ -19,5 +19,8 @@ router.get("/buscar/:id", function (req, res) {
 router.get("/listar", function (req, res) {
   empresaController.listar(req, res);
 });
+router.get("/listarHabitats", function (req, res) {
+  empresaController.listarHabitats(req, res);
+});
 
 module.exports = router;

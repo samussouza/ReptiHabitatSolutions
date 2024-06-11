@@ -187,68 +187,71 @@
   </div>
 </body>
 <script>
-  setInterval(obterKPIs, 20000)
+  setInterval(atualizarKPIs(), 20000)
 
-  function obterKPIs() {
-    var fk_empresa1 = sessionStorage.FK_EMPRESA
-    fetch("/medidas/indicadores", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        fk_empresa: fk_empresa1
-      })
+  // Função para obter os dados
+function obterDadosKPIs() {
+  var fk_empresa1 = sessionStorage.FK_EMPRESA;
+  return fetch("/medidas/indicadores", {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      fk_empresa: fk_empresa1
     })
-      .then(function (resposta) {
-        if (!resposta.ok) {
-          throw new Error('Erro ao recuperar os dados');
-        }
-        return resposta.json();
-      })
-      .then((indicadores) => {
+  })
+  .then(function (resposta) {
+    if (!resposta.ok) {
+      throw new Error('Erro ao recuperar os dados');
+    }
+    return resposta.json();
+  });
+}
 
-        if (indicadores.length > 0) {
+// Função para atualizar os KPIs em tempo real
+function atualizarKPIs() {
+  obterDadosKPIs()
+    .then((indicadores) => {
+      if (indicadores.length > 0) {
+        const mediaTemp = parseFloat(indicadores[0].media_temperatura);
+        const mediaLumin = parseFloat(indicadores[0].media_lumin);
+        const mediaAtualTemp = indicadores[0].FkLeituraTemp;
+        const mediaAtualLumin = indicadores[0].FkLeituraLumi;
+        const ultimoAlerta = indicadores[0].ultimo_alerta;
+        const qtdHabitatAlerta = indicadores[0].quantidade_habitats_alerta;
+        const totalHabitat = indicadores[0].qtd_habitats;
+        const porcetagemAlertas = indicadores[0].percentual_habitats_alerta;
+        const idHabitatAlerta = indicadores[0].ultimo_alertaID;
+        const idHabitatAlerta2Ultmos = indicadores[0].ultimo2_alertaID;
 
-          const mediaTemp = parseFloat(indicadores[0].media_temperatura);
-          const mediaLumin = parseFloat(indicadores[0].media_lumin);
-          const mediaAtualTemp = indicadores[0].FkLeituraTemp;
-          const mediaAtualLumin = indicadores[0].FkLeituraLumi;
-          const ultimoAlerta = indicadores[0].ultimo_alerta;
-          const qtdHabitatAlerta = indicadores[0].quantidade_habitats_alerta;
-          const totalHabitat = indicadores[0].qtd_habitats;
-          const porcetagemAlertas = indicadores[0].percentual_habitats_alerta;
-          const idHabitatAlerta = indicadores[0].ultimo_alertaID;
-          const idHabitatAlerta2Ultmos = indicadores[0].ultimo2_alertaID;
+        // maior número inteiro
+        mediaTemperatura = Math.ceil(mediaTemp);
+        mediaLuminocidade = Math.ceil(mediaLumin);
+        mediaAtualLumin1 = Math.ceil(mediaAtualLumin);
+        mediaAtualTemp1 = Math.ceil(mediaAtualTemp);
+        ultimoAlerta1 = ultimoAlerta;
+        totalHabitat1 = totalHabitat;
+        qtdHabitatAlerta1 = qtdHabitatAlerta;
+        porcetagemAlertas1 = Math.ceil(porcetagemAlertas);
+        idHabitatAlerta1 = idHabitatAlerta;
+        idHabitatAlerta2Ultmos1 = idHabitatAlerta2Ultmos;
+      }
 
-          // maior número inteiro
-          mediaTemperatura = Math.ceil(mediaTemp);
-          mediaLuminocidade = Math.ceil(mediaLumin);
-          mediaAtualLumin1 = Math.ceil(mediaAtualLumin);
-          mediaAtualTemp1 = Math.ceil(mediaAtualTemp);
-          ultimoAlerta1 = ultimoAlerta;
-          totalHabitat1 = totalHabitat;
-          qtdHabitatAlerta1 = qtdHabitatAlerta;
-          porcetagemAlertas1 = Math.ceil(porcetagemAlertas);
-          idHabitatAlerta1 = idHabitatAlerta;
-          idHabitatAlerta2Ultmos1 = idHabitatAlerta2Ultmos;
-        }
+      document.getElementById('span_media_temp').innerHTML = `<span>${mediaTemperatura} °C</span>`;
+      document.getElementById('span_media_lumi').innerHTML = `<strong><span>${mediaLuminocidade} Lux</span></strong>`;
+      document.getElementById('medidasAtuaisTempLumin').innerHTML = `<strong><span>${mediaAtualTemp1}°C e ${mediaAtualLumin1} Lux</span></strong>`;
+      document.getElementById('textoKPI').innerHTML = `<span>${ultimoAlerta1}</span>`;
+      document.getElementById('divTextoKPI1').innerHTML = `${qtdHabitatAlerta1}/${totalHabitat1}<strong><span></span></strong>`;
+      document.getElementById('spanPorcentagemKPI1').innerHTML = `<strong><span>${porcetagemAlertas1}%</span></strong>`;
+      document.getElementById('spanPorcentagemKPI2').innerHTML = `<strong><span>Habitat ${idHabitatAlerta1}</span></strong>`;
+      document.getElementById('span2UltimosAlertas').innerHTML = `<strong><span>Habitat ${idHabitatAlerta2Ultmos1}</span></strong>`;
+    })
+    .catch(function (erro) {
+      console.error(`#ERRO: ${erro.message}`);
+    });
+}
 
-        document.getElementById('span_media_temp').innerHTML = `<span>${mediaTemperatura} °C</span>`;
-        document.getElementById('span_media_lumi').innerHTML = `<strong><span>${mediaLuminocidade} Lux</span></strong>`;
-        document.getElementById('medidasAtuaisTempLumin').innerHTML = `<strong><span>${mediaAtualTemp1}°C e ${mediaAtualLumin1} Lux</span></strong>`;
-        document.getElementById('textoKPI').innerHTML = `<span>${ultimoAlerta1}</span>`;
-        document.getElementById('divTextoKPI1').innerHTML = `${qtdHabitatAlerta1}/${totalHabitat1}<strong><span></span></strong>`;
-        document.getElementById('spanPorcentagemKPI1').innerHTML = `<strong><span>${porcetagemAlertas1}%</span></strong>`;
-        document.getElementById('spanPorcentagemKPI2').innerHTML = `<strong><span>Habitat ${idHabitatAlerta1}</span></strong>`;
-        document.getElementById('span2UltimosAlertas').innerHTML = `<strong><span>Habitat ${idHabitatAlerta2Ultmos1}</span></strong>`;
-
-      })
-      .catch(function (erro) {
-        console.error(`#ERRO: ${erro.message}`);
-
-      });
-  }
 
 
   const contextoLm35Temperatura = document
@@ -301,61 +304,61 @@
     },
   });
 
-  const contextoLuminosidade = document
-    .getElementById("luminosidade")
-    .getContext("2d");
-  var luminosidade = new Chart(contextoLuminosidade, {
-    type: "bar",
-    data: {
-      labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho"],
-      datasets: [
-        {
-          label: "Abaixo da média",
-          data: [7, 12, 8, 7, 2, 8],
-          borderwidht: 1,
-          backgroundColor: "#75b9d7",
-        },
-        {
-          label: "Na média",
-          data: [5, 4, 7, 3, 6, 5],
-          borderwidht: 1,
-          backgroundColor: "#ffd166",
-        },
-        {
-          label: "Acima da média",
-          data: [9, 8, 10, 3, 5, 1],
-          borderwidht: 1,
-          backgroundColor: "#ff4d4d",
-        },
-      ],
-    },
-    options: {
-      scales: {
-        xAxes: [
-          {
-            distribution: "series",
-            ticks: {
-              beginAtZero: true,
-            },
-          },
-        ],
-        yAxes: [
-          {
-            scaleLabel: {
-              display: true,
-              labelString: "Quantidade de habitats",
-            },
-            ticks: {
-              beginAtZero: true,
-            },
-          },
-        ],
-      },
-      animation: {
-        duration: 0,
-      },
-    },
-  });
+  // const contextoLuminosidade = document
+  //   .getElementById("luminosidade")
+  //   .getContext("2d");
+  // var luminosidade = new Chart(contextoLuminosidade, {
+  //   type: "bar",
+  //   data: {
+  //     labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho"],
+  //     datasets: [
+  //       {
+  //         label: "Abaixo da média",
+  //         data: [7, 12, 8, 7, 2, 8],
+  //         borderwidht: 1,
+  //         backgroundColor: "#75b9d7",
+  //       },
+  //       {
+  //         label: "Na média",
+  //         data: [5, 4, 7, 3, 6, 5],
+  //         borderwidht: 1,
+  //         backgroundColor: "#ffd166",
+  //       },
+  //       {
+  //         label: "Acima da média",
+  //         data: [9, 8, 10, 3, 5, 1],
+  //         borderwidht: 1,
+  //         backgroundColor: "#ff4d4d",
+  //       },
+  //     ],
+  //   },
+  //   options: {
+  //     scales: {
+  //       xAxes: [
+  //         {
+  //           distribution: "series",
+  //           ticks: {
+  //             beginAtZero: true,
+  //           },
+  //         },
+  //       ],
+  //       yAxes: [
+  //         {
+  //           scaleLabel: {
+  //             display: true,
+  //             labelString: "Quantidade de habitats",
+  //           },
+  //           ticks: {
+  //             beginAtZero: true,
+  //           },
+  //         },
+  //       ],
+  //     },
+  //     animation: {
+  //       duration: 0,
+  //     },
+  //   },
+  // });
 
   const barraDePesquisa = document.querySelector("input"); //<input/>
   const lista = document.querySelector("ul"); //<ul></ul>
@@ -480,6 +483,99 @@
       },
     });
   }
+  let graficoBar;
+  function obterDadosGraficoBar() {
+    fetch(`/medidas/buscarResultadoGraficoBar/${sessionStorage.FK_EMPRESA}`, {
+      method: "GET"
+    }).then(function (resposta) {
+        if (resposta.ok) {
+          return resposta.json();
+            graficoBar.update();
+            ;
+        } else {
+
+          console.log("Houve um erro ao tentar realizar a busca!");
+        }
+
+      })
+      .then(function (data) {
+         if (data.length === 0) {
+                console.warn("Nenhum resultado encontrado");
+                return;
+                }
+
+                atualizarGraficoBar(data);
+            })
+      .catch(function (erro) {
+        console.log(erro);
+      })
+
+    return false;
+  }
+
+  function atualizarGraficoBar(dados) {
+        console.log("Dados recebidos para o gráfico de Barra:", dados);
+
+        const ctx = document.getElementById(`luminosidade`);
+       
+        if (graficoBar) {
+          graficoBar.destroy();
+        }
+        
+        const duvidasPassos = Object.values(dados[0]).map(Number); 
+        const passos = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'];
+
+          graficoBar = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+            datasets: [
+              {label: 'Acima da Média',
+              data: duvidasPassos,
+              backgroundColor:
+                '#fd2828'
+              ,
+              borderColor: '#fd2828',
+              tension: 0.1
+            },
+            {
+            label: "Na média",
+            data: duvidasPassos,
+            borderwidht: 1,
+            backgroundColor: "#75b9d7"
+          },
+          {
+            label: "Acima da média",
+            data: duvidasPassos,
+            borderwidht: 1,
+            backgroundColor: "#75b9d7"
+          },
+          
+          ]
+          },
+          responsive: true,
+          options: {
+            responsive: true,
+            animation: false,
+            plugins: {
+              legend:{
+                labels:{
+                color:'black'
+                }
+                },
+                y:{
+                  ticks:{
+                  color: 'black'
+                  }
+                  }
+              }
+          }
+          });
+              }
+
+              obterDadosGraficoBar();
+              setInterval(obterDadosGraficoBar, 5000);
+
 
 </script>
 

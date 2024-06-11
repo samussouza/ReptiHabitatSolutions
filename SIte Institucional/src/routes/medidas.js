@@ -13,5 +13,7 @@ router.get("/tempo-real/:idAquario", function (req, res) {
 router.post("/indicadores", function (req, res) {
     medidaController.indicadores(req, res);
 });
-
+router.get("/buscarResultadoGraficoBar/:idUsuario", function (req, res) {
+    medidaController.buscarResultadoGraficoBar(req, res);
+});
 module.exports = router;

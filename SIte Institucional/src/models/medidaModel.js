@@ -72,13 +72,15 @@ function indicadores(empresa) {
      INNER JOIN empresa emp ON ha.fk_empresa = emp.id
      WHERE emp.id = ${empresa}) AS qtd_habitats,
 
-    (SELECT (COUNT(DISTINCT ha.idHabitat) / COUNT(ha.idHabitat)) * 100
-     FROM Medidas m
-     INNER JOIN habitatAnimal ha ON m.fkHabitat = ha.idHabitat
-     INNER JOIN empresa emp ON ha.fk_empresa = emp.id
-     INNER JOIN Leituras l ON m.fkLeituras = l.id
-     WHERE emp.id = ${empresa}
-     AND (l.LeituraTemp < 22 OR l.LeituraTemp > 29)) AS percentual_habitats_alerta,
+   (SELECT 
+        (COUNT(DISTINCT CASE WHEN (l.LeituraTemp < 22 OR l.LeituraTemp > 29) THEN ha.idHabitat END) / COUNT(DISTINCT ha.idHabitat)) * 100 
+    FROM 
+        Medidas m
+        INNER JOIN habitatAnimal ha ON m.fkHabitat = ha.idHabitat
+        INNER JOIN empresa emp ON ha.fk_empresa = emp.id
+        INNER JOIN Leituras l ON m.fkLeituras = l.id
+    WHERE 
+        emp.id = ${empresa}) AS percentual_habitats_alerta,
 
     (SELECT GROUP_CONCAT(subquery.idHabitat SEPARATOR ' e ')
      FROM (
@@ -96,6 +98,7 @@ function indicadores(empresa) {
          ORDER BY ha.idHabitat DESC
          LIMIT 2
      ) AS subquery) AS ultimo2_alertaID;
+
 
 
 
@@ -139,25 +142,23 @@ function buscarMedidasEmTempoReal(idAquario) {
 
 function buscarResultadoGraficoBar(empresa) {
     var instrucaoSql = `
-SELECT 
-    Mes,
-    FaixaTemperatura,
-    AVG(MediaTemperatura) AS MediaTemperaturaMes
-FROM (
     SELECT 
-        MONTH(DataLeitura) AS Mes,
-        CASE 
-            WHEN AVG(Leituras.LeituraTemp) < 22 THEN 'Abaixo de 22°C'
-            WHEN AVG(Leituras.LeituraTemp) <= 29 THEN 'Entre 22°C e 29°C'
-            ELSE 'Acima de 29°C'
-        END AS FaixaTemperatura,
-        AVG(Leituras.LeituraTemp) AS MediaTemperatura
-    FROM Medidas
-    JOIN Leituras ON Medidas.fkLeituras = Leituras.id
-    WHERE MONTH(DataLeitura) BETWEEN 1 AND 6
-    GROUP BY MONTH(DataLeitura)
-) AS TempMes
-GROUP BY Mes, FaixaTemperatura;
+        
+        AVG(CASE WHEN LeituraTemp < 22 THEN LeituraTemp END) AS MediaAbaixo22,
+        AVG(CASE WHEN LeituraTemp >= 22 AND LeituraTemp <= 29 THEN LeituraTemp END) AS MediaEntre22e29,
+        AVG(CASE WHEN LeituraTemp > 29 THEN LeituraTemp END) AS MediaAcima29
+    FROM (
+        SELECT 
+            MONTH(DataLeitura) AS Mes,
+            LeituraTemp
+        FROM Medidas
+        JOIN Leituras ON Medidas.fkLeituras = Leituras.id
+        WHERE MONTH(DataLeitura) BETWEEN 1 AND 6
+    ) AS TempMes
+    GROUP BY Mes
+    ORDER BY Mes;
+
+
                     `;
   
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

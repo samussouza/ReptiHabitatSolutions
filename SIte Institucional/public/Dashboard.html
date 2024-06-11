@@ -159,8 +159,8 @@
     </div>
     <div class="div_filtro">
       <div class="div_lista">
-        <!-- <ul id="ul_lista" class="habitat_lista">
-          <li id="li_habitat" class="li_habitat" id="habitat1"><a>Habitat 1</a></li>
+        <ul id="ul_lista" class="habitat_lista">
+          <!-- <li id="li_habitat" class="li_habitat" id="habitat1"><a>Habitat 1</a></li>
           <li id="li_habitat" class="li_habitat" id="habitat2"><a>Habitat 2</a></li>
           <li id="li_habitat" class="li_habitat" id="habitat3"><a>Habitat 3</a></li>
           <li id="li_habitat" class="li_habitat" id="habitat4"><a>Habitat 4</a></li>
@@ -180,15 +180,12 @@
           <li id="li_habitat" class="li_habitat" id="habitat17"><a>Habitat 17</a></li>
           <li id="li_habitat" class="li_habitat" id="habitat18" style="color: red;"><a>Habitat 18</a></li>
           <li id="li_habitat" class="li_habitat" id="habitat19"><a>Habitat 19</a></li>
-          <li id="li_habitat" class="li_habitat" id="habitat20"><a>Habitat 20</a></li>
-        </ul> -->
+          <li id="li_habitat" class="li_habitat" id="habitat20"><a>Habitat 20</a></li> -->
+        </ul>
         <!-- <select name="empresas" id="listaEmpresas">
           <option value="#">Selecione uma empresa</option>
 
         </select> -->
-        <ul id="ul_lista" class="habitat_lista">
-          <!-- Elementos da lista serão adicionados aqui -->
-        </ul>
       </div>
     </div>
   </div>
@@ -196,42 +193,35 @@
 <script>
   listar()
   function listar() {
-      fetch("/empresas/listarHabitats", {
-        method: "GET",
-      })
-        .then(function (resposta) {
-          if (resposta.ok) {
-            return resposta.json();
-          }
-          throw new Error('Falha na requisição');
-        })
-        .then(function (habitats) {
-          const ulLista = document.getElementById('ul_lista');
-          ulLista.innerHTML = ''; // Limpa a lista antes de adicionar novos itens
-          
-          console.log(habitats); // Para depuração: verificar os dados recebidos
-
-          habitats.forEach((habitat, index) => {
-            const li = document.createElement('li');
-            li.className = 'li_habitat';
-            li.id = `habitat${index + 1}`;
-
-            if (habitat.special) { // Exemplo de condição para mudar estilo ou adicionar evento
-              li.classList.add('special');
-              li.onclick = mudarDash;
-            }
-
-            const a = document.createElement('a');
-            a.textContent = habitat.name;
-            li.appendChild(a);
-
-            ulLista.appendChild(li);
-          });
-        })
-        .catch(function (erro) {
-          console.error(`#ERRO: ${erro}`);
-        });
-    }
+  fetch("/empresas/listarHabitats", {
+    method: "GET",
+  })
+    .then(function (resposta) {
+      if (!resposta.ok) {
+        throw new Error('Erro ao obter os dados');
+      }
+      return resposta.json();
+    })
+    .then(function (empresas) {
+      const ulLista = document.getElementById('ul_lista');
+      empresas.forEach((empresa) => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        li.className = 'li_habitat';
+        a.textContent = 'Habitat ' + empresa.id; 
+        a.href = '#' + empresa.id; 
+        a.className = "alistaHabitats"
+        a.onclick = function() {
+          mudarDash()
+        };
+        li.appendChild(a);
+        ulLista.appendChild(li);
+      });
+    })
+    .catch(function (erro) {
+      console.error(`#ERRO: ${erro}`);
+    });
+}
         
 
 

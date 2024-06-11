@@ -210,12 +210,16 @@
         li.className = 'li_habitat';
         a.textContent = 'Habitat ' + empresa.id; 
         a.href = '#' + empresa.id; 
-        a.className = "alistaHabitats"
-        a.onclick = function() {
+  
+        a.addEventListener('click', function(event) {
+          event.preventDefault(); // Evita o comportamento padrão de seguir o link
+          sessionStorage.FK_HABITAT = empresa.id
           mudarDash()
-        };
+        });
         li.appendChild(a);
         ulLista.appendChild(li);
+       
+
       });
     })
     .catch(function (erro) {

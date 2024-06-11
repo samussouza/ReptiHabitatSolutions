@@ -13,7 +13,7 @@ function listar() {
 }
 
 function listarHabitats() {
-  var instrucaoSql = `select h.idHabitat as id, h.name, h.special 
+  var instrucaoSql = `select h.idHabitat as id
     from habitatAnimal as h 
     inner join empresa as e 
     on e.id = h.fk_empresa 

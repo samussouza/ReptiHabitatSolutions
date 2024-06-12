@@ -113,9 +113,17 @@
           </div>
         </div>
         <div id="KPI2habi" class="KPIhabi" style="display: none;">
-          <span class="spanTitulo2" style="height: 100px">Tempetatura e Luminosidade atual</span>
+          <span class="spanTitulo2" style="height: 100px">Tempetatura  atual</span>
           <div class="div_KPI2content">
             <span class="spanPorcentagemKPI2" id="medidasAtuaisTempLumin"> </span>
+            <div class="divTextoKPI2">
+            </div>
+          </div>
+        </div>
+        <div id="KPI2habi2" class="KPIhabi" style="display: none;">
+          <span class="spanTitulo2" style="height: 100px">Luminosidade atual</span>
+          <div class="div_KPI2content">
+            <span class="spanPorcentagemKPI2" id="medidasAtuaisTempLumin2"> </span>
             <div class="divTextoKPI2">
             </div>
           </div>
@@ -290,7 +298,8 @@
         var mediaTemp = sessionStorage.MEDIA_ATUAL;
         document.getElementById('span_media_temp').innerHTML = `<span>${mediaTemperatura} °C</span>`;
         document.getElementById('span_media_lumi').innerHTML = `<strong><span>${mediaLuminocidade} Lux</span></strong>`;
-        document.getElementById('medidasAtuaisTempLumin').innerHTML = `<strong><span>${mediaAtualTemp1}°C e ${mediaAtualLumin1} Lux</span></strong>`;
+        document.getElementById('medidasAtuaisTempLumin').innerHTML = `<strong><span>${mediaAtualTemp1}°C </span></strong>`;
+        document.getElementById('medidasAtuaisTempLumin2').innerHTML = `<strong><span>${mediaAtualLumin1} Lux</span></strong>`;
         document.getElementById('textoKPI').innerHTML = `<span>${ultimoAlerta1}</span>`;
         document.getElementById('divTextoKPI1').innerHTML = `${qtdHabitatAlerta1}/${totalHabitat1}<strong><span></span></strong>`;
         document.getElementById('spanPorcentagemKPI1').innerHTML = `<strong><span>${porcetagemAlertas1}%</span></strong>`;
@@ -434,12 +443,15 @@
     tituloDash.style.display = 'none'
     KPI1.style.display = 'none'
     KPI2.style.display = 'none'
+    KPI3.style.display = 'none'
+    KPI4.style.display = 'none'
     graftemp.style.display = 'none'
     graflumi.style.display = 'none'
     temphabi.style.display = 'flex'
     lumihabi.style.display = 'flex'
     KPI1habi.style.display = 'flex'
     KPI2habi.style.display = 'flex'
+    KPI2habi2.style.display = 'flex'
 
     const contextoLm35Temperatura = document
       .getElementById("lm35TemperaturaHabi")

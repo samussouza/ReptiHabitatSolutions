@@ -12,6 +12,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
   <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
   <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+  <script src="./js/alerta2.js"></script>
   <style>
     canvas {
       -moz-user-select: none;
@@ -210,13 +211,14 @@
         li.className = 'li_habitat';
         a.textContent = 'Habitat ' + empresa.id; 
         a.href = '#' + empresa.id; 
-  
+        a.className = "alistaHabitats"
         a.addEventListener('click', function(event) {
           event.preventDefault(); // Evita o comportamento padrão de seguir o link
           sessionStorage.FK_HABITAT = empresa.id
           mudarDash()
         });
-        li.appendChild(a);
+        //Utilizando appendChild para adicionar um nó ao elemento pai (a) e (li)
+        li.appendChild(a); 
         ulLista.appendChild(li);
        
 
@@ -267,6 +269,9 @@
           const idHabitatAlerta = indicadores[0].ultimo_alertaID;
           const idHabitatAlerta2Ultmos = indicadores[0].ultimo2_alertaID;
 
+          
+      
+
           // maior número inteiro
           mediaTemperatura = Math.ceil(mediaTemp);
           mediaLuminocidade = Math.ceil(mediaLumin);
@@ -279,7 +284,10 @@
           idHabitatAlerta1 = idHabitatAlerta;
           idHabitatAlerta2Ultmos1 = idHabitatAlerta2Ultmos;
         }
-
+        sessionStorage.MEDIA_ATUALTEMP = mediaAtualTemp1;
+        sessionStorage.MEDIA_ATUALLUMIN = mediaAtualLumin1;
+        
+        var mediaTemp = sessionStorage.MEDIA_ATUAL;
         document.getElementById('span_media_temp').innerHTML = `<span>${mediaTemperatura} °C</span>`;
         document.getElementById('span_media_lumi').innerHTML = `<strong><span>${mediaLuminocidade} Lux</span></strong>`;
         document.getElementById('medidasAtuaisTempLumin').innerHTML = `<strong><span>${mediaAtualTemp1}°C e ${mediaAtualLumin1} Lux</span></strong>`;

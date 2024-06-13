@@ -1,7 +1,8 @@
 var medidaModel = require("../models/medidaModel");
 function indicadores(req, res) {
     const empresa = req.body.fk_empresa
-    medidaModel.indicadores(empresa)
+    const habitat = req.body.fk_habitat
+    medidaModel.indicadores(empresa, habitat)
         .then((resultado) => {
             console.log(`\nResultados encontrados: ${resultado.length}`);
             console.log(`Resultados: ${JSON.stringify(resultado)}`);

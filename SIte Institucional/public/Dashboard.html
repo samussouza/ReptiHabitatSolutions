@@ -204,10 +204,12 @@
   </div>
 </body>
 <script>
+   obterDadosKPIs()
   validarAlertas()
   listar()
-
   setInterval(validarAlertas, 5000)
+  setInterval(atualizarKPIs, 5000)
+
   function listar() {
     fetch("/empresas/listarHabitats", {
       method: "GET",
@@ -244,18 +246,20 @@
       });
   }
 
-  setInterval(atualizarKPIs, 5000)
 
   // Função para obter os dados
   function obterDadosKPIs() {
-    var fk_empresa1 = sessionStorage.FK_EMPRESA;
+    var fk_empresa2 = sessionStorage.FK_EMPRESA;
+    var fk_habitat2 = sessionStorage.FK_HABITAT;
+
     return fetch("/medidas/indicadores", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        fk_empresa: fk_empresa1
+        fk_empresa: fk_empresa2,
+        fk_habitat: fk_habitat2
       })
     })
       .then(function (resposta) {
@@ -278,12 +282,9 @@
           const ultimoAlerta = indicadores[0].ultimo_alerta;
           const qtdHabitatAlerta = indicadores[0].quantidade_habitats_alerta;
           const totalHabitat = indicadores[0].qtd_habitats;
-          const porcetagemAlertas = indicadores[0].percentual_habitats_alerta;
+          const porcetagemAlertas = parseFloat(indicadores[0].percentual_habitats_em_alerta);
           const idHabitatAlerta = indicadores[0].ultimo_alertaID;
           const idHabitatAlerta2Ultmos = indicadores[0].ultimo2_alertaID;
-
-
-
 
           // maior número inteiro
           mediaTemperatura = Math.ceil(mediaTemp);
@@ -293,9 +294,11 @@
           ultimoAlerta1 = ultimoAlerta;
           totalHabitat1 = totalHabitat;
           qtdHabitatAlerta1 = qtdHabitatAlerta;
-          porcetagemAlertas1 = Math.ceil(porcetagemAlertas);
+          porcetagemAlertas1 = Math.abs(porcetagemAlertas);
           idHabitatAlerta1 = idHabitatAlerta;
           idHabitatAlerta2Ultmos1 = idHabitatAlerta2Ultmos;
+
+          console.log(porcetagemAlertas);
         }
         sessionStorage.MEDIA_ATUALTEMP = mediaAtualTemp1;
         sessionStorage.MEDIA_ATUALLUMIN = mediaAtualLumin1;
@@ -446,6 +449,7 @@
   // }
 
   function mudarDash() {
+    atualizarKPIs();
     tituloAlt.innerHTML = "Habitat 5"
     tituloDash.style.display = 'none'
     KPI1.style.display = 'none'

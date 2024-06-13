@@ -14,7 +14,8 @@ function indicadores(req, res) {
 }
 function alertas(req, res) {
     const empresa = req.body.fk_empresa
-    medidaModel.alertas(empresa)
+    const habitat = req.body.fk_habitat
+    medidaModel.alertas(empresa, habitat)
         .then((resultado) => {
             console.log(`\nResultados encontrados: ${resultado.length}`);
             console.log(`Resultados: ${JSON.stringify(resultado)}`);

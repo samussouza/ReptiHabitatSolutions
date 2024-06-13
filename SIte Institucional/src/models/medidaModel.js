@@ -158,57 +158,65 @@ function buscarResultadoGraficoBar(empresa) {
     GROUP BY Mes
     ORDER BY Mes;
                     `;
-  
+
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
-  }
+}
 function buscarResultadoGraficoBarLumin(empresa) {
     var instrucaoSql = `
    
     SELECT AVG(l.LeituraTemp) AS MediaTemperatura
     FROM Leituras l;
                     `;
-  
+
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
-  }
-function alertas(empresa) {
+}
+function alertas(empresa, habitat) {
     var instrucaoSql = `
-    SELECT
-  (SELECT ha.idHabitat
-     FROM habitatAnimal ha
-     INNER JOIN empresa emp ON ha.fk_empresa = emp.id
-     WHERE emp.id = ${empresa}
-     AND ha.idHabitat IN (
-         SELECT m.fkHabitat
-         FROM Medidas m
-         INNER JOIN Leituras l ON m.fkLeituras = l.id
-         WHERE  ((l.LeituraTemp < 22 OR l.LeituraTemp > 29) AND (l.LeituraLumi < 400 OR l.LeituraLumi > 800))
-     )
-     ORDER BY ha.idHabitat DESC LIMIT 1) AS ultimo_alertaID,
+    
+    select lei.LeituraLumi as LeituraLumi , lei.LeituraTemp as LeituraTemp from Leituras as lei 
+inner join Medidas as med on med.FkLeituras = lei.id
+join habitatAnimal as hab on med.fkHabitat = hab.idHabitat 
+join empresa as em on hab.fk_empresa = em.id where em.id = '${empresa}' and hab.idHabitat = '${habitat}' order by med.DataLeitura desc
+ limit 1
+;`;
+    //     var instrucaoSql = `
+    //     SELECT
+    //   (SELECT ha.idHabitat
+    //      FROM habitatAnimal ha
+    //      INNER JOIN empresa emp ON ha.fk_empresa = emp.id
+    //      WHERE emp.id = ${empresa}
+    //      AND ha.idHabitat IN (
+    //          SELECT m.fkHabitat
+    //          FROM Medidas m
+    //          INNER JOIN Leituras l ON m.fkLeituras = l.id
+    //          WHERE  ((l.LeituraTemp < 22 OR l.LeituraTemp > 29) AND (l.LeituraLumi < 400 OR l.LeituraLumi > 800))
+    //      )
+    //      ORDER BY ha.idHabitat DESC LIMIT 1) AS ultimo_alertaID,
 
-     (SELECT l.LeituraLumi
-     FROM Medidas m
-     INNER JOIN habitatAnimal ha ON m.fkHabitat = ha.idHabitat
-     INNER JOIN endereco e ON ha.fkEndereco = e.idEndereco
-     INNER JOIN empresa emp ON ha.fk_empresa = emp.id
-     INNER JOIN Leituras l ON m.fkLeituras = l.id
-     WHERE emp.id = ${empresa}
-     ORDER BY l.LeituraLumi DESC LIMIT 1) AS FkLeituraLumi,
+    //      (SELECT l.LeituraLumi
+    //      FROM Medidas m
+    //      INNER JOIN habitatAnimal ha ON m.fkHabitat = ha.idHabitat
+    //      INNER JOIN endereco e ON ha.fkEndereco = e.idEndereco
+    //      INNER JOIN empresa emp ON ha.fk_empresa = emp.id
+    //      INNER JOIN Leituras l ON m.fkLeituras = l.id
+    //      WHERE emp.id = ${empresa}
+    //      ORDER BY l.LeituraLumi DESC LIMIT 1) AS FkLeituraLumi,
 
-    (SELECT l.LeituraTemp
-     FROM Medidas m
-     INNER JOIN habitatAnimal ha ON m.fkHabitat = ha.idHabitat
-     INNER JOIN endereco e ON ha.fkEndereco = e.idEndereco
-     INNER JOIN empresa emp ON ha.fk_empresa = emp.id
-     INNER JOIN Leituras l ON m.fkLeituras = l.id
-     WHERE emp.id = ${empresa}
-     ORDER BY l.LeituraTemp DESC LIMIT 1) AS FkLeituraTemp;
-                    `;
-  
+    //     (SELECT l.LeituraTemp
+    //      FROM Medidas m
+    //      INNER JOIN habitatAnimal ha ON m.fkHabitat = ha.idHabitat
+    //      INNER JOIN endereco e ON ha.fkEndereco = e.idEndereco
+    //      INNER JOIN empresa emp ON ha.fk_empresa = emp.id
+    //      INNER JOIN Leituras l ON m.fkLeituras = l.id
+    //      WHERE emp.id = ${empresa}
+    //      ORDER BY l.LeituraTemp DESC LIMIT 1) AS FkLeituraTemp;
+    //                     `;
+
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
-  }
+}
 
 module.exports = {
     buscarUltimasMedidas,

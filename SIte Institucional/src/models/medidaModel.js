@@ -44,8 +44,9 @@ function indicadores(empresa) {
      INNER JOIN empresa emp ON ha.fk_empresa = emp.id
      INNER JOIN Leituras l ON m.fkLeituras = l.id
      WHERE emp.id = ${empresa}
-     AND (l.LeituraTemp < 22 OR l.LeituraTemp > 29)
+     AND ((l.LeituraTemp < 22 OR l.LeituraTemp > 29) OR (l.LeituraLumi < 400 OR l.LeituraLumi > 800))
      ORDER BY m.idMedidas DESC LIMIT 1) AS ultimo_alerta,
+
 
     (SELECT ha.idHabitat
      FROM habitatAnimal ha
@@ -55,7 +56,7 @@ function indicadores(empresa) {
          SELECT m.fkHabitat
          FROM Medidas m
          INNER JOIN Leituras l ON m.fkLeituras = l.id
-         WHERE l.LeituraTemp < 22 OR l.LeituraTemp > 29
+         WHERE  ((l.LeituraTemp < 22 OR l.LeituraTemp > 29) AND (l.LeituraLumi < 400 OR l.LeituraLumi > 800))
      )
      ORDER BY ha.idHabitat DESC LIMIT 1) AS ultimo_alertaID,
 
@@ -171,11 +172,49 @@ function buscarResultadoGraficoBarLumin(empresa) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
   }
+function alertas(empresa) {
+    var instrucaoSql = `
+    SELECT
+  (SELECT ha.idHabitat
+     FROM habitatAnimal ha
+     INNER JOIN empresa emp ON ha.fk_empresa = emp.id
+     WHERE emp.id = ${empresa}
+     AND ha.idHabitat IN (
+         SELECT m.fkHabitat
+         FROM Medidas m
+         INNER JOIN Leituras l ON m.fkLeituras = l.id
+         WHERE  ((l.LeituraTemp < 22 OR l.LeituraTemp > 29) AND (l.LeituraLumi < 400 OR l.LeituraLumi > 800))
+     )
+     ORDER BY ha.idHabitat DESC LIMIT 1) AS ultimo_alertaID,
+
+     (SELECT l.LeituraLumi
+     FROM Medidas m
+     INNER JOIN habitatAnimal ha ON m.fkHabitat = ha.idHabitat
+     INNER JOIN endereco e ON ha.fkEndereco = e.idEndereco
+     INNER JOIN empresa emp ON ha.fk_empresa = emp.id
+     INNER JOIN Leituras l ON m.fkLeituras = l.id
+     WHERE emp.id = ${empresa}
+     ORDER BY l.LeituraLumi DESC LIMIT 1) AS FkLeituraLumi,
+
+    (SELECT l.LeituraTemp
+     FROM Medidas m
+     INNER JOIN habitatAnimal ha ON m.fkHabitat = ha.idHabitat
+     INNER JOIN endereco e ON ha.fkEndereco = e.idEndereco
+     INNER JOIN empresa emp ON ha.fk_empresa = emp.id
+     INNER JOIN Leituras l ON m.fkLeituras = l.id
+     WHERE emp.id = ${empresa}
+     ORDER BY l.LeituraTemp DESC LIMIT 1) AS FkLeituraTemp;
+                    `;
+  
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+  }
 
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
     indicadores,
     buscarResultadoGraficoBar,
-    buscarResultadoGraficoBarLumin
+    buscarResultadoGraficoBarLumin,
+    alertas
 }

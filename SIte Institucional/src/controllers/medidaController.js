@@ -9,7 +9,20 @@ function indicadores(req, res) {
         })
         .catch((error) => {
             console.error("Erro ao obter dados de ranking:", error);
-            res.status(500).json({ error: "Erro ao obter dados de ranking" });
+            res.status(500).json({ error: "Erro ao obter dados dos indicadores" });
+        });
+}
+function alertas(req, res) {
+    const empresa = req.body.fk_empresa
+    medidaModel.alertas(empresa)
+        .then((resultado) => {
+            console.log(`\nResultados encontrados: ${resultado.length}`);
+            console.log(`Resultados: ${JSON.stringify(resultado)}`);
+            res.status(200).json(resultado);
+        })
+        .catch((error) => {
+            console.error("Erro ao obter dados de ranking:", error);
+            res.status(500).json({ error: "Erro ao obter dados dos alertas" });
         });
 }
 
@@ -96,6 +109,7 @@ module.exports = {
     buscarMedidasEmTempoReal,
     indicadores,
     buscarResultadoGraficoBar,
-    buscarResultadoGraficoBarLumin
+    buscarResultadoGraficoBarLumin,
+    alertas
 
 }
